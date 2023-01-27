@@ -2,8 +2,15 @@ import ReactPlayer from "react-player";
 import styles from "@/src/styles/Player.module.sass";
 import { useEffect, useRef, useState } from "react";
 
-export default function Player({ url }) {
+/**
+ * @param {playlist} list of blocks
+ * @returns
+ */
+export default function Player({ playlist }) {
   const player = useRef(null);
+  const playlistLength = playlist.length;
+
+  const [currentTrack, setCurrentTrack] = useState(playlist[0]);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
   const [played, setPlayed] = useState(0);
@@ -28,16 +35,13 @@ export default function Player({ url }) {
   }, [ready]);
 
   function handlePlayPause() {
-    console.log("handlePlayPause");
     setPlaying(!playing);
   }
 
   function handlePlay() {
-    console.log("handlePlay");
     setPlaying(true);
   }
   function handlePause() {
-    console.log("handlePause");
     setPlaying(false);
   }
 
@@ -48,16 +52,33 @@ export default function Player({ url }) {
     setPlayed(e.played);
     setLoaded(e.loaded);
   }
-  const handleDuration = () => {
+  function handleDuration() {
     console.log("handleDuration");
-  };
+  }
+  function selectTrack(i) {
+    setCurrentTrack(playlist[i]);
+  }
 
-  const playerLoading = url && !ready;
-  const color = url ? (playerLoading ? "orange" : "green") : "grey";
+  function handleNext(i) {
+    if (i < playlistLength) {
+      // here
+    }
+  }
+
+  function parse(url) {
+    if (url.includes("youtube")) return url.split("&")[0];
+    return url;
+  }
+
+  const playerLoading = currentTrack && !ready;
+  const color = currentTrack ? (playerLoading ? "orange" : "green") : "grey";
+  const url = parse(currentTrack.source.url);
+
   return (
     <>
-      <div>{url ? url : "no track selected"}</div>
-      {url && <div style={{ color }}>{ready ? "ready" : "loading"}</div>}
+      {currentTrack && (
+        <div style={{ color }}>{ready ? "ready" : "loading"}</div>
+      )}
 
       <div>
         <input
@@ -97,6 +118,24 @@ export default function Player({ url }) {
       <button onClick={handlePlayPause} className={styles.playerButton}>
         {playing ? "pause" : "play"}
       </button>
+      <div style={{ display: "flex" }}>
+        {playlist.map((block, i) => (
+          <Block key={block.id} i={i} block={block} selectTrack={selectTrack} />
+        ))}
+      </div>
     </>
+  );
+}
+
+function Block({ block, selectTrack, i }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+      <img
+        alt={"image"}
+        onClick={() => selectTrack(i)}
+        style={{ width: "40px" }}
+        src={block.image.square.url}
+      ></img>
+    </div>
   );
 }
