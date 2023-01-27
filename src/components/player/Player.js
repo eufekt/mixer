@@ -1,6 +1,8 @@
 import ReactPlayer from "react-player";
 import styles from "@/src/styles/Player.module.sass";
 import { useEffect, useRef, useState } from "react";
+import Block from "../Block";
+import Seek from "./Seek";
 
 /**
  * @param {playlist} list of blocks
@@ -9,13 +11,22 @@ import { useEffect, useRef, useState } from "react";
 export default function Player({ playlist }) {
   const player = useRef(null);
   const playlistLength = playlist.length;
+  const [currentTrack, setCurrentTrack] = useState();
+  const [url, setUrl] = useState();
 
-  const [currentTrack, setCurrentTrack] = useState(playlist[0]);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
   const [played, setPlayed] = useState(0);
   const [loaded, setLoaded] = useState(0);
   const [seeking, setSeeking] = useState(false);
+
+  useEffect(() => {
+    if (ready) setPlaying(true);
+  }, [ready]);
+
+  useEffect(() => {
+    if (currentTrack != null) setUrl(parse(playlist[currentTrack].source.url));
+  }, [currentTrack]);
 
   function handleSeekChange(e) {
     setPlayed(parseFloat(e.target.value));
@@ -30,11 +41,8 @@ export default function Player({ playlist }) {
     player.current.seekTo(parseFloat(e.target.value));
   }
 
-  useEffect(() => {
-    if (ready) setPlaying(true);
-  }, [ready]);
-
   function handlePlayPause() {
+    if (currentTrack == null) setCurrentTrack(0);
     setPlaying(!playing);
   }
 
@@ -45,9 +53,6 @@ export default function Player({ playlist }) {
     setPlaying(false);
   }
 
-  function handleEnded() {
-    console.log("handleEnded");
-  }
   function handleProgress(e) {
     setPlayed(e.played);
     setLoaded(e.loaded);
@@ -55,13 +60,32 @@ export default function Player({ playlist }) {
   function handleDuration() {
     console.log("handleDuration");
   }
+
+  function handleEnded() {
+    handleNext(currentTrack);
+  }
   function selectTrack(i) {
-    setCurrentTrack(playlist[i]);
+    preparePlayerAndSet(i);
+  }
+
+  function preparePlayerAndSet(i) {
+    setReady(false);
+    setCurrentTrack(i);
   }
 
   function handleNext(i) {
-    if (i < playlistLength) {
-      // here
+    if (i < playlistLength - 1) {
+      preparePlayerAndSet(i + 1);
+    } else {
+      preparePlayerAndSet(0);
+    }
+  }
+
+  function handlePrev(i) {
+    if (i > 0) {
+      preparePlayerAndSet(i - 1);
+    } else {
+      preparePlayerAndSet(playlistLength - 1);
     }
   }
 
@@ -70,33 +94,20 @@ export default function Player({ playlist }) {
     return url;
   }
 
-  const playerLoading = currentTrack && !ready;
-  const color = currentTrack ? (playerLoading ? "orange" : "green") : "grey";
-  const url = parse(currentTrack.source.url);
+  const playerLoading = currentTrack != null && !ready;
+  const color =
+    currentTrack != null ? (playerLoading ? "orange" : "green") : "grey";
 
   return (
     <>
-      {currentTrack && (
-        <div style={{ color }}>{ready ? "ready" : "loading"}</div>
-      )}
+      <Seek
+        played={played}
+        loaded={loaded}
+        handleSeekMouseUp={handleSeekMouseUp}
+        handleSeekMouseDown={handleSeekMouseDown}
+        handleSeekChange={handleSeekChange}
+      />
 
-      <div>
-        <input
-          type="range"
-          min={0}
-          max={0.999999}
-          // width={"500px"}
-          step="any"
-          value={played}
-          onMouseDown={handleSeekMouseDown}
-          onChange={handleSeekChange}
-          onMouseUp={handleSeekMouseUp}
-        />
-      </div>
-
-      <div>
-        <progress max={1} value={loaded}></progress>
-      </div>
       <ReactPlayer
         ref={player}
         url={url}
@@ -115,27 +126,33 @@ export default function Player({ playlist }) {
         onSeek={(e) => console.log("onSeek", e)}
         onError={(e) => console.log("onError", e)}
       />
+
+      <button
+        onClick={() => handlePrev(currentTrack)}
+        className={styles.playerButton}
+      >
+        {"prev"}
+      </button>
       <button onClick={handlePlayPause} className={styles.playerButton}>
         {playing ? "pause" : "play"}
       </button>
+      <button
+        onClick={() => handleNext(currentTrack)}
+        className={styles.playerButton}
+      >
+        {"next"}
+      </button>
       <div style={{ display: "flex" }}>
         {playlist.map((block, i) => (
-          <Block key={block.id} i={i} block={block} selectTrack={selectTrack} />
+          <Block
+            key={block.id}
+            i={i}
+            block={block}
+            selectTrack={selectTrack}
+            currentTrack={currentTrack}
+          />
         ))}
       </div>
     </>
-  );
-}
-
-function Block({ block, selectTrack, i }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-      <img
-        alt={"image"}
-        onClick={() => selectTrack(i)}
-        style={{ width: "40px" }}
-        src={block.image.square.url}
-      ></img>
-    </div>
   );
 }
