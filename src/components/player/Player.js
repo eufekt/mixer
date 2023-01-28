@@ -3,6 +3,7 @@ import styles from "@/src/styles/Player.module.sass";
 import { useEffect, useRef, useState } from "react";
 import Block from "../Block";
 import Seek from "./Seek";
+import Status, { STATUS_ENUM } from "./Status";
 
 /**
  * @param {playlist} list of blocks
@@ -11,6 +12,7 @@ import Seek from "./Seek";
 export default function Player({ playlist }) {
   const player = useRef(null);
   const playlistLength = playlist.length;
+
   const [currentTrack, setCurrentTrack] = useState();
   const [url, setUrl] = useState();
 
@@ -94,12 +96,16 @@ export default function Player({ playlist }) {
     return url;
   }
 
-  const playerLoading = currentTrack != null && !ready;
-  const color =
-    currentTrack != null ? (playerLoading ? "orange" : "green") : "grey";
+  const status =
+    currentTrack != null
+      ? ready
+        ? STATUS_ENUM.ready
+        : STATUS_ENUM.loading
+      : STATUS_ENUM.idle;
 
   return (
     <>
+      <Status status={status} />
       <Seek
         played={played}
         loaded={loaded}
