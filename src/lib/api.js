@@ -2,7 +2,8 @@ import useSWR from "swr";
 import { apiBase, playlistChannel } from "../config";
 
 const BASE = apiBase.development
-const channelId = "saoul"
+const channelId = "mixing-arena"
+// const channelId = "saoul"
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 

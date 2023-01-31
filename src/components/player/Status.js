@@ -1,3 +1,4 @@
+import styles from "@/src/styles/Status.module.sass"
 export default function Status({ status }) {
   let color, text;
   if (status == STATUS_ENUM.idle) {
@@ -11,7 +12,11 @@ export default function Status({ status }) {
     text = "ready";
   }
 
-  return <div style={{ color }}>{text}</div>;
+  return (
+    <div style={{ color, backgroundColor: "yellow", width: "100%" }}>
+      {text}
+    </div>
+  );
 }
 
 export const STATUS_ENUM = {

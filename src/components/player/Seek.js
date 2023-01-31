@@ -1,3 +1,4 @@
+
 export default function Seek({
   played,
   loaded,
@@ -6,7 +7,7 @@ export default function Seek({
   handleSeekChange,
 }) {
   return (
-    <div>
+    <div style={{ width: "75%" }}>
       <div>
         <input
           type="range"

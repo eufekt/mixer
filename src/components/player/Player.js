@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Block from "../Block";
 import Seek from "./Seek";
 import Status, { STATUS_ENUM } from "./Status";
+import { Controls } from "./Controls";
+import { Preview } from "./Preview";
 
 /**
  * @param {playlist} list of blocks
@@ -48,19 +50,9 @@ export default function Player({ playlist }) {
     setPlaying(!playing);
   }
 
-  function handlePlay() {
-    setPlaying(true);
-  }
-  function handlePause() {
-    setPlaying(false);
-  }
-
   function handleProgress(e) {
     setPlayed(e.played);
     setLoaded(e.loaded);
-  }
-  function handleDuration() {
-    console.log("handleDuration");
   }
 
   function handleEnded() {
@@ -104,51 +96,45 @@ export default function Player({ playlist }) {
       : STATUS_ENUM.idle;
 
   return (
-    <>
-      <Status status={status} />
-      <Seek
-        played={played}
-        loaded={loaded}
-        handleSeekMouseUp={handleSeekMouseUp}
-        handleSeekMouseDown={handleSeekMouseDown}
-        handleSeekChange={handleSeekChange}
-      />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100vw",
+        margin: "auto",
+      }}
+    >
+      <div style={{ position: "fixed", top: 0, height: "50vh" }}>
+        <Status status={status} />
+        <Seek
+          played={played}
+          loaded={loaded}
+          handleSeekMouseUp={handleSeekMouseUp}
+          handleSeekMouseDown={handleSeekMouseDown}
+          handleSeekChange={handleSeekChange}
+        />
+        <Preview block={playlist[currentTrack]} />
 
-      <ReactPlayer
-        ref={player}
-        url={url}
-        playing={playing}
-        loop={false}
-        volume={1}
-        muted={false}
-        onPlay={handlePlay}
-        onPause={handlePause}
-        onEnded={handleEnded}
-        onProgress={handleProgress}
-        onDuration={handleDuration}
-        onReady={() => setReady(true)}
-        onStart={() => console.log("onStart")}
-        onBuffer={() => console.log("onBuffer")}
-        onSeek={(e) => console.log("onSeek", e)}
-        onError={(e) => console.log("onError", e)}
-      />
-
-      <button
-        onClick={() => handlePrev(currentTrack)}
-        className={styles.playerButton}
+        <Controls
+          handlePrev={handlePrev}
+          handlePlayPause={handlePlayPause}
+          handleNext={handleNext}
+          currentTrack={currentTrack}
+          playing={playing}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "100",
+          flexWrap: "wrap",
+          marginTop: "100px",
+          top: 0,
+          paddingTop: 100,
+          // justifyContent: "",
+        }}
       >
-        {"prev"}
-      </button>
-      <button onClick={handlePlayPause} className={styles.playerButton}>
-        {playing ? "pause" : "play"}
-      </button>
-      <button
-        onClick={() => handleNext(currentTrack)}
-        className={styles.playerButton}
-      >
-        {"next"}
-      </button>
-      <div style={{ display: "flex" }}>
         {playlist.map((block, i) => (
           <Block
             key={block.id}
@@ -159,6 +145,22 @@ export default function Player({ playlist }) {
           />
         ))}
       </div>
-    </>
+      <ReactPlayer
+        ref={player}
+        url={url}
+        playing={playing}
+        loop={false}
+        volume={1}
+        muted={false}
+        width={"0px"}
+        height={"0px"}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={handleEnded}
+        onProgress={handleProgress}
+        onReady={() => setReady(true)}
+        onError={(e) => console.log("onError", e)}
+      />
+    </div>
   );
 }
