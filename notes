@@ -1,1 +1,18 @@
 where to have <main></main> ?
+
+TODO 
+BlocksExplorer
+    [] Should paginate when fetching a playlist in BlocksExplorer (load more, load all, 25/450)
+    [] Should parse playlist blocks for (playability ~ ReactPlayer.canPlay?, block types == link)
+    [] should show link to channel to fix if block cant be played
+
+ChanelExplorer
+    [] should search channel in seed
+    [] should paginate when navigating seed
+    [] should find channel by pasting arena link
+Player
+    [] should show playlist history. List of played blocks
+    [] should show whats next.
+    [] should skip if cant play.
+
+

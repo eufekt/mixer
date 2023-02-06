@@ -4,10 +4,10 @@ export function Controls({
   handlePlayPause,
   handleNext,
   currentTrack,
-  playing
+  playing,
 }) {
   return (
-    <div>
+    <div className={styles.buttons}>
       <button
         onClick={() => handlePrev(currentTrack)}
         className={styles.playerButton}

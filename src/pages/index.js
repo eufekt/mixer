@@ -1,8 +1,12 @@
+import { usePlaylistContext } from "../ contexts/PlaylistContext";
 import Player from "../components/player/Player";
-import useChannel from "../lib/api";
+import { useGetChannel } from "../lib/api";
 
 export default function Home() {
-  const { channel, isLoading, isError } = useChannel();
+  const { playlistState } = usePlaylistContext();
+  const { channel, isLoading, isError } = useGetChannel(
+    playlistState?.id || "saoul"
+  );
 
   if (isLoading) return <div>loading</div>;
 

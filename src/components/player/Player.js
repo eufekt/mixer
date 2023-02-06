@@ -1,14 +1,16 @@
 import ReactPlayer from "react-player";
 import styles from "@/src/styles/Player.module.sass";
-import { useEffect, useRef, useState } from "react";
-import Block from "../Block";
+import { useEffect, useReducer, useRef, useState } from "react";
 import Seek from "./Seek";
 import Status, { STATUS_ENUM } from "./Status";
 import { Controls } from "./Controls";
 import { Preview } from "./Preview";
+import { ChanelExplorer } from "../ChanelExplorer";
+import { BlocksExplorer } from "../BlocksExplorer";
 
 /**
  * @param {playlist} list of blocks
+ * TODO: too many state refreshes that causes rerenders down the tree
  * @returns
  */
 export default function Player({ playlist }) {
@@ -22,6 +24,7 @@ export default function Player({ playlist }) {
   const [ready, setReady] = useState(false);
   const [played, setPlayed] = useState(0);
   const [loaded, setLoaded] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [seeking, setSeeking] = useState(false);
 
   useEffect(() => {
@@ -95,27 +98,23 @@ export default function Player({ playlist }) {
         : STATUS_ENUM.loading
       : STATUS_ENUM.idle;
 
+  const title = playlist[currentTrack]?.title || STATUS_ENUM.idle;
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100vw",
-        margin: "auto",
-      }}
-    >
-      <div style={{ position: "fixed", top: 0, height: "50vh" }}>
+    <div className={styles.container}>
+      <title>{title}</title>
+      <div className={styles.player}>
         <Status status={status} />
+        <Preview block={playlist[currentTrack]} />
         <Seek
           played={played}
+          duration={duration}
           loaded={loaded}
           handleSeekMouseUp={handleSeekMouseUp}
           handleSeekMouseDown={handleSeekMouseDown}
           handleSeekChange={handleSeekChange}
         />
-        <Preview block={playlist[currentTrack]} />
-
+        <div>{title}</div>
         <Controls
           handlePrev={handlePrev}
           handlePlayPause={handlePlayPause}
@@ -123,28 +122,16 @@ export default function Player({ playlist }) {
           currentTrack={currentTrack}
           playing={playing}
         />
+        <a href={url} target={"_blank"} rel="noreferrer">
+          src 🔗
+        </a>
       </div>
-      <div
-        style={{
-          display: "flex",
-          width: "100",
-          flexWrap: "wrap",
-          marginTop: "100px",
-          top: 0,
-          paddingTop: 100,
-          // justifyContent: "",
-        }}
-      >
-        {playlist.map((block, i) => (
-          <Block
-            key={block.id}
-            i={i}
-            block={block}
-            selectTrack={selectTrack}
-            currentTrack={currentTrack}
-          />
-        ))}
-      </div>
+      <BlocksExplorer
+        playlist={playlist}
+        selectTrack={selectTrack}
+        currentTrack={currentTrack}
+      />
+      <ChanelExplorer />
       <ReactPlayer
         ref={player}
         url={url}
@@ -157,6 +144,7 @@ export default function Player({ playlist }) {
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={handleEnded}
+        onDuration={setDuration}
         onProgress={handleProgress}
         onReady={() => setReady(true)}
         onError={(e) => console.log("onError", e)}
