@@ -13,7 +13,7 @@ export default function Status({ status }) {
   }
 
   return (
-    <div style={{ color, backgroundColor: "yellow", width: "100%" }}>
+    <div style={{ color, backgroundColor: "yellow" }}>
       {text}
     </div>
   );

@@ -11,5 +11,5 @@ export function Preview({ block }) {
     <img src={image} style={{ height: "100%" }} alt={"preview"}></img>
   );
 
-  return <div style={{ height: "200px" }}>{block ? previewBlock : emptyBlock}</div>;
+  return <div style={{ height: "100px" }}>{block ? previewBlock : emptyBlock}</div>;
 }

@@ -4,16 +4,24 @@ import PlaylistContext from "../ contexts/PlaylistContext";
 import { playlistReducer } from "../reducers/PlaylistReducer";
 
 export default function App({ Component, pageProps }) {
-  const [playlistState, playlistDispatch] = useReducer(playlistReducer);
+  // const [playlistIdState, playlistIdDispatch] = useReducer(playlistIdReducer);
+  const [playlist, playlistDispatch] = useReducer(playlistReducer);
 
-  const providerState = {
-    playlistState,
+  // const playlistIdProviderState = {
+  //   playlistId,
+  //   playlistIdDispatch,
+  // };
+
+  const playlistProviderState = {
+    playlist,
     playlistDispatch,
   };
 
   return (
-    <PlaylistContext.Provider value={providerState}>
+    // <PlaylistIdContext.Provider value={playlistIdProviderState}>
+    <PlaylistContext.Provider value={playlistProviderState}>
       <Component {...pageProps} />
     </PlaylistContext.Provider>
+    // </PlaylistIdContext.Provider>
   );
 }

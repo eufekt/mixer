@@ -25,12 +25,12 @@ export default function Seek({
       <div>
         <progress max={1} value={loaded}></progress>
       </div>
-      duration
+      {/* duration
       <Duration seconds={duration} />
       elapsed
       <Duration seconds={duration * played} />
       remaining
-      <Duration seconds={duration * (1 - played)} />
+      <Duration seconds={duration * (1 - played)} /> */}
     </div>
   );
 }

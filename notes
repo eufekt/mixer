@@ -1,18 +1,24 @@
 where to have <main></main> ?
 
 TODO 
+
 BlocksExplorer
-    [] Should paginate when fetching a playlist in BlocksExplorer (load more, load all, 25/450)
-    [] Should parse playlist blocks for (playability ~ ReactPlayer.canPlay?, block types == link)
-    [] should show link to channel to fix if block cant be played
-
-ChanelExplorer
-    [] should search channel in seed
-    [] should paginate when navigating seed
-    [] should find channel by pasting arena link
+    [x] Should paginate when fetching a playlist in BlocksExplorer (load more, load all, 25/450)
+    [] fetch more on scroll instead of button
+    [] should display loading spinner
+    [] should parse playlist blocks for (playability ~ ReactPlayer.canPlay?, block types == link)
+    [] should be able to search by name within playlists of the mixer channel
+    [] should be able to paste link of channel and load the playlist
+    
 Player
+    [] make sticky and add fresh figma styling
     [] should show playlist history. List of played blocks
-    [] should show whats next.
-    [] should skip if cant play.
+    [] continue playing on playlist change.
+    
+    History
+        [] should show list whats next.
+        [] should skip if cant play.
+        [] should show history of played tracks
 
-
+BUGS
+[] currently bugs if you open first page -> select block -> open more pages -> the newly selected block will not be the right one
