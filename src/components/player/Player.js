@@ -34,6 +34,11 @@ export default function Player() {
     if (ready) setPlaying(true);
   }, [ready]);
 
+  useEffect(() => {
+    setCurrentTrack(0);
+    setReady(false)
+  }, [playlist]);
+
   function handleSeekChange(e) {
     setPlayed(parseFloat(e.target.value));
   }
