@@ -1,15 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-export function Preview({ block }) {
-  const url = block?.source?.url;
-  const image = block?.image?.square.url;
-  //   console.log(block);
+import styles from "@/src/styles/Player.module.sass";
 
-  const emptyBlock = (
-    <div>{"no song selected"}</div>
-  );
+export function Preview({ image }) {
+
+
+  const emptyBlock = <div style={{ width: "100%" }}></div>;
+
   const previewBlock = (
-    <img src={image} style={{ height: "100%" }} alt={"preview"}></img>
+    <img className={styles.image} src={image} alt={"preview"}></img>
   );
 
-  return <div style={{ height: "100px" }}>{block ? previewBlock : emptyBlock}</div>;
+  return (
+    <div className={styles.previewContainer}>
+      {image ? previewBlock : emptyBlock}
+    </div>
+  );
 }

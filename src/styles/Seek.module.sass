@@ -1,0 +1,74 @@
+@use "variables"
+
+.container
+    display: flex
+    flex-direction: row
+    width: 50%
+
+/********** Range Input Styles **********/
+/*Range Reset*/
+
+.seekContainer
+    color: variables.$color_text
+    display: flex
+    flex-direction: column
+    padding: 5px
+    width: 100%
+
+    .title
+        text-align: center
+        width: 100%
+
+    .durations
+        font-size: variables.$font_size_smaller
+        display: flex
+        justify-content: space-between
+
+.seek
+    -webkit-appearance: none
+    appearance: none
+    background: transparent
+    cursor: pointer
+
+/* Removes default focus */
+.seek:focus
+    outline: none
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+.seek::-webkit-slider-runnable-track
+    background-color: variables.$color_contrast
+    height: 2px
+
+/* slider thumb */
+.seek::-webkit-slider-thumb
+    -webkit-appearance: none
+    appearance: none
+    margin-top: -4px
+
+    background-color: variables.$color_text
+    height: 10px
+    width: 10px
+    border-radius: 10px
+
+.seek:focus::-webkit-slider-thumb
+    border: 1px solid #053a5f
+
+/******** Firefox styles ********/
+/* slider track */
+.seek::-moz-range-track
+    background-color: variables.$color_contrast
+    height: 2px
+
+/* slider thumb */
+.seek::-moz-range-thumb
+    border: none
+    border-radius: 0
+
+    background-color: variables.$color_text
+    height: 10px
+    width: 10px
+    border-radius: 10px
+
+.seek:focus::-moz-range-thumb
+    border: 1px solid #053a5f

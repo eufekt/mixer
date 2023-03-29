@@ -28,9 +28,7 @@ export default function Player() {
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
   const [played, setPlayed] = useState(0);
-  const [loaded, setLoaded] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [seeking, setSeeking] = useState(false);
 
   useEffect(() => {
     if (ready) setPlaying(true);
@@ -40,12 +38,7 @@ export default function Player() {
     setPlayed(parseFloat(e.target.value));
   }
 
-  function handleSeekMouseDown(e) {
-    setSeeking(true);
-  }
-
   function handleSeekMouseUp(e) {
-    setSeeking(false);
     player.current.seekTo(parseFloat(e.target.value));
   }
 
@@ -59,7 +52,6 @@ export default function Player() {
    */
   function handleProgress(e) {
     setPlayed(e.played);
-    setLoaded(e.loaded);
   }
 
   function handleEnded() {
@@ -101,26 +93,26 @@ export default function Player() {
   }
 
   let status = getStatus();
-  
+  const currentBlock = playlist?.list[currentTrack] || null;
+
   return (
     <div className={styles.container}>
       <div className={styles.player}>
-        <Status status={status} />
-        {playlist && <Preview block={playlist.list[currentTrack]} />}
-        <Seek
-          played={played}
-          duration={duration}
-          loaded={loaded}
-          handleSeekMouseUp={handleSeekMouseUp}
-          handleSeekMouseDown={handleSeekMouseDown}
-          handleSeekChange={handleSeekChange}
-        />
         <Controls
           handlePrev={handlePrev}
           handlePlayPause={handlePlayPause}
           handleNext={handleNext}
           currentTrack={currentTrack}
           playing={playing}
+        />
+        <Status status={status} />
+        <Seek
+          block={currentBlock}
+          played={played}
+          duration={duration}
+          handleSeekMouseUp={handleSeekMouseUp}
+          // handleSeekMouseDown={handleSeekMouseDown}
+          handleSeekChange={handleSeekChange}
         />
         <a href={"url"} target={"_blank"} rel="noreferrer">
           src 🔗

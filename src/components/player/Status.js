@@ -1,4 +1,5 @@
-import styles from "@/src/styles/Status.module.sass"
+import styles from "@/src/styles/Player.module.sass";
+
 export default function Status({ status }) {
   let color, text;
   if (status == STATUS_ENUM.idle) {
@@ -13,9 +14,7 @@ export default function Status({ status }) {
   }
 
   return (
-    <div style={{ color, backgroundColor: "yellow" }}>
-      {text}
-    </div>
+    <div className={styles.status} style={{ backgroundColor: color }}></div>
   );
 }
 

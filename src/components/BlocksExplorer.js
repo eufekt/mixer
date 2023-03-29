@@ -18,7 +18,10 @@ export function BlocksExplorer() {
    */
   function rotateArrayFrom(index) {
     const allElements = contents.data.flatMap((blocks) => blocks.contents);
-    const rotatedList = [...allElements.slice(index), ...allElements.slice(0, index)];
+    const rotatedList = [
+      ...allElements.slice(index),
+      ...allElements.slice(0, index),
+    ];
     playlistDispatch({ type: "setPlaylist", list: rotatedList });
   }
 
@@ -38,9 +41,9 @@ export function BlocksExplorer() {
     let allElements = contents.data.flatMap((blocks) => blocks.contents);
 
     ContentsSection = (
-      <div className={styles.container}>
+      <div className={styles.blocks_container}>
         <div>total blocks {allElements.length}</div>
-        {allElements.map((block,i) => (
+        {allElements.map((block, i) => (
           <Block
             key={block.id}
             i={i}
@@ -53,7 +56,7 @@ export function BlocksExplorer() {
   }
 
   return (
-    <div style={{ color: "white" }}>
+    <div className={styles.container}>
       {ChannelSection}
       {ContentsSection}
       <button onClick={() => contents.setSize(contents.size + 1)}>more</button>

@@ -1,4 +1,5 @@
-import styles from "@/src/styles/Controls.module.sass";
+import styles from "@/src/styles/Player.module.sass"
+
 export function Controls({
   handlePrev,
   handlePlayPause,

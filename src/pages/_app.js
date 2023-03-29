@@ -1,4 +1,4 @@
-import "@/src/styles/globals.sass";
+import "@/src/styles/Global.sass";
 import { useReducer } from "react";
 import PlaylistContext from "../ contexts/PlaylistContext";
 import { playlistReducer } from "../reducers/PlaylistReducer";
