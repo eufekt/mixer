@@ -4,14 +4,17 @@ TODO
 
 BlocksExplorer
     [x] Should paginate when fetching a playlist in BlocksExplorer (load more, load all, 25/450)
-    [] fetch more on scroll instead of button
-    [] should display loading spinner
+    [x] fetch more on scroll instead of button
+    [] add titles to blocks
+    [] while loading show a skeleton
     [] should parse playlist blocks for (playability ~ ReactPlayer.canPlay?, block types == link)
     [] should be able to search by name within playlists of the mixer channel
     [] should be able to paste link of channel and load the playlist
     
 Player
-    [] make sticky and add fresh figma styling
+    [x] make sticky and add fresh figma styling
+    [] add svgs to next play pause
+    [] add information about current block if available
     [] should show playlist history. List of played blocks
     [] continue playing on playlist change.
     
@@ -21,4 +24,4 @@ Player
         [] should show history of played tracks
 
 BUGS
-[] currently bugs if you open first page -> select block -> open more pages -> the newly selected block will not be the right one
+[x] currently bugs if you open first page -> select block -> open more pages -> the newly selected block will not be the right one

@@ -1,12 +1,23 @@
 import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
-import { apiBase, playlistChannel } from "../config";
+import { apiBase } from "../config";
 
 const BASE = apiBase.development;
 
-// const channelId = "saoul"
+const fetcher = async (...args) => {
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const res = await fetch(...args)
+
+  if (!res.ok) {
+    const error = new Error('An error occurred while fetching the data.')
+    // Attach extra info to the error object.
+    error.info = await res.json()
+    error.status = res.status
+    throw error
+  }
+ 
+  return res.json()
+};
 
 //TODO: NEXT fetch channel blocks per 100
 export function useGetChannel(id) {
@@ -33,16 +44,25 @@ export function useGetChannelContents(id) {
 }
 
 export function useGetChannelContentsPaginated(id) {
+  const per = 30;
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.contents.length) return null;
-    return `${BASE}/channels/${id}/contents?page=${pageIndex+1}&per=20`;
+    return `${BASE}/channels/${id}/contents?page=${pageIndex + 1}&per=${per}`;
   };
 
-  const { data, error, isLoading, size, setSize } = useSWRInfinite(
+  const {
+    data,
+    error,
+    isLoading: reqLoading,
+    size,
+    setSize,
+    isValidating,
+  } = useSWRInfinite(
     getKey,
-    fetcher,
-    // {initialSize:1000}
+    fetcher
   );
 
-  return { data, isError: error, isLoading, size, setSize };
+  const isLoading = reqLoading || isValidating;
+
+  return { data, error, isLoading, size, setSize };
 }

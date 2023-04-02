@@ -9,7 +9,7 @@ export default function Status({ status }) {
     color = "orange";
     text = "loading";
   } else if (status == STATUS_ENUM.ready) {
-    color = "green";
+    color = "#2ba425";
     text = "ready";
   }
 
