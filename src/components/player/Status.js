@@ -1,15 +1,16 @@
-import styles from "@/src/styles/Player.module.sass";
+import styles, {color_green, color_orange, color_contrast} from "@/src/styles/Player.module.sass";
+
 
 export default function Status({ status }) {
   let color, text;
   if (status == STATUS_ENUM.idle) {
-    color = "grey";
+    color = color_contrast;
     text = "idle: choose track or press play";
   } else if (status == STATUS_ENUM.loading) {
-    color = "orange";
+    color = color_orange
     text = "loading";
   } else if (status == STATUS_ENUM.ready) {
-    color = "#2ba425";
+    color = color_green;
     text = "ready";
   }
 

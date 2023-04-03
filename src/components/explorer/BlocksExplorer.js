@@ -9,14 +9,15 @@ import useIsInViewport from "./useIsInViewport";
 export function BlocksExplorer() {
   const { playlistDispatch } = usePlaylistContext();
 
-  const channel = useGetChannel("saoul");
+  const seed = "seed-nwf3b3nhr-a";
+  const channel = useGetChannel(seed);
   const channelLength = channel.data?.length;
 
   /**
    * TODO: handle error
    */
   const { data, error, isLoading, size, setSize } =
-    useGetChannelContentsPaginated("saoul");
+    useGetChannelContentsPaginated(seed);
 
   const loadedBlocks = data ? data.flatMap((blocks) => blocks.contents) : [];
   const hasMore = loadedBlocks.length < channelLength;
@@ -49,12 +50,13 @@ export function BlocksExplorer() {
   return (
     <div className={styles.container}>
       <div className={styles.blocks_container}>
-        {loadedBlocks?.map((block, i) => (
+        {loadedBlocks.map((block, i) => (
           <Block
             key={block.id}
             i={i}
             block={block}
             loadPlaylistFrom={rotateArrayFrom}
+            // loadChannelOnStack={loadChannelOnStack}
           />
         ))}
       </div>

@@ -26,20 +26,7 @@ export function useGetChannel(id) {
   return {
     data,
     isLoading,
-    isError: error,
-  };
-}
-
-export function useGetChannelContents(id) {
-  const { data, error, isLoading } = useSWR(
-    `${BASE}/channels/${id}/contents&per=100`,
-    fetcher
-  );
-
-  return {
-    data,
-    isLoading,
-    isError: error,
+    error,
   };
 }
 

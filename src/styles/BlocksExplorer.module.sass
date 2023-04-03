@@ -1,16 +1,21 @@
 @use 'variables'
 
 .container
+    // top: 
+    // top: 400px
+    // z-index:1  
     margin-top: calc(variables.$player_height*2)
     width: 100%,
     color: variables.$color_text
+    // margin:auto
+    // @extend .center_hoz_vert
 
 .blocks_container
-    display: flex,
-    width: 100%,
-    flex-wrap: wrap,
-    top: 0,
-    gutter: 10px
+    display: flex
+    width: 100%
+    flex-wrap: wrap
+    top: 0
+    gap: 10px
 
 .loading
     width: 100%

@@ -1,10 +1,30 @@
 @use 'variables'
-$block_width_browser: 200px
+
+$block_width_browser: 300px
 $block_width_mobile: 120px
 
 .container
     @extend .center_hoz_vert
     width: $block_width_browser
     height: $block_width_browser
+
     &:hover
         border: 1px solid variables.$color_contrast
+
+    .channelDesc
+        @extend .center_hoz_vert
+        flex-direction: column
+        .title
+            font-size: variables.$font_size_bigger
+            padding-top:20px
+        .misc
+            margin-top: 8px
+            text-align: center
+
+
+:export
+    color_base: variables.$color_base
+    color_contrast: variables.$color_contrast
+    color_text: variables.$color_text
+    color_green: variables.$color_green
+    color_orange: variables.$color_orange
