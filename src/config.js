@@ -4,3 +4,4 @@ export const apiBase = {
 };
 
 export const playlistChannel = 'mac-are-na';
+export const arenaBase = 'https://www.are.na';

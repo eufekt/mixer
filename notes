@@ -2,21 +2,28 @@ where to have <main></main> ?
 
 TODO 
 
+general
+[] add ability to fix volume
+[] Authenticate with Arena to have token
+[] directly add a block or channel to your arena profile
+
 BlocksExplorer
     [x] Should paginate when fetching a playlist in BlocksExplorer (load more, load all, 25/450)
     [x] fetch more on scroll instead of button
-    [] add titles to blocks
+    [x] add titles to blocks
+    [x] should parse playlist blocks for (playability ~ ReactPlayer.canPlay?, block types == link)
+    [x] should show (amount blocks, loaded)
+    [] should remove dead links
     [] while loading show a skeleton
-    [] should parse playlist blocks for (playability ~ ReactPlayer.canPlay?, block types == link)
     [] should be able to search by name within playlists of the mixer channel
     [] should be able to paste link of channel and load the playlist
+    [] should use router to load or navigate playlists (take advantage of SSR for seed)
     
 Player
     [x] make sticky and add fresh figma styling
     [] add svgs to next play pause
-    [] add information about current block if available
     [] should show playlist history. List of played blocks
-    [] continue playing on playlist change.
+    [x] continue playing on playlist change.
     
     History
         [] should show list whats next.

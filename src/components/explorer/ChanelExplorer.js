@@ -1,30 +1,35 @@
 import { useState } from "react";
-import { usePlaylistIdContext } from "../../ contexts/PlaylistIdContext";
-import { useGetChannel, useGetChannelContents } from "../../lib/api";
-import styles from "@/src/styles/ChanelExplorer.module.sass";
+import { useGetChannel } from "@/src/lib/api";
+import { BlocksExplorer } from "./BlocksExplorer";
 
-export function ChanelExplorer() {
+export function ChannelExplorer() {
   const seed = "seed-nwf3b3nhr-a";
   const [stack, setStack] = useState([seed]);
-  const currentChannel = stack.slice(-1)[0];
-  
-  const {data, isLoading, error} = useGetChannel(currentChannel);
+  const currentChannelSlug = stack.slice(-1)[0];
 
-  // implement
-  function pushToStack(id) {
-    setStack([...stack, id]);
+  const { data: channel, isLoading, error } = useGetChannel(currentChannelSlug);
+
+  const stackLength = stack.length;
+  const isRoot = stackLength === 1;
+
+  function addToStack(slug) {
+    setStack([...stack, slug]);
   }
 
-  // implement
   function popFromStack() {
-    setStack(stack.slice(0, -1));
+    if (!isRoot) setStack(stack.slice(0, -1));
   }
-  
-  // TODO, here add to index
-  // wrap blocks explorer here, give the channel to fetch,
-  // fetch the channell here
+
   return (
-    <div className={styles.container}>
-    </div>
+    <>
+      {channel && (
+        <BlocksExplorer
+          channel={channel}
+          addToStack={addToStack}
+          popFromStack={popFromStack}
+          isRoot={isRoot}
+        />
+      )}
+    </>
   );
 }

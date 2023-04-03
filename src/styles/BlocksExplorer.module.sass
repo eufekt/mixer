@@ -1,21 +1,40 @@
 @use 'variables'
 
 .container
-    // top: 
-    // top: 400px
-    // z-index:1  
+    // margin-top: calc(variables.$player_height*2)
     margin-top: calc(variables.$player_height*2)
-    width: 100%,
     color: variables.$color_text
-    // margin:auto
-    // @extend .center_hoz_vert
+    margin-bottom: 50px
+    width: 100%,
+
+.channelActions
+    display: flex
+    font-size: variables.$font_size
+    align-items: center
+    gap: 10px
+    margin-left: 10px
+    margin-bottom: calc(variables.$player_height)
+    position: sticky
+    top: (variables.$player_height +20px)
+    width: 50%,
+    z-index: 1
+
+    .back
+
+    .channelTitle
+        font-size: variables.$font_size_bigger
+
+    .userLink
+        &:hover
+            text-decoration: underline
 
 .blocks_container
     display: flex
     width: 100%
     flex-wrap: wrap
     top: 0
-    gap: 10px
+    gap: 20px
+    margin: 0 10px
 
 .loading
     width: 100%

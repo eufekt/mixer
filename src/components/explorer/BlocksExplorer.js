@@ -5,23 +5,31 @@ import { useGetChannel, useGetChannelContentsPaginated } from "../../lib/api";
 import Block from "./Block";
 
 import useIsInViewport from "./useIsInViewport";
+import { buildChannelUrl } from "@/src/lib/helpers";
 
-export function BlocksExplorer() {
+export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
   const { playlistDispatch } = usePlaylistContext();
 
-  const seed = "seed-nwf3b3nhr-a";
-  const channel = useGetChannel(seed);
-  const channelLength = channel.data?.length;
-
-  /**
-   * TODO: handle error
-   */
   const { data, error, isLoading, size, setSize } =
-    useGetChannelContentsPaginated(seed);
+    useGetChannelContentsPaginated(channel.slug);
 
   const loadedBlocks = data ? data.flatMap((blocks) => blocks.contents) : [];
-  const hasMore = loadedBlocks.length < channelLength;
+  const hasMore = loadedBlocks.length < channel.length;
   const isEmpty = data?.[0]?.contents.length === 0;
+
+  const filtered = loadedBlocks.filter((block) => {
+    if (block.class === "Channel") {
+      return true;
+    } else if (block.class === "Media") {
+      if (
+        block.source.provider.name === "YouTube" ||
+        block.source.provider.name === "SoundCloud"
+      ) {
+        return true;
+      }
+    }
+    return false;
+  });
 
   const elementRef = useRef();
   const isInViewport = useIsInViewport(elementRef);
@@ -38,25 +46,48 @@ export function BlocksExplorer() {
     }
   }, [increasePageSize, isInViewport, isLoading]);
 
-  function rotateArrayFrom(index) {
-    const allElements = data.flatMap((blocks) => blocks.contents);
-    const rotatedList = [
-      ...allElements.slice(index),
-      ...allElements.slice(0, index),
-    ];
-    playlistDispatch({ type: "setPlaylist", list: rotatedList });
-  }
+  const rotateArrayFrom = useCallback(
+    (index) => {
+      const rotatedList = [
+        ...filtered.slice(index),
+        ...filtered.slice(0, index),
+      ];
+      let onlyMedia = rotatedList.filter((block) => block.class === "Media");
+      playlistDispatch({ type: "setPlaylist", list: onlyMedia });
+    },
+    [filtered, playlistDispatch]
+  );
+
+  const channelUrl = buildChannelUrl(channel);
 
   return (
     <div className={styles.container}>
+      <div className={styles.channelActions}>
+        {!isRoot && (
+          <button className={styles.back} onClick={popFromStack}>
+            back
+          </button>
+        )}
+        <div>
+          <span className={styles.channelTitle}>{channel.title}</span>
+          <span>{` • by ${channel.user.full_name}`}</span>
+          <span>{` • ${loadedBlocks.length}/${channel.length} loaded`}</span>
+          <span>
+            {" • "}
+            <a href={channelUrl} target={"none"}>
+              source
+            </a>
+          </span>
+        </div>
+      </div>
       <div className={styles.blocks_container}>
-        {loadedBlocks.map((block, i) => (
+        {filtered.map((block, i) => (
           <Block
             key={block.id}
             i={i}
             block={block}
             loadPlaylistFrom={rotateArrayFrom}
-            // loadChannelOnStack={loadChannelOnStack}
+            addToStack={addToStack}
           />
         ))}
       </div>

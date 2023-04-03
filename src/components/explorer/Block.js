@@ -2,40 +2,52 @@
 import styles, {
   color_green,
   color_contrast,
+  color_text,
 } from "@/src/styles/Block.module.sass";
 import Image from "next/image";
 import { useRef } from "react";
 import useIsInViewport from "./useIsInViewport";
 
-export default function Block({ block, loadPlaylistFrom, i, loadChannelOnStack }) {
+export default function Block({ block, loadPlaylistFrom, i, addToStack }) {
   // TODO: check if state:available is for "isPlayable"
   const {
     title,
     owner_slug,
     length,
     state,
-    collaboration,
+    status,
     base_class,
     class: _class,
     image,
   } = block;
 
-  if (_class === "Text" || _class === "Image" || _class === "Attachment")
-    return null;
-
-  // console.log(block);
   let imgsrc;
   let borderColor = color_contrast;
-  let hasImage = false;
+  let color = color_text;
+
+  function parseTitle(title) {
+    const maxLength = 35;
+    let newTitle = title.replace(/&amp;/g, "&");
+
+    if (newTitle.length > maxLength) {
+      newTitle = newTitle.substring(0, maxLength) + "...";
+    }
+    return newTitle;
+  }
 
   if (base_class === "Channel") {
-    if (collaboration) {
+    if (status === "public") {
       borderColor = color_green;
+      color = color_green;
     }
     const border =
       base_class === "Channel" ? `1px solid ${borderColor}` : "none";
     return (
-      <div className={styles.container} style={{ border }}>
+      <div
+        className={styles.container}
+        style={{ border, color }}
+        onClick={() => addToStack(block.slug)}
+      >
         <div className={styles.channelDesc}>
           <div className={styles.title}>{title}</div>
           <div className={styles.misc}>
@@ -47,12 +59,9 @@ export default function Block({ block, loadPlaylistFrom, i, loadChannelOnStack }
       </div>
     );
   } else if (base_class === "Block") {
-    if (_class !== "Media") {
-      console.log("Other than media found, found",_class);
-      return null;
-    }
-
     imgsrc = image.square.url;
+
+    let title = parseTitle(block.title);
 
     return (
       <div className={styles.container}>
@@ -66,6 +75,7 @@ export default function Block({ block, loadPlaylistFrom, i, loadChannelOnStack }
           onClick={() => loadPlaylistFrom(i)}
           src={imgsrc}
         ></Image>
+        <div className={styles.blockTitle}>{title}</div>
       </div>
     );
   }

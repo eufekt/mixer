@@ -22,8 +22,8 @@ export default function Player() {
   const playlistLength = playlist?.list.length || 0;
 
   const [currentTrack, setCurrentTrack] = useState(0);
-
-  const url = parse(playlist?.list[currentTrack].source.url);
+  // console.log(playlist)
+  const url = parse(playlist?.list[currentTrack]?.source.url);
 
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
@@ -119,9 +119,9 @@ export default function Player() {
           // handleSeekMouseDown={handleSeekMouseDown}
           handleSeekChange={handleSeekChange}
         />
-        <a href={"url"} target={"_blank"} rel="noreferrer">
+        {url && <a href={url} target={"_blank"} rel="noreferrer">
           src 🔗
-        </a>
+        </a>}
       </div>
       {hasWindow && url && (
         <ReactPlayer

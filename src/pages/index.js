@@ -1,10 +1,10 @@
-import { BlocksExplorer } from "../components/explorer/BlocksExplorer";
+import { ChannelExplorer } from "../components/explorer/ChanelExplorer";
 import Player from "../components/player/Player";
 
 export default function Home() {
   return (
     <main>
-      <BlocksExplorer />
+      <ChannelExplorer />
       <Player />
     </main>
   );
