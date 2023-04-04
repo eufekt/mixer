@@ -10,16 +10,31 @@
 .channelActions
     display: flex
     font-size: variables.$font_size
-    align-items: center
+    flex-direction: column
+    align-items: left
     gap: 10px
     margin-left: 10px
     margin-bottom: calc(variables.$player_height)
     position: sticky
     top: (variables.$player_height +20px)
-    width: 50%,
+    // width: 50%,
     z-index: 1
 
     .back
+        background-color: none
+        background: none
+        width: 80px
+        text-align: center
+        cursor: pointer
+        margin-right: 20px
+        color: variables.$color_contrast
+        border: 1px solid variables.$color_contrast
+        padding: 5px 0px
+
+        &:disabled
+            opacity: 0
+            cursor: default
+
 
     .channelTitle
         font-size: variables.$font_size_bigger

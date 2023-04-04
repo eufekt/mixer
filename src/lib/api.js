@@ -5,18 +5,17 @@ import { apiBase } from "../config";
 const BASE = apiBase.development;
 
 const fetcher = async (...args) => {
-
-  const res = await fetch(...args)
+  const res = await fetch(...args);
 
   if (!res.ok) {
-    const error = new Error('An error occurred while fetching the data.')
+    const error = new Error("An error occurred while fetching the data.");
     // Attach extra info to the error object.
-    error.info = await res.json()
-    error.status = res.status
-    throw error
+    error.info = await res.json();
+    error.status = res.status;
+    throw error;
   }
- 
-  return res.json()
+
+  return res.json();
 };
 
 //TODO: NEXT fetch channel blocks per 100
@@ -44,10 +43,7 @@ export function useGetChannelContentsPaginated(id) {
     size,
     setSize,
     isValidating,
-  } = useSWRInfinite(
-    getKey,
-    fetcher
-  );
+  } = useSWRInfinite(getKey, fetcher);
 
   const isLoading = reqLoading || isValidating;
 

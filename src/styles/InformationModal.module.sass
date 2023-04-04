@@ -1,0 +1,40 @@
+@use 'variables'
+
+.infoButton
+    position: fixed
+    color: variables.$color_contrast
+    font-size: variables.$font_size
+    border: 1px solid variables.$color_contrast
+    border-radius: 50%
+    align-items: center
+    text-align: center
+    cursor: pointer
+    height: 20px
+    width: 20px
+    top: 10px
+    right: 10px
+
+.infoModalContainer
+    width: 100vw
+    height: 100vw
+    background-color: rgba(0,0,0,0.5)
+    position: fixed
+    top: 0
+    z-index: 1
+
+.infoModal
+    width: 250px
+    height: 250px
+    background-color: variables.$color_base
+    border: 1px solid variables.$color_text
+    color: variables.$color_text
+    padding: 10px
+    position: fixed
+    top: 30px
+    right: 30px
+
+    a
+        display: block
+
+        &:hover
+            text-decoration: underline

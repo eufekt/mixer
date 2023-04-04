@@ -36,7 +36,7 @@ export default function Player() {
 
   useEffect(() => {
     setCurrentTrack(0);
-    setReady(false)
+    setReady(false);
   }, [playlist]);
 
   function handleSeekChange(e) {
@@ -119,9 +119,11 @@ export default function Player() {
           // handleSeekMouseDown={handleSeekMouseDown}
           handleSeekChange={handleSeekChange}
         />
-        {url && <a href={url} target={"_blank"} rel="noreferrer">
-          src 🔗
-        </a>}
+        {url && (
+          <a href={url} target={"_blank"} rel="noreferrer">
+            🔗
+          </a>
+        )}
       </div>
       {hasWindow && url && (
         <ReactPlayer

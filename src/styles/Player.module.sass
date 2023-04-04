@@ -1,14 +1,6 @@
 @use "variables"
 
 .container
-    // display: flex,
-    // flex-direction: column,
-    // width: 100vw,
-    // padding: 10px ,
-    // border: 1px solid variables.$color_contrast
-    // z-index: 1
-    
-
 
     .player
         position: fixed,
@@ -21,6 +13,7 @@
         left: 10px
         background-color: variables.$color_base,
         border: 1px solid variables.$color_contrast
+        color: variables.$color_text
 
         .buttons
             display: flex
@@ -30,8 +23,11 @@
 
             .playerButton
                 width: 40px
-                height: 30px
-                margin: 0px 5px
+                display: flex
+                align-items: center
+                justify-content: space-around
+                // height: 30px
+                // margin: 0px 5px
                 text-align: center
 
         .status

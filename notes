@@ -21,9 +21,9 @@ BlocksExplorer
     
 Player
     [x] make sticky and add fresh figma styling
-    [] add svgs to next play pause
-    [] should show playlist history. List of played blocks
+    [x] add svgs to next play pause
     [x] continue playing on playlist change.
+    [] should show playlist history. List of played blocks
     
     History
         [] should show list whats next.
@@ -32,3 +32,5 @@ Player
 
 BUGS
 [x] currently bugs if you open first page -> select block -> open more pages -> the newly selected block will not be the right one
+[ ] what if "dont cry tonight" is the only available beat in playlist ?
+[ ] when new track is loaded, it should play from beggining. Youtube seems to stash previous duration   
