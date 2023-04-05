@@ -30,6 +30,7 @@ export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
     }
     return false;
   });
+  console.log(filtered)
 
   const elementRef = useRef();
   const isInViewport = useIsInViewport(elementRef);

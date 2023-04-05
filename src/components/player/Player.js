@@ -103,6 +103,7 @@ export default function Player() {
   return (
     <div className={styles.container}>
       <div className={styles.player}>
+        <Status status={status} />
         <Controls
           handlePrev={handlePrev}
           handlePlayPause={handlePlayPause}
@@ -110,7 +111,6 @@ export default function Player() {
           currentTrack={currentTrack}
           playing={playing}
         />
-        <Status status={status} />
         <Seek
           block={currentBlock}
           played={played}
