@@ -1,5 +1,4 @@
-import styles, {color_green, color_orange, color_contrast} from "@/src/styles/Player.module.sass";
-
+import styles, {color_green, color_orange, color_contrast} from "@/src/styles/Status.module.sass";
 
 export default function Status({ status }) {
   let color, text;

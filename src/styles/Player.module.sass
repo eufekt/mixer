@@ -15,30 +15,6 @@
         border: 1px solid variables.$color_contrast
         color: variables.$color_text
 
-        .buttons
-            display: flex
-            justify-content: space-evenly
-            align-items: center
-            // width: 120px
-
-            .playerButton
-                width: 120px
-                height:40px
-                display: flex
-                align-items: center
-                justify-content: space-around
-                // height: 30px
-                // margin: 0px 5px
-                border: 1px solid variables.$color_contrast
-                border-radius: 5px
-                text-align: center
-
-        .status
-            width: 10px
-            height: 10px
-            border: 1px solid variables.$color_contrast
-            border-radius: 100%
-
         .previewContainer
             @extend .center_hoz_vert
             width: 40px
@@ -47,10 +23,3 @@
     .explore
         display: flex
         flex-direction: row
-
-:export
-    color_base: variables.$color_base
-    color_contrast: variables.$color_contrast
-    color_text: variables.$color_text
-    color_green: variables.$color_green
-    color_orange: variables.$color_orange

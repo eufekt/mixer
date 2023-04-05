@@ -1,4 +1,4 @@
-import styles from "@/src/styles/Player.module.sass";
+import styles from "@/src/styles/Controls.module.sass";
 
 export function Controls({
   handlePrev,
@@ -13,7 +13,7 @@ export function Controls({
         onClick={() => handlePrev(currentTrack)}
         className={styles.playerButton}
       >
-        <NextButton/>
+        <NextButton />
       </div>
       <div onClick={handlePlayPause} className={styles.playerButton}>
         {playing ? <PauseButton /> : <PlayButton />}
@@ -61,10 +61,10 @@ function PauseButton() {
   );
 }
 
-function NextButton({reverse}) {
+function NextButton({ reverse }) {
   return (
     <svg
-      style={{ transform: reverse?'rotateY(180deg)':"none" }}
+      style={{ transform: reverse ? "rotateY(180deg)" : "none" }}
       width="23"
       height="14"
       viewBox="0 0 23 14"
