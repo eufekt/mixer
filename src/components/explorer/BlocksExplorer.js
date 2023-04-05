@@ -30,7 +30,6 @@ export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
     }
     return false;
   });
-  console.log(filtered)
 
   const elementRef = useRef();
   const isInViewport = useIsInViewport(elementRef);
@@ -64,13 +63,12 @@ export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
   return (
     <div className={styles.container}>
       <div className={styles.channelActions}>
-        <button
-          disabled={isRoot}
+        {!isRoot && <button
           className={styles.back}
           onClick={popFromStack}
         >
           {"\u2196 back"}
-        </button>
+        </button>}
         <div className={styles.rightSide}>
           <span className={styles.channelTitle}>{channel.title}</span>
           <span>{` • by ${channel.user.full_name}`}</span>

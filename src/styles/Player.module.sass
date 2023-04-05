@@ -1,25 +1,23 @@
 @use "variables"
 
-.container
+.player
+    position: fixed,
+    display: flex,
+    justify-content: space-between,
+    align-items: center,
+    width: 90%,
+    height: variables.$player_height,
+    top: 10px
+    left: 10px
+    background-color: variables.$color_base,
+    border: 1px solid variables.$color_contrast
+    color: variables.$color_text
+    gap: 60px
 
-    .player
-        position: fixed,
-        display: flex,
-        justify-content: space-evenly,
-        align-items: center,
-        width: 90%,
-        height: variables.$player_height,
-        top: 10px
-        left: 10px
-        background-color: variables.$color_base,
-        border: 1px solid variables.$color_contrast
-        color: variables.$color_text
+.controls
 
-        .previewContainer
-            @extend .center_hoz_vert
-            width: 40px
-            height: 40px
+    display: flex,
+    align-items: center,
+.a
+    padding: 0 60px 0 0
 
-    .explore
-        display: flex
-        flex-direction: row

@@ -1,4 +1,8 @@
-import styles, {color_green, color_orange, color_contrast} from "@/src/styles/Status.module.sass";
+import styles, {
+  color_green,
+  color_orange,
+  color_contrast,
+} from "@/src/styles/Status.module.sass";
 
 export default function Status({ status }) {
   let color, text;
@@ -6,7 +10,7 @@ export default function Status({ status }) {
     color = color_contrast;
     text = "idle: choose track or press play";
   } else if (status == STATUS_ENUM.loading) {
-    color = color_orange
+    color = color_orange;
     text = "loading";
   } else if (status == STATUS_ENUM.ready) {
     color = color_green;
@@ -14,7 +18,9 @@ export default function Status({ status }) {
   }
 
   return (
-    <div className={styles.status} style={{ backgroundColor: color }}></div>
+    <div className={styles.container}>
+      <div className={styles.status} style={{ backgroundColor: color }}></div>
+    </div>
   );
 }
 

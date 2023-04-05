@@ -1,10 +1,9 @@
 import ReactPlayer from "react-player";
 import styles from "@/src/styles/Player.module.sass";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Seek from "./Seek";
 import Status, { STATUS_ENUM } from "./Status";
 import { Controls } from "./Controls";
-import { Preview } from "./Preview";
 import { usePlaylistContext } from "@/src/ contexts/PlaylistContext";
 
 export default function Player() {
@@ -101,16 +100,18 @@ export default function Player() {
   const currentBlock = playlist?.list[currentTrack] || null;
 
   return (
-    <div className={styles.container}>
+    <>
       <div className={styles.player}>
-        <Status status={status} />
-        <Controls
-          handlePrev={handlePrev}
-          handlePlayPause={handlePlayPause}
-          handleNext={handleNext}
-          currentTrack={currentTrack}
-          playing={playing}
-        />
+        <div className={styles.controls}>
+          <Status status={status} />
+          <Controls
+            handlePrev={handlePrev}
+            handlePlayPause={handlePlayPause}
+            handleNext={handleNext}
+            currentTrack={currentTrack}
+            playing={playing}
+          />
+        </div>
         <Seek
           block={currentBlock}
           played={played}
@@ -120,7 +121,7 @@ export default function Player() {
           handleSeekChange={handleSeekChange}
         />
         {url && (
-          <a href={url} target={"_blank"} rel="noreferrer">
+          <a className={styles.a} href={url} target={"_blank"} rel="noreferrer">
             🔗
           </a>
         )}
@@ -144,6 +145,6 @@ export default function Player() {
           onError={(e) => console.log("onError", e)}
         />
       )}
-    </div>
+    </>
   );
 }

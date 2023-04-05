@@ -1,22 +1,21 @@
 @use 'variables'
 
 .container
-    // margin-top: calc(variables.$player_height*2)
-    margin-top: 120px
+    margin-top: calc(variables.$player_height*2)
     color: variables.$color_text
     margin-bottom: 100px
     width: 100%,
 
 .channelActions
     display: flex
-    font-size: variables.$font_size
-    // flex-direction: column
     align-items: center
+    font-size: variables.$font_size
     gap: 10px
+    height: 40px
     margin-left: 10px
-    margin-bottom: calc(variables.$player_height)
-    position: fixed
-    top: (variables.$player_height + 20px)
+    margin-bottom: 40px
+    position: sticky
+    top: (variables.$player_height+20px)
     
     // width: 50%,
     z-index: 1
@@ -29,14 +28,16 @@
         border-radius: 5px
         text-align: center
         cursor: pointer
-        margin-right: 20px
+        // margin-right: 20px
         color: variables.$color_contrast
         border: 1px solid variables.$color_contrast
         padding: 5px 0px
 
-        &:disabled
-            opacity: 0
-            cursor: default
+    .rightSide
+
+        // &:disabled
+        //     opacity: 0
+        //     cursor: default
 
 
     .channelTitle
