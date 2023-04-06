@@ -1,10 +1,9 @@
 import ReactPlayer from "react-player";
-import { useEffect, useRef, useState, useCallback } from "react";
-import Seek from "./Seek";
-import Status, { STATUS_ENUM } from "./Status";
-import { Controls } from "./Controls";
+import { useEffect, useRef, useState } from "react";
+import { STATUS_ENUM } from "./Status";
+
 import { usePlaylistContext } from "@/src/ contexts/PlaylistContext";
-import { useHasWindow } from "./usehasWindow";
+import { useHasWindow } from "./useHasWindow";
 import { PlayerUI } from "./PlayerUI";
 import { massageUrl } from "@/src/lib/helpers";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useGetChannel } from "@/src/lib/api";
 import { BlocksExplorer } from "./BlocksExplorer";
-import { Loading } from "../loading";
+import { Loading } from "../Loading";
 
 export function ChannelExplorer() {
   const seed = "seed-nwf3b3nhr-a";

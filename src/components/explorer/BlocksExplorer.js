@@ -6,7 +6,7 @@ import Block from "./Block";
 
 import useIsInViewport from "./useIsInViewport";
 import { buildChannelUrl, parseUsableBlocks } from "@/src/lib/helpers";
-import { Loading } from "../loading";
+import { Loading } from "../Loading";
 
 export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
   const { playlist, playlistDispatch } = usePlaylistContext();
