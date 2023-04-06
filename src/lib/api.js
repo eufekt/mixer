@@ -28,7 +28,9 @@ export function useGetChannel(id) {
     error,
   };
 }
-
+/**
+ * TODO:Could you parse here for Media and Channel while maintaining pagination ?
+ */
 export function useGetChannelContentsPaginated(id) {
   const per = 30;
   const getKey = (pageIndex, previousPageData) => {

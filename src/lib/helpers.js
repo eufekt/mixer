@@ -13,3 +13,20 @@ export function massageUrl(url) {
     return url.split("&")[0];
   } else return url;
 }
+
+export function parseUsableBlocks(data) {
+  let usableBlocks = [];
+  data.forEach((block) => {
+    if (block.class === "Channel") {
+      usableBlocks.push(block);
+    } else if (block.class === "Media") {
+      if (
+        block.source.provider.name === "YouTube" ||
+        block.source.provider.name === "SoundCloud"
+      ) {
+        usableBlocks.push(block);
+      }
+    }
+  });
+  return usableBlocks;
+}

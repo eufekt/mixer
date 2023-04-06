@@ -26,6 +26,7 @@ export default function Status({ status }) {
 
 export const STATUS_ENUM = {
   loading: "LOADING",
+  error: "ERROR",
   idle: "IDLE",
   ready: "READY",
 };

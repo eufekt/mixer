@@ -1,15 +1,11 @@
-// /* eslint-disable @next/next/no-img-element */
 import styles, {
   color_green,
   color_contrast,
   color_text,
 } from "@/src/styles/Block.module.sass";
 import Image from "next/image";
-import { useRef } from "react";
-import useIsInViewport from "./useIsInViewport";
 
 export default function Block({ block, loadPlaylistFrom, i, addToStack }) {
-  // TODO: check if state:available is for "isPlayable"
   const {
     title,
     owner_slug,

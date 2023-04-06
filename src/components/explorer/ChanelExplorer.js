@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGetChannel } from "@/src/lib/api";
 import { BlocksExplorer } from "./BlocksExplorer";
+import { Loading } from "../loading";
 
 export function ChannelExplorer() {
   const seed = "seed-nwf3b3nhr-a";
@@ -30,6 +31,7 @@ export function ChannelExplorer() {
           isRoot={isRoot}
         />
       )}
+      <Loading isLoading={isLoading} />
     </>
   );
 }

@@ -1,29 +1,16 @@
 import styles from "@/src/styles/Controls.module.sass";
-import { useEffect } from "react";
-import { useHasWindow } from "./usehasWindow";
+import { useEffect, useRef } from "react";
 
-export function Controls({
-  handlePrev,
-  handlePlayPause,
-  handleNext,
-  playing,
-}) {
-
+export function Controls({ handlePrev, handlePlayPause, handleNext, playing }) {
   return (
     <div className={styles.buttons}>
-      <div
-        onClick={()=>handlePrev()}
-        className={styles.playerButton}
-      >
+      <div onClick={() => handlePrev()} className={styles.playerButton}>
         <NextButton />
       </div>
-      <div onClick={()=>handlePlayPause()} className={styles.playerButton}>
+      <div onClick={() => handlePlayPause()} className={styles.playerButton}>
         {playing ? <PauseButton /> : <PlayButton />}
       </div>
-      <div
-        onClick={()=>handleNext()}
-        className={styles.playerButton}
-      >
+      <div onClick={() => handleNext()} className={styles.playerButton}>
         <NextButton reverse />
       </div>
     </div>

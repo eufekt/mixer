@@ -42,8 +42,6 @@ export function InformationModal() {
             >
               {"https://www.are.na/la-src"}
             </a>
-            <br/>
-                by Nichita Hariton
           </div>
         </div>
       )}

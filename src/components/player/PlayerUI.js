@@ -2,6 +2,7 @@ import styles from "@/src/styles/PlayerUI.module.sass";
 import { Controls } from "./Controls";
 import Seek from "./Seek";
 import Status from "./Status";
+import { useEffect } from "react";
 
 export function PlayerUI({
   handlePrev,
@@ -16,6 +17,7 @@ export function PlayerUI({
   currentBlock,
   url,
 }) {
+
   return (
     <div className={styles.player}>
       <div className={styles.controls}>

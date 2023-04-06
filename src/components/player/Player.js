@@ -29,8 +29,8 @@ export default function Player() {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (ready) setPlaying(true);
-  }, [ready]);
+    if (ready && playlist.selection) setPlaying(true);
+  }, [ready, playlist]);
 
   useEffect(() => {
     setCurrentTrack(0);
@@ -46,7 +46,6 @@ export default function Player() {
   }
 
   function handlePlayPause() {
-    if (currentTrack == null) setCurrentTrack(0);
     setPlaying(!playing);
   }
 
@@ -87,6 +86,11 @@ export default function Player() {
 
   let status = getStatus();
 
+  function handleError(e) {
+    console.log("Error in PLayer", e);
+    handleNext();
+  }
+
   return (
     <>
       <PlayerUI
@@ -118,7 +122,7 @@ export default function Player() {
           onProgress={handleProgress}
           onReady={() => setReady(true)}
           // handle diffrent errors
-          onError={(e) => console.log("onError", e)}
+          onError={(e) => handleError(e)}
         />
       )}
     </>
