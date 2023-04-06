@@ -6,13 +6,11 @@ export default function Seek({
   played,
   duration,
   block,
-  handleSeekMouseUp,
-  handleSeekMouseDown,
   handleSeekChange,
+  handleSeekMouseUp,
 }) {
   const title = block?.title;
   const previewImage = block?.image?.square.url;
-  const url = block?.source.url;
   return (
     <div className={styles.container}>
       <Preview image={previewImage} />
@@ -27,7 +25,6 @@ export default function Seek({
             max={0.999999}
             step="any"
             value={played}
-            onMouseDown={handleSeekMouseDown}
             onChange={handleSeekChange}
             onMouseUp={handleSeekMouseUp}
           />

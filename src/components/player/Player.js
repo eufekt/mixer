@@ -1,28 +1,27 @@
 import ReactPlayer from "react-player";
-import styles from "@/src/styles/Player.module.sass";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Seek from "./Seek";
 import Status, { STATUS_ENUM } from "./Status";
 import { Controls } from "./Controls";
 import { usePlaylistContext } from "@/src/ contexts/PlaylistContext";
+import { useHasWindow } from "./usehasWindow";
+import { PlayerUI } from "./PlayerUI";
+import { massageUrl } from "@/src/lib/helpers";
 
+/**
+ * TODO Implement Media Session
+ * https://developer.mozilla.org/en-US/docs/Web/API/Media_Session_API
+ */
 export default function Player() {
-  /**TODO extract to hook */
-  const [hasWindow, setHasWindow] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setHasWindow(true);
-    }
-  }, []);
-
+  const hasWindow = useHasWindow();
   const player = useRef(null);
 
   const { playlist } = usePlaylistContext();
   const playlistLength = playlist?.list.length || 0;
 
   const [currentTrack, setCurrentTrack] = useState(0);
-  // console.log(playlist)
-  const url = parse(playlist?.list[currentTrack]?.source.url);
+  const currentBlock = playlist?.list[currentTrack] || null;
+  const url = massageUrl(currentBlock?.source.url);
 
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
@@ -51,43 +50,33 @@ export default function Player() {
     setPlaying(!playing);
   }
 
-  /**
-   * TODO: heavy rerenders
-   */
   function handleProgress(e) {
+    /**
+     * TODO: causes rerenders
+     */
     setPlayed(e.played);
   }
 
   function handleEnded() {
-    handleNext(currentTrack);
+    handleNext();
   }
 
-  function preparePlayerAndSet(i) {
+  function handleNext() {
     setReady(false);
-    setCurrentTrack(i);
-  }
-
-  function handleNext(i) {
-    if (i < playlistLength - 1) {
-      preparePlayerAndSet(i + 1);
+    if (currentTrack < playlistLength - 1) {
+      setCurrentTrack(currentTrack + 1);
     } else {
-      preparePlayerAndSet(0);
+      setCurrentTrack(0);
     }
   }
 
-  function handlePrev(i) {
-    if (i > 0) {
-      preparePlayerAndSet(i - 1);
+  function handlePrev() {
+    setReady(false);
+    if (currentTrack > 0) {
+      setCurrentTrack(currentTrack - 1);
     } else {
-      preparePlayerAndSet(playlistLength - 1);
+      setCurrentTrack(playlistLength - 1);
     }
-  }
-
-  function parse(url) {
-    if (url === undefined) return undefined;
-    if (url.includes("youtube")) {
-      return url.split("&")[0];
-    } else return url;
   }
 
   function getStatus() {
@@ -97,35 +86,21 @@ export default function Player() {
   }
 
   let status = getStatus();
-  const currentBlock = playlist?.list[currentTrack] || null;
 
   return (
     <>
-      <div className={styles.player}>
-        <div className={styles.controls}>
-          <Status status={status} />
-          <Controls
-            handlePrev={handlePrev}
-            handlePlayPause={handlePlayPause}
-            handleNext={handleNext}
-            currentTrack={currentTrack}
-            playing={playing}
-          />
-        </div>
-        <Seek
-          block={currentBlock}
-          played={played}
-          duration={duration}
-          handleSeekMouseUp={handleSeekMouseUp}
-          // handleSeekMouseDown={handleSeekMouseDown}
-          handleSeekChange={handleSeekChange}
-        />
-        {url && (
-          <a className={styles.a} href={url} target={"_blank"} rel="noreferrer">
-            🔗
-          </a>
-        )}
-      </div>
+      <PlayerUI
+        status={status}
+        played={played}
+        playing={playing}
+        duration={duration}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+        handlePlayPause={handlePlayPause}
+        handleSeekChange={handleSeekChange}
+        handleSeekMouseUp={handleSeekMouseUp}
+        currentBlock={currentBlock}
+      />
       {hasWindow && url && (
         <ReactPlayer
           ref={player}
@@ -142,6 +117,7 @@ export default function Player() {
           onDuration={setDuration}
           onProgress={handleProgress}
           onReady={() => setReady(true)}
+          // handle diffrent errors
           onError={(e) => console.log("onError", e)}
         />
       )}
