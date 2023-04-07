@@ -1,7 +1,7 @@
 # Are.na Mixer
 Are.na Mixer is an online music player that allows you to play music from Youtube and Soundcloud links stored in are.na channels. 
 
-Are.na Mixer is available on [https://mixer-lovat.vercel.app/](https://mixer-lovat.vercel.app). It is a work in progress but definitely usable! Any feedback is greatly appreciated.
+Are.na Mixer is available on [https://mixer-lovat.vercel.app/](https://mixer-lovat.vercel.app). It is a usable work in progress.
 
 > Are.na is a place to save content, create collections over time and connect ideas. Privately or with other people [...] With no ads, likes, or recommendations, Are.na is a more mindful space where you can work through any project over time. It's a place to structure your ideas and build new forms of knowledge together. Learn more at [are.na/about](https://www.are.na/about)
 
@@ -15,12 +15,11 @@ Are.na allows you to save images, text, links, files and more from your phone or
 - Play, pause, next, go back
 
 ## Roadmap
-- Parse dead links
-- Add a search bar to search for playlists
-- Load playlist by pasting a link
 - Add a "shuffle" button to the player
 - Add volume control on browser
 - Add ability to see hisory and whats next
+- Add a search functionality for playlists
+- Load playlist by pasting a link
 - Enhance channel navigation with a router (with Next.js routing). 
 - Enhance the app with local storage where applicable (e.g. history, favorites, etc.)
 - Mobile support
