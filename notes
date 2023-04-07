@@ -34,3 +34,4 @@ BUGS
 [x] currently bugs if you open first page -> select block -> open more pages -> the newly selected block will not be the right one
 [ ] what if "dont cry tonight" is the only available beat in playlist ?
 [ ] when new track is loaded, it should play from beggining. Youtube seems to stash previous duration   
+[ ] status is not fidele
