@@ -11,7 +11,7 @@ export function InformationModal() {
         className={styles.infoButton}
         onClick={() => setShowModal(!showModal)}
       >
-        {"\u2139"}
+        {"i"}
       </div>
 
       {showModal && (

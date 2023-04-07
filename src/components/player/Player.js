@@ -103,6 +103,7 @@ export default function Player() {
         handleSeekChange={handleSeekChange}
         handleSeekMouseUp={handleSeekMouseUp}
         currentBlock={currentBlock}
+        url={url}
       />
       {hasWindow && url && (
         <ReactPlayer
