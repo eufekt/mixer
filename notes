@@ -1,4 +1,3 @@
-where to have <main></main> ?
 
 TODO 
 
@@ -35,3 +34,6 @@ BUGS
 [ ] what if "dont cry tonight" is the only available beat in playlist ?
 [ ] when new track is loaded, it should play from beggining. Youtube seems to stash previous duration   
 [ ] status is not fidele
+[ ] gutter does not work on flex items in safari
+[ ] when paused clicking nexttrack should not automatically play
+[ ] should load playlist on opening new channel
