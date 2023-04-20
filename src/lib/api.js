@@ -19,7 +19,9 @@ const fetcher = async (...args) => {
 };
 
 export function useGetChannel(id) {
-  const { data, error, isLoading } = useSWR(`${BASE}/channels/${id}`, fetcher);
+  const { data, error, isLoading } = useSWR(`${BASE}/channels/${id}`, fetcher, {
+    revalidateOnMount: true,
+  });
 
   return {
     data,
@@ -34,7 +36,9 @@ export function useGetChannelContentsPaginated(id) {
   const per = 30;
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.contents.length) return null;
-    return `${BASE}/channels/${id}/contents?page=${pageIndex + 1}&per=${per}sort=position&direction=desc`;
+    return `${BASE}/channels/${id}/contents?page=${
+      pageIndex + 1
+    }&per=${per}sort=position&direction=desc`;
   };
 
   const {
