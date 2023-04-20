@@ -12,10 +12,10 @@ export default function Player() {
   const player = useRef(null);
 
   const { playlist, playlistDispatch } = usePlaylistContext();
-  const playlistLength = playlist?.list.length || 0;
+  const playlistLength = playlist.list.length;
 
   const [currentTrack, setCurrentTrack] = useState(0);
-  const currentBlock = playlist?.list[currentTrack] || null;
+  const currentBlock = playlist.list[currentTrack] || null;
   const url = massageUrl(currentBlock?.source.url);
 
   const [playing, setPlaying] = useState(false);
@@ -41,7 +41,7 @@ export default function Player() {
   }
 
   function handlePlayPause() {
-    if (!playlist?.initiated) {
+    if (!playlist.initiated) {
       playlistDispatch({ type: "userPressedPlay" })
     }
     setPlaying(!playing);

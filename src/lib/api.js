@@ -18,7 +18,6 @@ const fetcher = async (...args) => {
   return res.json();
 };
 
-//TODO: NEXT fetch channel blocks per 100
 export function useGetChannel(id) {
   const { data, error, isLoading } = useSWR(`${BASE}/channels/${id}`, fetcher);
 
@@ -35,7 +34,7 @@ export function useGetChannelContentsPaginated(id) {
   const per = 30;
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.contents.length) return null;
-    return `${BASE}/channels/${id}/contents?page=${pageIndex + 1}&per=${per}`;
+    return `${BASE}/channels/${id}/contents?page=${pageIndex + 1}&per=${per}sort=position&direction=desc`;
   };
 
   const {
