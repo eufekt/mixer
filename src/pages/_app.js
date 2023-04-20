@@ -1,17 +1,16 @@
 import "@/src/styles/Global.sass";
 import { useReducer } from "react";
 import PlaylistContext from "../ contexts/PlaylistContext";
-import { playlistReducer } from "../reducers/PlaylistReducer";
+import {
+  playlistReducerInitialState,
+  playlistReducer,
+} from "../reducers/PlaylistReducer";
 
 export default function App({ Component, pageProps }) {
-  // const [playlistIdState, playlistIdDispatch] = useReducer(playlistIdReducer);
-  const [playlist, playlistDispatch] = useReducer(playlistReducer);
-
-  // const playlistIdProviderState = {
-  //   playlistId,
-  //   playlistIdDispatch,
-  // };
-
+  const [playlist, playlistDispatch] = useReducer(
+    playlistReducer,
+    playlistReducerInitialState
+  );
 
   const playlistProviderState = {
     playlist,
@@ -19,10 +18,8 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    // <PlaylistIdContext.Provider value={playlistIdProviderState}>
     <PlaylistContext.Provider value={playlistProviderState}>
       <Component {...pageProps} />
     </PlaylistContext.Provider>
-    // </PlaylistIdContext.Provider>
   );
 }

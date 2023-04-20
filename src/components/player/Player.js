@@ -7,15 +7,11 @@ import { useHasWindow } from "./useHasWindow";
 import { PlayerUI } from "./PlayerUI";
 import { massageUrl } from "@/src/lib/helpers";
 
-/**
- * TODO Implement Media Session
- * https://developer.mozilla.org/en-US/docs/Web/API/Media_Session_API
- */
 export default function Player() {
   const hasWindow = useHasWindow();
   const player = useRef(null);
 
-  const { playlist } = usePlaylistContext();
+  const { playlist, playlistDispatch } = usePlaylistContext();
   const playlistLength = playlist?.list.length || 0;
 
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -45,6 +41,9 @@ export default function Player() {
   }
 
   function handlePlayPause() {
+    if (!playlist?.initiated) {
+      playlistDispatch({ type: "userPressedPlay" })
+    }
     setPlaying(!playing);
   }
 
@@ -93,6 +92,7 @@ export default function Player() {
   return (
     <>
       <PlayerUI
+        initiated={playlist?.initiated}
         status={status}
         played={played}
         playing={playing}

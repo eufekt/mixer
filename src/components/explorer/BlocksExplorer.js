@@ -30,14 +30,13 @@ export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
    * Set playlist when there no playlist so that play button can be used on screen load
    */
   useEffect(() => {
-    if (playlist === undefined && loadedBlocks.length > 0) {
+    if (!playlist?.initiated  && loadedBlocks.length > 0) {
       let onlyMedia = loadedBlocks.filter((block) => block.class === "Media");
       if (onlyMedia.length > 0) {
-        console.log("setting Media", onlyMedia);
         playlistDispatch({ type: "setPlaylist", list: onlyMedia });
       }
     }
-  }, [playlist, loadedBlocks, playlistDispatch]);
+  }, [playlist?.initiated, loadedBlocks, playlistDispatch]);
 
   const increasePageSize = useCallback(() => {
     if (hasMore) {

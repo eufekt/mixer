@@ -1,5 +1,5 @@
 import { ChannelExplorer } from "../components/explorer/ChanelExplorer";
-import { InformationModal } from "../components/informationModal";
+import { InformationModal } from "../components/InformationModal";
 import Player from "../components/player/Player";
 
 export default function Home() {

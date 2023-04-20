@@ -5,6 +5,7 @@ import Status from "./Status";
 import { useEffect } from "react";
 
 export function PlayerUI({
+  initiated,
   handlePrev,
   handleNext,
   handlePlayPause,
@@ -17,7 +18,6 @@ export function PlayerUI({
   currentBlock,
   url,
 }) {
-
   return (
     <div className={styles.player}>
       <div className={styles.controls}>
@@ -30,6 +30,7 @@ export function PlayerUI({
         />
       </div>
       <Seek
+        initiated={initiated}
         block={currentBlock}
         played={played}
         duration={duration}
