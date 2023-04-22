@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { STATUS_ENUM } from "./Status";
 
 import { usePlaylistContext } from "@/src/ contexts/PlaylistContext";
-import { useHasWindow } from "./useHasWindow";
+import { useHasWindow } from "@/src/hooks/useHasWindow";
 import { PlayerUI } from "./PlayerUI";
 import { massageUrl } from "@/src/lib/helpers";
 
@@ -24,7 +24,9 @@ export default function Player() {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (ready && playlist.selection) setPlaying(true);
+    if (ready && playlist.selection) {
+      setPlaying(true)
+    };
   }, [ready, playlist]);
 
   useEffect(() => {
@@ -115,7 +117,6 @@ export default function Player() {
           muted={false}
           width={"0px"}
           height={"0px"}
-          onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={handleEnded}
           onDuration={setDuration}

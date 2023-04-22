@@ -1,6 +1,6 @@
 import styles, {
   color_green,
-  color_contrast,
+  color_border,
   color_text,
 } from "@/src/styles/Block.module.sass";
 import Image from "next/image";
@@ -18,7 +18,7 @@ export default function Block({ block, loadPlaylistFrom, i, addToStack }) {
   } = block;
 
   let imgsrc;
-  let borderColor = color_contrast;
+  let borderColor = color_border;
   let color = color_text;
 
   function parseTitle(title) {
