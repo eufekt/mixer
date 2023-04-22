@@ -9,7 +9,7 @@ import { buildChannelUrl, parseUsableBlocks } from "@/src/lib/helpers";
 import { Loading } from "../Loading";
 
 export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
-  const { playlist, playlistDispatch } = usePlaylistContext();
+  const { playlistDispatch } = usePlaylistContext();
 
   const { data, error, isLoading, size, setSize } =
     useGetChannelContentsPaginated(channel.slug);
@@ -26,18 +26,6 @@ export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
   const elementRef = useRef();
   const isInViewport = useIsInViewport(elementRef);
 
-  /**
-   * Set playlist when there no playlist so that play button can be used on screen load
-   */
-  useEffect(() => {
-    if (!playlist.initiated  && loadedBlocks.length > 0) {
-      let onlyMedia = loadedBlocks.filter((block) => block.class === "Media");
-      if (onlyMedia.length > 0) {
-        playlistDispatch({ type: "setPlaylist", list: onlyMedia });
-      }
-    }
-  }, [playlist.initiated, loadedBlocks, playlistDispatch]);
-
   const increasePageSize = useCallback(() => {
     if (hasMore) {
       setSize(size + 1);
@@ -53,7 +41,7 @@ export function BlocksExplorer({ channel, addToStack, isRoot, popFromStack }) {
   const setPLaylistFromSelection = (index) => {
     const rotatedList = [...filtered.slice(index), ...filtered.slice(0, index)];
     let onlyMedia = rotatedList.filter((block) => block.class === "Media");
-    playlistDispatch({ type: "setPlaylist", list: onlyMedia, selection: true });
+    playlistDispatch({ type: "setPlaylist", list: onlyMedia});
   };
 
   const channelUrl = buildChannelUrl(channel);

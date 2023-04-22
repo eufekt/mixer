@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 export function Controls({ handlePrev, handlePlayPause, handleNext, playing }) {
   return (
     <div className={styles.buttons}>
-      <div onClick={() => handlePrev()} className={styles.playerButton}>
-        <NextButton />
+      <div  onClick={() => handlePrev()} className={styles.playerButton}>
+        <NextButton  />
       </div>
       <div onClick={() => handlePlayPause()} className={styles.playerButton}>
         {playing ? <PauseButton /> : <PlayButton />}

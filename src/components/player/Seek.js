@@ -4,7 +4,6 @@ import { Preview } from "./Preview";
 
 export default function Seek({
   played,
-  initiated,
   duration,
   block,
   handleSeekChange,
@@ -14,7 +13,7 @@ export default function Seek({
   const previewImage = block?.image?.square.url;
   return (
     <div className={styles.container}>
-      {block && initiated && (
+      {block  && (
         <>
       <Preview image={previewImage} />
         <div className={styles.seekContainer}>

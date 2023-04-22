@@ -24,7 +24,7 @@ export default function Player() {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (ready && playlist.selection) {
+    if (ready) {
       setPlaying(true)
     };
   }, [ready, playlist]);
@@ -43,9 +43,6 @@ export default function Player() {
   }
 
   function handlePlayPause() {
-    if (!playlist.initiated) {
-      playlistDispatch({ type: "userPressedPlay" })
-    }
     setPlaying(!playing);
   }
 
@@ -94,7 +91,6 @@ export default function Player() {
   return (
     <>
       <PlayerUI
-        initiated={playlist?.initiated}
         status={status}
         played={played}
         playing={playing}
@@ -117,6 +113,7 @@ export default function Player() {
           muted={false}
           width={"0px"}
           height={"0px"}
+          onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={handleEnded}
           onDuration={setDuration}
