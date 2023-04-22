@@ -20,7 +20,6 @@ Are.na allows you to save images, text, links, files and more from your phone or
 - Add ability to see hisory and whats next
 - Add a search functionality for playlists
 - Load playlist by pasting a link
-- Enhance channel navigation with a router (with Next.js routing). 
 - Enhance the app with local storage where applicable (e.g. history, favorites, etc.)
 - Mobile browser support
 - Are.na authentication to manage blocks
