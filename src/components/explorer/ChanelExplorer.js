@@ -4,7 +4,7 @@ import { BlocksExplorer } from "./BlocksExplorer";
 import { Loading } from "../Loading";
 
 export function ChannelExplorer() {
-  const seed = "seed-nwf3b3nhr-a";
+  const seed = "mixer-xmxflhedaiq";
   const [stack, setStack] = useState([seed]);
   const currentChannelSlug = stack.slice(-1)[0];
 

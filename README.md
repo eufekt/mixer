@@ -10,7 +10,7 @@ Are.na allows you to save images, text, links, files and more from your phone or
 
 ## Current Features
 - Fetches the channels from the [are.na API](https://dev.are.na/documentation/channels)
-- Browse playlists connected to [seed](https://www.are.na/la-src/seed-nwf3b3nhr-a)
+- Browse playlists connected to [mixer](https://www.are.na/la-src/mixer-xmxflhedaiq)
 - Autoplay playlists on selection
 - Play, pause, next, go back
 
