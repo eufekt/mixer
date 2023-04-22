@@ -6,6 +6,7 @@ import {
   playlistReducer,
 } from "../reducers/PlaylistReducer";
 
+
 export default function App({ Component, pageProps }) {
   const [playlist, playlistDispatch] = useReducer(
     playlistReducer,
@@ -18,8 +19,8 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <PlaylistContext.Provider value={playlistProviderState}>
-      <Component {...pageProps} />
-    </PlaylistContext.Provider>
+      <PlaylistContext.Provider value={playlistProviderState}>
+        <Component {...pageProps} />
+      </PlaylistContext.Provider>
   );
 }

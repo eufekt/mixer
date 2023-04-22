@@ -21,13 +21,15 @@ export function PlayerUI({
     <div className={styles.player}>
       <div className={styles.controls}>
         <Status status={status} />
-        <Controls
-          block={currentBlock}
-          handlePrev={handlePrev}
-          handlePlayPause={handlePlayPause}
-          handleNext={handleNext}
-          playing={playing}
-        />
+        {currentBlock && (
+          <Controls
+            block={currentBlock}
+            handlePrev={handlePrev}
+            handlePlayPause={handlePlayPause}
+            handleNext={handleNext}
+            playing={playing}
+          />
+        )}
       </div>
       <Seek
         block={currentBlock}
@@ -41,6 +43,7 @@ export function PlayerUI({
           🔗
         </a>
       )}
+
     </div>
   );
 }

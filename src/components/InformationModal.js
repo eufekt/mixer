@@ -18,7 +18,6 @@ export function InformationModal() {
         <div
           className={styles.infoModalContainer}
           onClick={(e) => {
-            console.log("click");
             setShowModal(false);
           }}
         >
