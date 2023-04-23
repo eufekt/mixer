@@ -9,6 +9,13 @@ export function buildChannelUrl(channel) {
   return `${arenaBase}/${userSlug}/${channelSlug}`;
 }
 
+export function buildUserUrl(channel) {
+  const userSlug = channel?.user?.slug;
+  if (userSlug === undefined) return arenaBase;
+
+  return `${arenaBase}/${userSlug}`;
+}
+
 export function massageUrl(url) {
   if (url === undefined) return undefined;
   if (url.includes("youtube")) {

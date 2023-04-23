@@ -1,0 +1,17 @@
+@use 'variables'
+
+.container
+    color: variables.$color_contrast
+    font-size: variables.$font_size_bigger
+    position: fixed
+    top: (variables.$player_height  + 50)
+    // height: 25px
+    margin-left:60px
+    cursor: default
+    display: flex
+    gap: 5px
+
+    .link
+        &:hover
+            cursor: pointer
+            color: variables.$color_text

@@ -48,6 +48,24 @@ export function BlocksExplorer({ channel }) {
 
   return (
     <div className={styles.container}>
+      <div className={styles.channelActions}>
+        {/* {!isRoot && (
+          <button className={styles.back} onClick={popFromStack}>
+            {"\u2196 back"}
+          </button>
+        )} */}
+        <div className={styles.rightSide}>
+          <span className={styles.channelTitle}>{channel.title}</span>
+          <span>{` • by ${channel.user.full_name}`}</span>
+          <span>
+            {" • "}
+            <a href={channelUrl} target={"_blank"} rel="noreferrer">
+              source
+            </a>
+          </span>
+          <span>{` • ${loadedBlocks.length}/${channel.length}`}</span>
+        </div>
+      </div>
       <div className={styles.blocks_container}>
         {filtered.map((block, i) => (
           <Block
