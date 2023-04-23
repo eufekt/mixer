@@ -2,7 +2,7 @@ import ReactPlayer from "react-player";
 import { useEffect, useRef, useState } from "react";
 import { STATUS_ENUM } from "./Status";
 
-import { usePlaylistContext } from "@/src/ contexts/PlaylistContext";
+import { usePlaylistContext } from "@/src/contexts/PlaylistContext";
 import { useHasWindow } from "@/src/hooks/useHasWindow";
 import { PlayerUI } from "./PlayerUI";
 import { massageUrl } from "@/src/lib/helpers";
@@ -25,8 +25,8 @@ export default function Player() {
 
   useEffect(() => {
     if (ready) {
-      setPlaying(true)
-    };
+      setPlaying(true);
+    }
   }, [ready, playlist]);
 
   useEffect(() => {

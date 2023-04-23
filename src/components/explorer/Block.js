@@ -4,8 +4,9 @@ import styles, {
   color_text,
 } from "@/src/styles/Block.module.sass";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Block({ block, loadPlaylistFrom, i, addToStack }) {
+export default function Block({ block, loadPlaylistFrom, i }) {
   const {
     title,
     owner_slug,
@@ -39,20 +40,21 @@ export default function Block({ block, loadPlaylistFrom, i, addToStack }) {
     const border =
       base_class === "Channel" ? `1px solid ${borderColor}` : "none";
     return (
-      <div
-        className={styles.container}
-        style={{ border, color }}
-        onClick={() => addToStack(block.slug)}
-      >
-        <div className={styles.channelDesc}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.misc}>
-            {`by  ${owner_slug}`}
-            <br />
-            {`${length} blocks • some time ago`}
+      <Link href={`/${block.slug }`}>
+        <div
+          className={styles.container}
+          style={{ border, color }}
+        >
+          <div className={styles.channelDesc}>
+            <div className={styles.title}>{title}</div>
+            <div className={styles.misc}>
+              {`by  ${owner_slug}`}
+              <br />
+              {`${length} blocks • some time ago`}
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   } else if (base_class === "Block") {
     imgsrc = image.square.url;

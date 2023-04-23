@@ -1,50 +1,10 @@
 @use 'variables'
 
 .container
-    margin-top: calc(variables.$player_height*2)
+    margin-top: (variables.$player_height + 28.75 + 100)
     color: variables.$color_text
     margin-bottom: 100px
     width: 100%,
-
-.channelActions
-    display: flex
-    align-items: center
-    font-size: variables.$font_size
-    gap: 10px
-    height: 40px
-    margin-left: 10px
-    margin-bottom: 40px
-    position: sticky
-    top: (variables.$player_height+20px)
-    z-index: 1
-
-    .back
-        background-color: none
-        background: none
-        width: 120px
-        height: 40px
-        border-radius: 5px
-        text-align: center
-        cursor: pointer
-        // margin-right: 20px
-        color: variables.$color_contrast
-        border: 1px solid variables.$color_contrast
-        padding: 5px 0px
-
-        &:hover
-            border: 1px solid variables.$color_border
-            color: variables.$color_border
-
-    .rightSide
-
-
-
-    .channelTitle
-        font-size: variables.$font_size_bigger
-
-    .userLink
-        &:hover
-            text-decoration: underline
 
 .blocks_container
     display: flex

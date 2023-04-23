@@ -1,11 +1,11 @@
 import "@/src/styles/Global.sass";
 import { useReducer } from "react";
-import PlaylistContext from "../ contexts/PlaylistContext";
+import PlaylistContext from "../contexts/PlaylistContext";
 import {
   playlistReducerInitialState,
   playlistReducer,
 } from "../reducers/PlaylistReducer";
-
+import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }) {
   const [playlist, playlistDispatch] = useReducer(
@@ -19,8 +19,10 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-      <PlaylistContext.Provider value={playlistProviderState}>
+    <PlaylistContext.Provider value={playlistProviderState}>
+      <Layout>
         <Component {...pageProps} />
-      </PlaylistContext.Provider>
+      </Layout>
+    </PlaylistContext.Provider>
   );
 }
