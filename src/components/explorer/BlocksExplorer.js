@@ -7,12 +7,20 @@ import Block from "./Block";
 import useIsInViewport from "@/src/hooks/useIsInViewport";
 import { buildChannelUrl, parseUsableBlocks } from "@/src/lib/helpers";
 import { Loading } from "../Loading";
+import Link from "next/link";
 
 export function BlocksExplorer({ channel }) {
   const { playlistDispatch } = usePlaylistContext();
 
   const { data, error, isLoading, size, setSize } =
     useGetChannelContentsPaginated(channel.slug);
+
+  if (error) {
+    router.push({
+      pathname: "/error",
+      query: error.info,
+    });
+  }
 
   const loadedBlocks = useMemo(() => {
     return data ? data.flatMap((blocks) => blocks.contents) : [];
@@ -44,8 +52,6 @@ export function BlocksExplorer({ channel }) {
     playlistDispatch({ type: "setPlaylist", list: onlyMedia });
   };
 
-  const channelUrl = buildChannelUrl(channel);
-
   return (
     <div className={styles.container}>
       <div className={styles.blocks_container}>
@@ -59,11 +65,6 @@ export function BlocksExplorer({ channel }) {
         ))}
       </div>
       <Loading isLoading={isLoading} />
-      {error && (
-        <div className={styles.error}>
-          there was an error fetching this channel
-        </div>
-      )}
       {isEmpty && <div className={styles.empty}>this channel is empty</div>}
       <div ref={elementRef}></div>
     </div>
