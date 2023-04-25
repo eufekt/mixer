@@ -1,7 +1,7 @@
 import styles from "@/src/styles/Navigator.module.sass";
 import Link from "next/link";
 import { buildChannelUrl, buildUserUrl } from "../lib/helpers";
-export function Navigator({ channel, isRoot }) {
+export function Navigator({ channel, root }) {
   const channelUrl = buildChannelUrl(channel);
   const userUrl = buildUserUrl(channel);
 
@@ -13,7 +13,7 @@ export function Navigator({ channel, isRoot }) {
         <div className={styles.link}>Mixer</div>
       </Link>{" "}
       /
-      {!isRoot && (
+      {!root && (
         <>
           <a
             className={styles.link}

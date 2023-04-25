@@ -22,7 +22,6 @@ export default function Player() {
   const [ready, setReady] = useState(false);
   const [played, setPlayed] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.8);
 
   useEffect(() => {
     if (ready) {
@@ -37,11 +36,6 @@ export default function Player() {
 
   function handleSeekChange(e) {
     setPlayed(parseFloat(e.target.value));
-  }
-
-  function handleVolumeChange(e) {
-    console.log(e.target.value)
-    setVolume(e.target.value);
   }
 
   function handleSeekMouseUp(e) {
@@ -100,7 +94,6 @@ export default function Player() {
         status={status}
         played={played}
         playing={playing}
-        handleVolumeChange={handleVolumeChange}
         duration={duration}
         handleNext={handleNext}
         handlePrev={handlePrev}
@@ -116,7 +109,7 @@ export default function Player() {
           url={url}
           playing={playing}
           loop={false}
-          volume={volume}
+          volume={1}
           muted={false}
           width={"0px"}
           height={"0px"}

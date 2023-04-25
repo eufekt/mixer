@@ -5,13 +5,15 @@ import { BlocksExplorer } from "../components/explorer/BlocksExplorer";
 import { useGetChannel } from "../lib/api";
 import { seedChannel } from "../config";
 
-export default function ChannelExplorer({isRoot}) {
+export default function ChannelExplorer() {
   const router = useRouter();
   const { channelId } = router.query;
 
   const seed = channelId || seedChannel;
 
   const { data: channel, isLoading, error } = useGetChannel(seed);
+
+  console.log(error?.info)
 
   if (error) {
     router.push({
@@ -25,7 +27,7 @@ export default function ChannelExplorer({isRoot}) {
       {channel && (
         <>
           <BlocksExplorer channel={channel} />
-          <Navigator channel={channel} isRoot={isRoot} />
+          <Navigator channel={channel} root />
         </>
       )}
       <Loading isLoading={isLoading} what={"channel"} />

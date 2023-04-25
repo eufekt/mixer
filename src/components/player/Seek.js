@@ -9,12 +9,13 @@ export default function Seek({
   handleSeekChange,
   handleSeekMouseUp,
 }) {
-  const title = block?.title || "No title specified";
+  const title = block?.title;
   const previewImage = block?.image?.square.url;
   return (
     <div className={styles.container}>
-      <>
-        <Preview image={previewImage} />
+      {block  && (
+        <>
+      <Preview image={previewImage} />
         <div className={styles.seekContainer}>
           <div className={styles.title}>{title}</div>
           <input
@@ -33,7 +34,8 @@ export default function Seek({
             <Duration seconds={duration * (1 - played)} />
           </div>
         </div>
-      </>
+        </>
+      )}
     </div>
   );
 }
