@@ -5,7 +5,7 @@ import { useGetChannelContentsPaginated } from "../../lib/api";
 import Block from "./Block";
 
 import useIsInViewport from "@/src/hooks/useIsInViewport";
-import { buildChannelUrl, parseUsableBlocks } from "@/src/lib/helpers";
+import { parseUsableBlocks } from "@/src/lib/helpers";
 import { Loading } from "../Loading";
 import Link from "next/link";
 
