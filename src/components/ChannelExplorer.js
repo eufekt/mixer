@@ -13,8 +13,6 @@ export default function ChannelExplorer({isRoot}) {
 
   const { data: channel, isLoading, error } = useGetChannel(seed);
 
-  console.log(error?.info)
-
   if (error) {
     router.push({
       pathname: "/error",
