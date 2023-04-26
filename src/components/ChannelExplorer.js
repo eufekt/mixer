@@ -4,6 +4,7 @@ import { Navigator } from "../components/Navigator";
 import { BlocksExplorer } from "../components/explorer/BlocksExplorer";
 import { useGetChannel } from "../lib/api";
 import { seedChannel } from "../config";
+import { useSession } from "next-auth/react";
 
 export default function ChannelExplorer({isRoot}) {
   const router = useRouter();
@@ -12,6 +13,9 @@ export default function ChannelExplorer({isRoot}) {
   const seed = channelId || seedChannel;
 
   const { data: channel, isLoading, error } = useGetChannel(seed);
+  
+  const sesh = useSession();
+  if(sesh) console.log(sesh)
 
   if (error) {
     router.push({
