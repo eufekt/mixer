@@ -2,8 +2,6 @@ import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
 import { apiBase } from "../config";
 
-const BASE = apiBase.development;
-
 const fetcher = async (...args) => {
   const res = await fetch(...args);
 
@@ -19,7 +17,7 @@ const fetcher = async (...args) => {
 };
 
 export function useGetChannel(id) {
-  const { data, error, isLoading } = useSWR(`${BASE}/channels/${id}`, fetcher, {
+  const { data, error, isLoading } = useSWR(`${apiBase}/channels/${id}`, fetcher, {
     revalidateOnMount: true,
   });
 
@@ -36,7 +34,7 @@ export function useGetChannelContentsPaginated(id) {
   const per = 30;
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.contents.length) return null;
-    return `${BASE}/channels/${id}/contents?page=${
+    return `${apiBase}/channels/${id}/contents?page=${
       pageIndex + 1
     }&per=${per}sort=position&direction=desc`;
   };
