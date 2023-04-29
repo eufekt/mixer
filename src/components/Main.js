@@ -11,9 +11,10 @@ export default function Main({ isRoot }) {
     if (status === "loading")
       return <Loading isLoading={true} what={"session"} />;
     if (status === "authenticated") {
-      user = data.user;
+        user = data.user;
     }
   
+
     return (
       <UserContext.Provider value={user}>
         <Explorer isRoot={isRoot} />

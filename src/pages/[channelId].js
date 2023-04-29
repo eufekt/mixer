@@ -1,4 +1,4 @@
-import Main from "../components/explorer/Explorer";
+import Main from "../components/Main";
 
 export default function Channel() {
   return <Main />;

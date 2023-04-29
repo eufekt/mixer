@@ -3,14 +3,13 @@ import { Loading } from "../Loading";
 import { Navigator } from "./Navigator";
 import { BlocksExplorer } from "./BlocksExplorer";
 import { seedChannel } from "../../config";
-import Auth from "../Auth";
 import { useArena } from "../../hooks/useArena";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function Explorer({ isRoot }) {
   const user = useUserContext();
   const arena = useArena(user);
-
+  
   const router = useRouter();
   const { channelId } = router.query;
 
