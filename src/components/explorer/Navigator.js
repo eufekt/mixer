@@ -1,7 +1,6 @@
 import styles from "@/src/styles/Navigator.module.sass";
 import Link from "next/link";
-import { buildChannelUrl, buildUserUrl } from "../lib/helpers";
-import { signIn } from 'next-auth/react'
+import { buildChannelUrl, buildUserUrl } from "../../lib/helpers";
 
 export function Navigator({ channel, isRoot }) {
   const channelUrl = buildChannelUrl(channel);
@@ -11,7 +10,6 @@ export function Navigator({ channel, isRoot }) {
 
   return (
     <div className={styles.container}>
-      <button onClick={()=>signIn('arena')}>sign in</button>
       <Link href={"/"}>
         <div className={styles.link}>Mixer</div>
       </Link>{" "}

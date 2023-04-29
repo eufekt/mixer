@@ -1,7 +1,6 @@
 import styles from "@/src/styles/BlocksExplorer.module.sass";
 import { useRef, useCallback, useEffect, useMemo } from "react";
 import { usePlaylistContext } from "../../contexts/PlaylistContext";
-import { useGetChannelContentsPaginated } from "../../lib/api";
 import Block from "./Block";
 
 import useIsInViewport from "@/src/hooks/useIsInViewport";

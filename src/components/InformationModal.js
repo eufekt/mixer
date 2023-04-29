@@ -1,6 +1,7 @@
 import styles from "@/src/styles/InformationModal.module.sass";
 
 import { useState } from "react";
+import Auth from "./Auth";
 
 export function InformationModal() {
   const [showModal, setShowModal] = useState(false);
@@ -27,6 +28,8 @@ export function InformationModal() {
               e.stopPropagation();
             }}
           >
+            <Auth />
+            <br />
             <a
               href={"https://github.com/eufekt/mixer"}
               target={"_blank"}
@@ -34,6 +37,7 @@ export function InformationModal() {
             >
               {"https://github.com/eufekt/mixer"}
             </a>
+
             <a
               href={"https://www.are.na/la-src"}
               target={"_blank"}
@@ -41,7 +45,7 @@ export function InformationModal() {
             >
               {"https://www.are.na/la-src"}
             </a>
-            <br/>
+
             <a
               href={"https://www.are.na/la-src/how-can-are-na-mixer-be-better"}
               target={"_blank"}

@@ -1,0 +1,26 @@
+@use "variables"
+
+.container
+    color: variables.$color_text
+    font-size: variables.$font_size
+
+.wrapper
+    width: 100%
+    display: flex
+    justify-content: space-between
+
+.auth
+    color: variables.$color_green
+
+.unauth
+    color: variables.$color_orange
+
+// reset styles
+.button
+    background-color: transparent
+    border: none
+    cursor: pointer
+    font-size: inherit
+    padding: 0
+    text-decoration: underline
+    color: inherit

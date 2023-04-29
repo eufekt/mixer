@@ -1,7 +1,6 @@
 import styles from "@/src/styles/BlocksExplorer.module.sass";
 import { useRef, useCallback, useEffect, useMemo } from "react";
 import { usePlaylistContext } from "../../contexts/PlaylistContext";
-import { useGetChannelContentsPaginated } from "../../lib/api";
 import Block from "./Block";
 
 import useIsInViewport from "@/src/hooks/useIsInViewport";
@@ -9,13 +8,18 @@ import { parseUsableBlocks } from "@/src/lib/helpers";
 import { Loading } from "../Loading";
 
 import { useRouter } from "next/router";
+import { useArena } from "@/src/hooks/useArena";
+import { useUserContext } from "@/src/contexts/UserContext";
 
 export function BlocksExplorer({ channel }) {
   const { playlistDispatch } = usePlaylistContext();
-  const router = useRouter()
+  const router = useRouter();
+  const user = useUserContext();
+  const arena = useArena(user);
 
-  const { data, error, isLoading, size, setSize } =
-    useGetChannelContentsPaginated(channel.slug);
+  const { data, error, isLoading, size, setSize } = arena.FetchChannelContents(
+    channel.slug
+  );
 
   if (error) {
     router.push({
