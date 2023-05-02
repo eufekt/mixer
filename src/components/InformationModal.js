@@ -1,18 +1,37 @@
-import styles from "@/src/styles/InformationModal.module.sass";
-
+import styles, {
+  color_contrast,
+  color_text,
+  color_green,
+  color_orange,
+} from "@/src/styles/InformationModal.module.sass";
 import { useState } from "react";
 import Auth from "./Auth";
+import { useSession } from "next-auth/react";
 
 export function InformationModal() {
   const [showModal, setShowModal] = useState(false);
+  const { data, status } = useSession();
 
+  let letter = "~";
+  let color = color_contrast;
+
+  // if (status == "loading") return <></>;
+  if (status == "unauthenticated") {
+    letter = "i";
+    color = color_orange;
+  }
+  if (status == "authenticated") {
+    letter = "i";
+    color = color_green;
+  }
   return (
     <>
       <div
         className={styles.infoButton}
         onClick={() => setShowModal(!showModal)}
+        style={{ color }}
       >
-        {"i"}
+        <div >{letter}</div>
       </div>
 
       {showModal && (
@@ -28,7 +47,7 @@ export function InformationModal() {
               e.stopPropagation();
             }}
           >
-            <Auth />
+            <Auth data={data} status={status} />
             <br />
             <a
               href={"https://github.com/eufekt/mixer"}

@@ -1,10 +1,7 @@
-import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
 import styles from "@/src/styles/Auth.module.sass";
 
-export default function Auth() {
-  const { data, status } = useSession();
-
+export default function Auth({ data, status }) {
   return (
     <div className={styles.Auth}>
       {status == "authenticated" && <Authenticated user={data.user} />}
@@ -17,11 +14,13 @@ export default function Auth() {
 function Authenticated({ user }) {
   return (
     <div className={styles.wrapper}>
-      <span className={styles.auth}>
-        Authenticated
-      </span>
-      @{user.name}
-      <button className={styles.button} onClick={() => signOut()}>sign out</button>
+      <span className={styles.auth}>Authenticated</span>@{user.name}
+      <button
+        className={styles.button}
+        onClick={() => signOut({ redirect: false })}
+      >
+        sign out
+      </button>
     </div>
   );
 }
@@ -29,10 +28,10 @@ function Authenticated({ user }) {
 function Unauthenticated() {
   return (
     <div className={styles.wrapper}>
-      <span className={styles.unauth}>
-        Unauthenticated
-      </span>
-      <button className={styles.button} onClick={() => signIn("arena")}>sign in</button>
+      <span className={styles.unauth}>Unauthenticated</span>
+      <button className={styles.button} onClick={() => signIn("arena")}>
+        sign in
+      </button>
     </div>
   );
 }
