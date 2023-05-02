@@ -13,27 +13,27 @@ export default function Seek({
   const previewImage = block?.image?.square.url;
   return (
     <div className={styles.container}>
-      {block  && (
+      {block && (
         <>
-      <Preview image={previewImage} />
-        <div className={styles.seekContainer}>
-          <div className={styles.title}>{title}</div>
-          <input
-            type={"range"}
-            className={styles.seek}
-            style={{ width: "100%" }}
-            min={0}
-            max={0.999999}
-            step="any"
-            value={played}
-            onChange={handleSeekChange}
-            onMouseUp={handleSeekMouseUp}
-          />
-          <div className={styles.durations}>
-            <Duration seconds={duration * played} />
-            <Duration seconds={duration * (1 - played)} />
+          <Preview image={previewImage} />
+          <div className={styles.seekContainer}>
+            <div className={styles.title}>{title}</div>
+            <input
+              type={"range"}
+              className={styles.seek}
+              style={{ width: "100%" }}
+              min={0}
+              max={0.999999}
+              step="any"
+              value={played}
+              onChange={handleSeekChange}
+              onMouseUp={handleSeekMouseUp}
+            />
+            <div className={styles.durations}>
+              <Duration seconds={duration * played} />
+              <Duration seconds={duration * (1 - played)} />
+            </div>
           </div>
-        </div>
         </>
       )}
     </div>
