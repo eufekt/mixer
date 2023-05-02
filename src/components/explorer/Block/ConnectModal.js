@@ -16,16 +16,15 @@ export function ConnectModal({ setShowConnectModal, block }) {
 
   return (
     <div className={styles.connectModalWrapper}>
+      <div className={styles.close} onClick={() => setShowConnectModal(false)}>
+        <>&#x2715;</>
+      </div>
       {user && (
-        <>
-          <div
-            className={styles.close}
-            onClick={() => setShowConnectModal(false)}
-          >
-            <>&#x2715;</>
-          </div>
-          <Channels user={user} block={block} setShowConnectModal={setShowConnectModal} />
-        </>
+        <Channels
+          user={user}
+          block={block}
+          setShowConnectModal={setShowConnectModal}
+        />
       )}
       {!user && (
         <button className={styles.signin} onClick={() => signIn("arena")}>
