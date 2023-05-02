@@ -1,0 +1,76 @@
+@use 'variables'
+
+.connectModalWrapper
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.8)
+    display: flex
+    justify-content: center
+    align-items: center
+
+    .signin
+        background-color: transparent
+        border: none
+        cursor: pointer
+        font-size: inherit
+        padding: 0
+        text-decoration: underline
+        color: inherit
+
+    .close
+        position: absolute
+        color: variables.$color_contrast
+        top: 0
+        right: 0
+        padding: 8px 10px
+        cursor: pointer
+
+        &:hover
+            color: variables.$color_text
+
+    .channelList
+        height: 100%
+        width: 100%
+        margin: 10px
+        padding: 10px 0 60px 0
+        overflow-y: scroll
+
+        .channel
+            color: variables.$color_text
+            font-size: variables.$font_size
+
+            &:hover
+                background-color: variables.$color_contrast
+                color: variables.$color_text
+
+    .comfirmationModal
+        width: 100%
+        position: absolute
+        cursor: pointer
+        padding: 10px
+        bottom: 0
+        left: 0
+
+    .wrapper
+        background-color: variables.$color_base
+        display: flex
+        color: variables.$color_contrast
+        align-items: center
+        justify-content: center
+        width: 100%
+        height: 40px
+        text-align: center
+        border: 2px solid variables.$color_contrast
+        border-radius: 5px
+
+        &:hover
+            border: 2px solid variables.$color_border
+            color: variables.$color_text
+
+:export
+    color_text: variables.$color_text
+    color_green: variables.$color_green
+    color_red: variables.$color_red

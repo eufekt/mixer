@@ -21,7 +21,7 @@ function Authenticated({ user }) {
         Authenticated
       </span>
       @{user.name}
-      <button className={styles.button} onClick={() => signOut("arena")}>sign out</button>
+      <button className={styles.button} onClick={() => signOut()}>sign out</button>
     </div>
   );
 }

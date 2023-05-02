@@ -40,3 +40,13 @@ export function parseUsableBlocks(data) {
   });
   return usableBlocks;
 }
+
+export function parseTitle(title) {
+  const maxLength = 35;
+  let newTitle = title.replace(/&amp;/g, "&");
+
+  if (newTitle.length > maxLength) {
+    newTitle = newTitle.substring(0, maxLength) + "...";
+  }
+  return newTitle;
+}

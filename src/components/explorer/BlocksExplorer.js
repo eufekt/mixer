@@ -1,7 +1,7 @@
 import styles from "@/src/styles/BlocksExplorer.module.sass";
 import { useRef, useCallback, useEffect, useMemo } from "react";
 import { usePlaylistContext } from "../../contexts/PlaylistContext";
-import Block from "./Block";
+import Block from "./Block/Block";
 
 import useIsInViewport from "@/src/hooks/useIsInViewport";
 import { parseUsableBlocks } from "@/src/lib/helpers";
@@ -34,6 +34,7 @@ export function BlocksExplorer({ channel }) {
 
   const hasMore = loadedBlocks.length < channel.length;
   const isEmpty = data?.[0]?.contents.length === 0;
+  console.log(loadedBlocks.length, channel.length, hasMore, isEmpty)
 
   const filtered = parseUsableBlocks(loadedBlocks);
 
@@ -41,16 +42,14 @@ export function BlocksExplorer({ channel }) {
   const isInViewport = useIsInViewport(elementRef);
 
   const increasePageSize = useCallback(() => {
-    if (hasMore) {
-      setSize(size + 1);
-    }
-  }, [hasMore, setSize, size]);
+    setSize(size + 1);
+  }, [setSize, size]);
 
   useEffect(() => {
-    if (isInViewport && !isLoading) {
+    if (isInViewport && !isLoading && hasMore) {
       increasePageSize();
     }
-  }, [increasePageSize, isInViewport, isLoading]);
+  }, [increasePageSize, isInViewport, isLoading, hasMore]);
 
   const setPLaylistFromSelection = (index) => {
     const rotatedList = [...filtered.slice(index), ...filtered.slice(0, index)];

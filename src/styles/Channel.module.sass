@@ -1,12 +1,9 @@
-@use 'variables'
-
-$block_width_browser: 280px
-$block_width_mobile: 120px
+@use "variables"
 
 .container
     @extend .center_hoz_vert
-    width: $block_width_browser
-    height: $block_width_browser
+    width: variables.$block_width_browser
+    height: variables.$block_width_browser
     position: relative
     border: 1px solid black
     margin-bottom: 25px
@@ -28,14 +25,6 @@ $block_width_mobile: 120px
         .misc
             margin-top: 8px
             text-align: center
-
-    // when block
-    .blockTitle
-        color: variables.$color_contrast
-        white-space: nowrap
-        overflow: hidden
-        position: absolute
-        bottom: -25px
 
 :export
     color_base: variables.$color_base
