@@ -87,7 +87,7 @@ function Channels({ setShowConnectModal, block, user }) {
   }
 
   const { data, isLoading, error, size, setSize } =
-    arena.FetchUserChannels(user);
+    arena.FetchUserChannels(user.id);
 
   const channels = useMemo(() => {
     return data ? data.flatMap((res) => res.channels) : [];
