@@ -7,6 +7,8 @@ import {
   playlistReducer,
 } from "../reducers/PlaylistReducer";
 import Layout from "../components/Layout";
+import Main from "../components/Main";
+
 
 export default function App({
   Component,
@@ -25,9 +27,11 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <PlaylistContext.Provider value={playlistProviderState}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Main>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Main>
       </PlaylistContext.Provider>
     </SessionProvider>
   );

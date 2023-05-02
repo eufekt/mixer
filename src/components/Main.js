@@ -1,9 +1,8 @@
 import { Loading } from "../components/Loading";
 import { useSession } from "next-auth/react";
 import UserContext from "../contexts/UserContext";
-import Explorer from "./explorer/Explorer";
 
-export default function Main({ isRoot }) {
+export default function Main({ children }) {
     const { data, status } = useSession();
   
     let user = null;
@@ -13,11 +12,10 @@ export default function Main({ isRoot }) {
     if (status === "authenticated") {
         user = data.user;
     }
-  
 
     return (
       <UserContext.Provider value={user}>
-        <Explorer isRoot={isRoot} />
+        {children}
       </UserContext.Provider>
     );
   }
