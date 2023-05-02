@@ -10,6 +10,7 @@ import { signIn } from "next-auth/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 /**
  * TODO what if a user has no channels ?
+ * > add abilty to create channel on the spot
  *  */
 export function ConnectModal({ setShowConnectModal, block }) {
   const user = useUserContext();
@@ -38,9 +39,9 @@ export function ConnectModal({ setShowConnectModal, block }) {
 function Channels({ setShowConnectModal, block, user }) {
   const arena = useArena(user);
   const [selectedChannel, setSelectedChannel] = useState();
-  const { isMutating, trigger } = arena.ConnectBlockToChannel(
-    selectedChannel?.id
-  );
+  const [connectionConfirmation, setConnectionConfirmation] = useState();
+  const [connecting, setIsConnecting] = useState(false);
+  const { trigger } = arena.ConnectBlockToChannel(selectedChannel?.id);
 
   function handleSelect(block) {
     if (selectedChannel?.id === block.id) {
@@ -48,22 +49,45 @@ function Channels({ setShowConnectModal, block, user }) {
     } else setSelectedChannel(block);
   }
 
+  function autoClose() {
+    return setTimeout(() => {
+      setShowConnectModal(false);
+    }, 3000);
+  }
+
   async function handleConfirm() {
     try {
-      const result = await trigger({
+      setIsConnecting(true);
+
+      await trigger({
         blockId: block.id,
         blockType: "Block",
       });
-      console.log("result", result);
+      setConnectionConfirmation({
+        component: (
+          <ConnectionConfirmation
+            message={`Connected successfully block to channel`}
+            autoClose={autoClose}
+          />
+        ),
+      });
+      setIsConnecting(false);
     } catch (e) {
-      console.log("error", e.status, e.message);
+      setConnectionConfirmation({
+        component: (
+          <ConnectionConfirmation
+            message={`There was an error connecting the block to the channel`}
+            errorMessage={e.message}
+            errorStatus={e.status}
+          />
+        ),
+      });
+      setIsConnecting(false);
     }
-    setShowConnectModal(false);
   }
 
-  const { data, isLoading, error, size, setSize } = arena.FetchUserChannels(
-    user.id
-  );
+  const { data, isLoading, error, size, setSize } =
+    arena.FetchUserChannels(user);
 
   const channels = useMemo(() => {
     return data ? data.flatMap((res) => res.channels) : [];
@@ -84,7 +108,20 @@ function Channels({ setShowConnectModal, block, user }) {
     }
   }, [hasMore, increasePageSize, isInViewport, isLoading]);
 
-  if (error) console.log(error);
+  // handle error
+  useEffect(() => {
+    if (error) {
+      setConnectionConfirmation({
+        component: (
+          <ConnectionConfirmation
+            message={"There was an error fetching user channels"}
+            errorMessage={error.message}
+            errorStatus={error.status}
+          />
+        ),
+      });
+    }
+  }, [error]);
 
   const colorState = (id) => {
     if (selectedChannel?.id === id) {
@@ -94,29 +131,73 @@ function Channels({ setShowConnectModal, block, user }) {
 
   return (
     <div className={styles.channelList}>
-      {channels.map((block) => (
-        <div
-          style={{ ...colorState(block.id) }}
-          onClick={() => handleSelect(block)}
-          key={block.id}
-          className={styles.channel}
-        >
-          <Title title={block.title} status={block.status} />
-        </div>
-      ))}
-      {isLoading && <div>loading...</div>}
-      {selectedChannel && (
-        <div onClick={handleConfirm} className={styles.comfirmationModal}>
-          <div className={styles.wrapper}>
-            connect {"\u25FC"} {"\u2192"}
-            <Title
-              title={selectedChannel.title}
-              status={selectedChannel.status}
-            />
-          </div>
+      {connectionConfirmation && connectionConfirmation.component}
+      {!connectionConfirmation && (
+        <>
+          {channels.map((block) => (
+            <div
+              style={{ ...colorState(block.id) }}
+              onClick={() => handleSelect(block)}
+              key={block.id}
+              className={styles.channel}
+            >
+              <Title title={block.title} status={block.status} />
+            </div>
+          ))}
+          {isLoading && <div>loading...</div>}
+          {selectedChannel && (
+            <div onClick={handleConfirm} className={styles.comfirmationModal}>
+              <div className={styles.wrapper}>
+                {connecting && <div>connecting...</div>}
+                {!connecting && (
+                  <>
+                    connect {"\u25FC"} {"\u2192"}
+                    <Title
+                      title={selectedChannel.title}
+                      status={selectedChannel.status}
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+          <div ref={elementRef}></div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ConnectionConfirmation({
+  message,
+  errorMessage,
+  errorStatus,
+  autoClose,
+}) {
+  useEffect(() => {
+    let timer;
+    if (autoClose) {
+      timer = autoClose();
+    }
+
+    return () => clearTimeout(timer);
+  }, [autoClose]);
+
+  return (
+    <div className={styles.ConnectionState}>
+      <div>{message}</div>
+      <br />
+      {errorStatus && (
+        <div>
+          <span className={styles.bold}>status:</span> {errorStatus}
         </div>
       )}
-      <div ref={elementRef}></div>
+      <br />
+      {errorMessage && (
+        <div>
+          <span className={styles.bold}>reason:</span> {errorMessage}
+        </div>
+      )}
     </div>
   );
 }

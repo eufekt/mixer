@@ -34,7 +34,6 @@ export function BlocksExplorer({ channel }) {
 
   const hasMore = loadedBlocks.length < channel.length;
   const isEmpty = data?.[0]?.contents.length === 0;
-  console.log(loadedBlocks.length, channel.length, hasMore, isEmpty)
 
   const filtered = parseUsableBlocks(loadedBlocks);
 
