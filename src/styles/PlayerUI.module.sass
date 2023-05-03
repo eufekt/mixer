@@ -2,16 +2,18 @@
 
 .player
     position: fixed,
-    display: flex,
-    justify-content: space-between,
-    align-items: center,
-    width: 90%,
     height: variables.$player_height,
     top: 0px
     left: 10px
     background-color: variables.$color_base,
     color: variables.$color_text
-    gap: 60px
+
+    display: grid,
+    grid-template-columns: repeat(5, minmax(auto,auto))
+
+    justify-content: space-between,
+    align-items: center,
+    grid-gap: 20px
     border-radius: 0 10px 10px 0
 
 .connect
@@ -19,15 +21,13 @@
 
     cursor: pointer
     color: variables.$color_contrast
-    
+
     &:hover
         color: variables.$color_text
         text-decoration: underline
-
 
 .controls
     display: flex,
     align-items: center,
 .a
     padding: 0 60px 0 0
-
