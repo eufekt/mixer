@@ -66,7 +66,7 @@ export function InformationModal() {
             </a>
 
             <a
-              href={"https://www.are.na/la-src/how-can-are-na-mixer-be-better"}
+              href={"https://www.are.na/la-src/feedback-loop-evw-91mkkyu"}
               target={"_blank"}
               rel="noreferrer"
             >
