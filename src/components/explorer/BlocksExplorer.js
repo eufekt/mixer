@@ -68,7 +68,7 @@ export function BlocksExplorer({ channel }) {
           />
         ))}
       </div>
-      <Loading isLoading={isLoading} />
+      <Loading isLoading={isLoading} hideText/>
       {isEmpty && <div className={styles.empty}>this channel is empty</div>}
       <div ref={elementRef}></div>
     </div>

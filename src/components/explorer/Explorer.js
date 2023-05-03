@@ -9,7 +9,7 @@ import { useUserContext } from "../../contexts/UserContext";
 export default function Explorer({ isRoot }) {
   const user = useUserContext();
   const arena = useArena(user);
-  
+
   const router = useRouter();
   const { channelId } = router.query;
 
@@ -26,13 +26,13 @@ export default function Explorer({ isRoot }) {
 
   return (
     <>
+      <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
       {channel && (
         <>
           <BlocksExplorer channel={channel} />
           <Navigator channel={channel} isRoot={isRoot} />
         </>
       )}
-      <Loading isLoading={isLoading} what={"channel"} />
     </>
   );
 }

@@ -8,6 +8,7 @@ import styles, {
 } from "@/src/styles/ConnectModal.module.sass";
 import { signIn } from "next-auth/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Loading } from "../../Loading";
 /**
  * TODO what if a user has no channels ?
  * > add abilty to create channel on the spot
@@ -86,8 +87,9 @@ function Channels({ setShowConnectModal, block, user }) {
     }
   }
 
-  const { data, isLoading, error, size, setSize } =
-    arena.FetchUserChannels(user.id);
+  const { data, isLoading, error, size, setSize } = arena.FetchUserChannels(
+    user.id
+  );
 
   const channels = useMemo(() => {
     return data ? data.flatMap((res) => res.channels) : [];
@@ -108,7 +110,6 @@ function Channels({ setShowConnectModal, block, user }) {
     }
   }, [hasMore, increasePageSize, isInViewport, isLoading]);
 
-  // handle error
   useEffect(() => {
     if (error) {
       setConnectionConfirmation({
@@ -130,41 +131,41 @@ function Channels({ setShowConnectModal, block, user }) {
   };
 
   return (
-    <div className={styles.channelList}>
-      {connectionConfirmation && connectionConfirmation.component}
-      {!connectionConfirmation && (
-        <>
-          {channels.map((block) => (
-            <div
-              style={{ ...colorState(block.id) }}
-              onClick={() => handleSelect(block)}
-              key={block.id}
-              className={styles.channel}
-            >
-              <Title title={block.title} status={block.status} />
-            </div>
-          ))}
-          {isLoading && <div>loading...</div>}
-          {selectedChannel && (
-            <div onClick={handleConfirm} className={styles.comfirmationModal}>
-              <div className={styles.wrapper}>
-                {connecting && <div>connecting...</div>}
-                {!connecting && (
-                  <>
-                    connect {"\u25FC"} {"\u2192"}
-                    <Title
-                      title={selectedChannel.title}
-                      status={selectedChannel.status}
-                    />
-                  </>
-                )}
+      <div className={styles.channelList}>
+      <Loading isLoading={isLoading} what={"channels"} hideText type={"inline"} style={{position: "absolute", right: 30}} />
+        {connectionConfirmation && connectionConfirmation.component}
+        {!connectionConfirmation && (
+          <>
+            {channels.map((block) => (
+              <div
+                style={{ ...colorState(block.id) }}
+                onClick={() => handleSelect(block)}
+                key={block.id}
+                className={styles.channel}
+              >
+                <Title title={block.title} status={block.status} />
               </div>
-            </div>
-          )}
-          <div ref={elementRef}></div>
-        </>
-      )}
-    </div>
+            ))}
+            {selectedChannel && (
+              <div onClick={handleConfirm} className={styles.comfirmationModal}>
+                <div className={styles.wrapper}>
+                  <Loading type={"inline"} text="connecting" isLoading={connecting}/>
+                  {!connecting && (
+                    <>
+                      connect {"\u25FC"} {"\u2192"}
+                      <Title
+                        title={selectedChannel.title}
+                        status={selectedChannel.status}
+                      />
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+            <div ref={elementRef}></div>
+          </>
+        )}
+      </div>
   );
 }
 

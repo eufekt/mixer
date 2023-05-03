@@ -1,6 +1,24 @@
+@use "variables"
 
-.loading
+.base
+    color: variables.$color_text 
+    display: flex
+    align-items: center
+    justify-content: center
+
+.asLoader
+    @extend .base
     width: 100%
-    text-align: center
     padding: 50px
-    color: "white"
+    
+.fullScreen
+    @extend .base
+    height: 100vh
+    width: 100vw
+    background-color: variables.$color_base
+
+.inline
+    @extend .base
+
+:export
+    color_base: variables.$color_base
