@@ -7,7 +7,7 @@ export default function Main({ children }) {
   let user = null;
 
   if (status === "loading")
-    return <Loading isLoading={true} what={"session"} fullScreen />;
+    return <Loading isLoading={true} what={"session"} type={"fullScreen"} />;
   if (status === "authenticated") {
     user = data.user;
   }
