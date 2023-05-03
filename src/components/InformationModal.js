@@ -12,18 +12,10 @@ export function InformationModal() {
   const [showModal, setShowModal] = useState(false);
   const { data, status } = useSession();
 
-  let letter = "~";
+  let letter = "i";
   let color = color_contrast;
+  if (status == "loading") letter = "~";
 
-  // if (status == "loading") return <></>;
-  if (status == "unauthenticated") {
-    letter = "i";
-    color = color_orange;
-  }
-  if (status == "authenticated") {
-    letter = "i";
-    color = color_green;
-  }
   return (
     <>
       <div
@@ -31,7 +23,7 @@ export function InformationModal() {
         onClick={() => setShowModal(!showModal)}
         style={{ color }}
       >
-        <div >{letter}</div>
+        <div>{letter}</div>
       </div>
 
       {showModal && (
