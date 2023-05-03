@@ -60,6 +60,7 @@ function Channels({ setShowConnectModal, block, user }) {
     try {
       setIsConnecting(true);
 
+      // throw new Error("not implemented yet");
       await trigger({
         blockId: block.id,
         blockType: "Block",
@@ -131,41 +132,51 @@ function Channels({ setShowConnectModal, block, user }) {
   };
 
   return (
-      <div className={styles.channelList}>
-      <Loading isLoading={isLoading} what={"channels"} hideText type={"inline"} style={{position: "absolute", right: 30}} />
-        {connectionConfirmation && connectionConfirmation.component}
-        {!connectionConfirmation && (
-          <>
-            {channels.map((block) => (
-              <div
-                style={{ ...colorState(block.id) }}
-                onClick={() => handleSelect(block)}
-                key={block.id}
-                className={styles.channel}
-              >
-                <Title title={block.title} status={block.status} />
+    <div className={styles.channelList}>
+      <Loading
+        isLoading={isLoading}
+        what={"channels"}
+        hideText
+        type={"inline"}
+        style={{ position: "absolute", right: 30 }}
+      />
+      {connectionConfirmation?.component == null && (
+        <>
+          {channels.map((block) => (
+            <div
+              style={{ ...colorState(block.id) }}
+              onClick={() => handleSelect(block)}
+              key={block.id}
+              className={styles.channel}
+            >
+              <Title title={block.title} status={block.status} />
+            </div>
+          ))}
+          {selectedChannel && (
+            <div onClick={handleConfirm} className={styles.comfirmationModal}>
+              <div className={styles.wrapper}>
+                <Loading
+                  type={"inline"}
+                  text="connecting"
+                  isLoading={connecting}
+                />
+                {!connecting && (
+                  <>
+                    connect {"\u25FC"} {"\u2192"}
+                    <Title
+                      title={selectedChannel.title}
+                      status={selectedChannel.status}
+                    />
+                  </>
+                )}
               </div>
-            ))}
-            {selectedChannel && (
-              <div onClick={handleConfirm} className={styles.comfirmationModal}>
-                <div className={styles.wrapper}>
-                  <Loading type={"inline"} text="connecting" isLoading={connecting}/>
-                  {!connecting && (
-                    <>
-                      connect {"\u25FC"} {"\u2192"}
-                      <Title
-                        title={selectedChannel.title}
-                        status={selectedChannel.status}
-                      />
-                    </>
-                  )}
-                </div>
-              </div>
-            )}
-            <div ref={elementRef}></div>
-          </>
-        )}
-      </div>
+            </div>
+          )}
+          <div ref={elementRef}></div>
+        </>
+      )}
+      {connectionConfirmation?.component}
+    </div>
   );
 }
 
