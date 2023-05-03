@@ -1,5 +1,5 @@
 import { parseTitle } from "@/src/lib/helpers";
-import styles from "@/src/styles/Playable.module.sass";
+import styles, {block_width} from "@/src/styles/Playable.module.sass";
 import Image from "next/image";
 import { useState } from "react";
 import { ConnectModal } from "./ConnectModal";
@@ -21,8 +21,8 @@ export default function Playable({ loadPlaylistFrom, block, i }) {
         className={styles.image}
         layout="fixed"
         objectFit="cover"
-        width={200}
-        height={200}
+        width={block_width}
+        height={block_width}
         alt={"image"}
         onClick={() => loadPlaylistFrom(i)}
         src={imgsrc}
