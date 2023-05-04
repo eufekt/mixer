@@ -6,7 +6,7 @@
     align-items: center
 
     .playerButton
-        background-color: variables.$color_base
+        background-color: var(--color_base)
         width: 120px
         height: 40px
 
@@ -15,13 +15,13 @@
         justify-content: space-around
         border-radius: 5px
         text-align: center
-        border: 1px solid variables.$color_contrast
+        border: 2px solid var(--color_contrast)
         cursor: pointer
 
     @media screen and (max-width: 1110px)
         .playerButton
             width: 80px
-    
+
     @media screen and (max-width: 800px)
         .playerButton
             width: 60px

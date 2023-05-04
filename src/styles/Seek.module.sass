@@ -10,8 +10,8 @@
 /*Range Reset*/
 
 .seekContainer
-    color: variables.$color_text
-    background-color: variables.$color_base
+    color: var(--color_text)
+    background-color: var(--color_base)
     display: flex
     flex-direction: column
     padding: 5px
@@ -48,7 +48,7 @@
 /***** Chrome, Safari, Opera and Edge Chromium styles *****/
 /* slider track */
 .seek::-webkit-slider-runnable-track
-    background-color: variables.$color_contrast
+    background-color: var(--color_contrast)
     height: 2px
 
 /* slider thumb */
@@ -57,7 +57,7 @@
     appearance: none
     margin-top: -4px
 
-    background-color: variables.$color_text
+    background-color: var(--color_text)
     height: 10px
     width: 10px
     border-radius: 10px
@@ -68,7 +68,7 @@
 /******** Firefox styles ********/
 /* slider track */
 .seek::-moz-range-track
-    background-color: variables.$color_contrast
+    background-color: var(--color_contrast)
     height: 2px
 
 /* slider thumb */
@@ -76,7 +76,7 @@
     border: none
     border-radius: 0
 
-    background-color: variables.$color_text
+    background-color: var(--color_text)
     height: 10px
     width: 10px
     border-radius: 10px

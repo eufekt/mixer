@@ -1,7 +1,7 @@
 @use 'variables'
 
 .container
-    color: variables.$color_contrast
+    color: var(--color_contrast)
     font-size: variables.$font_size_bigger
     position: fixed
     top: (variables.$player_height + 50)
@@ -14,4 +14,4 @@
     .link
         &:hover
             cursor: pointer
-            color: variables.$color_text
+            color: var(--color_text)

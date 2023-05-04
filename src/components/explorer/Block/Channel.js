@@ -23,7 +23,7 @@ export default function Channel({ block }) {
     color = color_green;
   }
 
-  const border = base_class === "Channel" ? `1px solid ${borderColor}` : "none";
+  const border = base_class === "Channel" ? `2px solid ${borderColor}` : "none";
   return (
     <Link href={`/${block.slug}`}>
       <a>

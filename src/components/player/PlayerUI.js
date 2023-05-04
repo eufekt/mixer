@@ -33,7 +33,6 @@ export function PlayerUI({
         />
       )}
 
-        
       <Seek
         block={currentBlock}
         played={played}
@@ -56,16 +55,7 @@ export function PlayerUI({
           </div>
 
           {showConnectModal && (
-            <div
-              style={{
-                height: 240,
-                width: 240,
-                position: "absolute",
-                right: 20,
-                top: 20,
-                border: "3px solid white",
-              }}
-            >
+            <div className={styles.connectModalWrapper}>
               <ConnectModal
                 setShowConnectModal={setShowConnectModal}
                 block={currentBlock}

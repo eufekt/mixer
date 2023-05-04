@@ -6,7 +6,7 @@
     top: 0px
 
     margin-left: 0 60px
-    color: variables.$color_text
+    color: var(--color_text)
     width: 100%
     padding: 0 60px
     display: flex,
@@ -17,17 +17,14 @@
 
 @media screen and (max-width: 1110px)
     .player
-        
-        
 
 .connect
     width: 65px
-
     cursor: pointer
-    color: variables.$color_contrast
+    color: var(--color_contrast)
 
     &:hover
-        color: variables.$color_text
+        color: var(--color_text)
         text-decoration: underline
 
 .controls
@@ -35,3 +32,11 @@
     align-items: center,
 .a
     padding: 0 60px 0 0
+
+.connectModalWrapper
+    height: variables.$block_width_browser
+    width: variables.$block_width_browser
+    position: "absolute"
+    right: 20px
+    top: 20px
+    border: 2px solid var(--color_border)

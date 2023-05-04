@@ -4,36 +4,40 @@
     @extend .center_hoz_vert
     width: variables.$block_width_browser
     height: variables.$block_width_browser
-    background-color: variables.$color_black
+    background-color: var(--color_black)
     position: relative
-    border: 1px solid black
+    border: 2px solid black
     margin-bottom: 25px
     cursor: pointer
 
     &:hover
-        border: 1px solid variables.$color_contrast
+        border: 2px solid var(--color_contrast)
 
     .blockTitle
-        color: variables.$color_contrast
+        color: var(--color_contrast)
         white-space: nowrap
         overflow: hidden
         position: absolute
         bottom: -25px
 
     .connect
-        position: absolute
-        bottom: 0
-        width: 100%
+        background-color: var(--color_base)
+        height: 40px
         text-align: center
-        color: variables.$color_contrast
-        padding: 20px
+        border: 2px solid var(--color_contrast)
+        border-radius: 5px
+        position: absolute
+        bottom: 10px
+        width: calc(variables.$block_width_browser - 20px)
+        text-align: center
+        color: var(--color_contrast)
+        padding: 10px
 
         &:hover
-            backdrop-filter: blur(5px)
-            color: variables.$color_text
+            // backdrop-filter: blur(5px)
+            border: 2px solid var(--color_border)
+            color: var(--color_text)
 
 :export
-    color_border: variables.$color_contrast
+    color_border: var(--color_contrast)
     block_width: (variables.$block_width_browser - 2px)
-
-    

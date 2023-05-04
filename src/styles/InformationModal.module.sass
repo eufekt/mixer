@@ -2,9 +2,9 @@
 
 .infoButton
     position: fixed
-    color: variables.$color_border
+    color: var(--color_contrast)
     font-size: variables.$font_size
-    border: 3px solid variables.$color_contrast
+    border: 2px solid var(--color_contrast)
     font-weight: bold
     border-radius: 50%
     display: flex
@@ -18,7 +18,7 @@
     right: 10px
 
     &:hover
-        border: 3px solid variables.$color_text
+        border: 2px solid var(--color_text)
 
 .infoModalContainer
     width: 100vw
@@ -26,17 +26,16 @@
     background-color: rgba(0,0,0,0.5)
     position: fixed
     top: 0
-    
     right: 0
     z-index: 1
 
 .infoModal
     width: 250px
     height: 250px
-    background-color: variables.$color_base
+    background-color: var(--color_base)
     border-radius: 2px
-    border: 3px solid variables.$color_text
-    color: variables.$color_text
+    border: 2px solid var(--color_border)
+    color: var(--color_text)
     padding: 10px
     position: fixed
     top: 10px
@@ -48,12 +47,10 @@
         &:hover
             text-decoration: underline
 
-
 // export colors
 
 :export
-    color_contrast: variables.$color_contrast
-    color_text: variables.$color_text
-    color_green: variables.$color_green
-    color_orange: variables.$color_orange
-
+    color_contrast: var(--color_contrast)
+    color_text: var(--color_text)
+    color_green: var(--color_green)
+    color_orange: var(--color_orange)
