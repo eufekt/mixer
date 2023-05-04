@@ -8,8 +8,8 @@
     .playerButton
         background-color: variables.$color_base
         width: 120px
-        min-width: 50px
         height: 40px
+
         display: flex
         align-items: center
         justify-content: space-around
@@ -17,8 +17,11 @@
         text-align: center
         border: 1px solid variables.$color_contrast
         cursor: pointer
+
+    @media screen and (max-width: 1110px)
+        .playerButton
+            width: 80px
     
-
-        
-
-
+    @media screen and (max-width: 800px)
+        .playerButton
+            width: 60px

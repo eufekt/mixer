@@ -5,6 +5,7 @@ import { BlocksExplorer } from "./BlocksExplorer";
 import { seedChannel } from "../../config";
 import { useArena } from "../../hooks/useArena";
 import { useUserContext } from "../../contexts/UserContext";
+import styles from "@/src/styles/Explorer.module.sass";
 
 export default function Explorer({ isRoot }) {
   const user = useUserContext();
@@ -26,13 +27,30 @@ export default function Explorer({ isRoot }) {
 
   return (
     <>
-      <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
-      {channel && (
-        <>
-          <BlocksExplorer channel={channel} />
-          <Navigator channel={channel} isRoot={isRoot} />
-        </>
-      )}
+      <div className={styles.isMobile}>
+        For the present moment, this application is only optimized for desktop
+        experience. Some features may not work on mobile devices. Please use a
+        desktop.
+        <br />
+        <br />
+        <a
+          className={styles.link}
+          href={"https://www.are.na/la-src/feedback-loop-evw-91mkkyu"}
+          target={"_blank"}
+          rel="noreferrer"
+        >
+          {"feedback loop"}
+        </a>
+      </div>
+      <div className={styles.isDesktop}>
+        <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
+        {channel && (
+          <>
+            <BlocksExplorer channel={channel} />
+            <Navigator channel={channel} isRoot={isRoot} />
+          </>
+        )}
+      </div>
     </>
   );
 }

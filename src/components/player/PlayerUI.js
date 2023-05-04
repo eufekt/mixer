@@ -21,18 +21,19 @@ export function PlayerUI({
   const [showConnectModal, setShowConnectModal] = useState(false);
   return (
     <div className={styles.player}>
-      <div className={styles.controls}>
-        <Status status={status} />
-        {currentBlock && (
-          <Controls
-            block={currentBlock}
-            handlePrev={handlePrev}
-            handlePlayPause={handlePlayPause}
-            handleNext={handleNext}
-            playing={playing}
-          />
-        )}
-      </div>
+      <Status status={status} />
+
+      {currentBlock && (
+        <Controls
+          block={currentBlock}
+          handlePrev={handlePrev}
+          handlePlayPause={handlePlayPause}
+          handleNext={handleNext}
+          playing={playing}
+        />
+      )}
+
+        
       <Seek
         block={currentBlock}
         played={played}

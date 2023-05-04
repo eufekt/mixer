@@ -3,9 +3,15 @@
 .container
     @extend .center_hoz_vert
     min-width: 120px
-    width: 120px
     height: variables.$player_height
-    // border:1px solid variables.$color_contrast
+
+@media screen and (max-width: 1110px)
+    .container
+        min-width: 40px
+
+@media screen and (max-width: 800px)
+    .container
+        min-width: 20px
 
 .status
     width: 10px

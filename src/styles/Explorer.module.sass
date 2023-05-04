@@ -1,0 +1,45 @@
+@use 'variables'
+
+.displayText
+    color: variables.$color_contrast
+    font-size: variables.$font_size_bigger
+    position: fixed
+    top: (variables.$player_height + 50)
+    margin-left: 60px
+    cursor: default
+    display: grid
+    grid-gap: 5px
+    grid-template-columns: repeat(5,minmax(auto,auto))
+
+    .link
+        &:hover
+            cursor: pointer
+            color: variables.$color_text
+
+@media only screen and (min-width: 640px)
+    .isMobile
+        display: none
+
+    .isDesktop
+        display: block
+
+// for screens too small for current design
+@media only screen and (max-width: 640px)
+    .isMobile
+        color: variables.$color_contrast
+        display: block
+        position: fixed
+        padding: 0 60px
+        top: 50%
+        width: 100%
+        text-align: center
+
+        .link
+            text-decoration: underline
+            
+            &:hover
+                cursor: pointer    
+                color: variables.$color_text
+
+    .isDesktop
+        display: none

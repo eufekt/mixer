@@ -4,7 +4,7 @@
     display: flex
     flex-direction: row
     align-items: center
-    min-width: 500px
+    width: 100%
 
 /********** Range Input Styles **********/
 /*Range Reset*/
@@ -21,6 +21,9 @@
         text-align: center
         width: 100%
         margin-bottom: 5px
+        // overflow: hidden
+        white-space: nowrap
+        overflow: hidden
 
     .durations
         font-size: variables.$font_size_smaller
@@ -33,6 +36,7 @@
     appearance: none
     background: transparent
     cursor: pointer
+    width: 100%
 
 // .a
 //     padding: 0 5px

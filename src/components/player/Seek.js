@@ -18,6 +18,7 @@ export default function Seek({
           <Preview image={previewImage} />
           <div className={styles.seekContainer}>
             <div className={styles.title}>{title}</div>
+            
             <input
               type={"range"}
               className={styles.seek}

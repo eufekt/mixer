@@ -4,16 +4,21 @@
     position: fixed,
     height: variables.$player_height,
     top: 0px
-    left: 10px
-    color: variables.$color_text
-    min-width: 70%
-    display: grid,
-    grid-template-columns: repeat(5, minmax(auto,auto))
 
-    justify-content: space-between,
+    margin-left: 0 60px
+    color: variables.$color_text
+    width: 70%
+    display: flex,
+    // justify-content: space-between,
     align-items: center,
-    grid-gap: 20px
-    border-radius: 0 10px 10px 0
+
+    > *
+        margin: 0 10px
+
+@media screen and (max-width: 1110px)
+    .player
+        margin: 0 60px
+        width: 90%
 
 .connect
     width: 80px
