@@ -8,6 +8,7 @@ export function Preview({ image }) {
       alt={"preview"}
       layout="fixed"
       objectFit="cover"
+      style={{ borderRadius: "50%" }}
       width={40}
       height={40}
     ></Image>
