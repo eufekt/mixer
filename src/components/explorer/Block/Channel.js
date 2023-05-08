@@ -23,11 +23,11 @@ export default function Channel({ block }) {
     color = color_green;
   }
 
-  const border = base_class === "Channel" ? `2px solid ${borderColor}` : "none";
+  // const border = base_class === "Channel" ? `2px solid ${borderColor}` : "none";
   return (
     <Link href={`/${block.slug}`}>
       <a>
-        <div className={styles.container} style={{ border, color }}>
+        <div className={styles.container} style={{color}} >
           <div className={styles.channelDesc}>
             <div className={styles.title}>{title}</div>
             <div className={styles.misc}>

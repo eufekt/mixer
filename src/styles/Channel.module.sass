@@ -5,14 +5,13 @@
     width: variables.$block_width_browser
     height: variables.$block_width_browser
     position: relative
-    border: 2px solid var(--color_border)
-    margin-bottom: 25px
+    border: 2px solid var(--color_contrast)
+    border-radius: 2px
     cursor: pointer
 
     &:hover
-        border: 2px solid var(--color_contrast)
+        border: 3px solid var(--color_border)
 
-    // when channel
     .channelDesc
         @extend .center_hoz_vert
         flex-direction: column

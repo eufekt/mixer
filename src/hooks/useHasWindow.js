@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function useHasWindow() {
+export default function useHasWindow() {
   const [hasWindow, setHasWindow] = useState(false);
   
   useEffect(() => {

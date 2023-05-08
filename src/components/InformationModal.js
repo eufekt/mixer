@@ -7,14 +7,22 @@ import styles, {
 import { useState } from "react";
 import Auth from "./Auth";
 import { useSession } from "next-auth/react";
+import { useThemeContext } from "../contexts/ThemeContext";
 
 export function InformationModal() {
   const [showModal, setShowModal] = useState(false);
+  const { isDark, setIsDark } = useThemeContext();
   const { data, status } = useSession();
 
   let letter = "i";
   let color = color_contrast;
   if (status == "loading") letter = "~";
+
+
+  function handleLightChange() {
+    setIsDark(!isDark)
+    setShowModal(false)
+  }
 
   return (
     <>
@@ -64,6 +72,14 @@ export function InformationModal() {
             >
               {"feedback loop"}
             </a>
+            <br />
+
+            <button
+              className={styles.button}
+              onClick={handleLightChange}
+            >
+              {isDark ? "light mode" : "dark mode"}
+            </button>
           </div>
         </div>
       )}

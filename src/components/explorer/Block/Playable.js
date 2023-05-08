@@ -1,5 +1,5 @@
 import { parseTitle } from "@/src/lib/helpers";
-import styles, {block_width} from "@/src/styles/Playable.module.sass";
+import styles, { block_width } from "@/src/styles/Playable.module.sass";
 import Image from "next/image";
 import { useState } from "react";
 import { ConnectModal } from "./ConnectModal";
@@ -27,7 +27,7 @@ export default function Playable({ loadPlaylistFrom, block, i }) {
         onClick={() => loadPlaylistFrom(i)}
         src={imgsrc}
       ></Image>
-      {focus && (
+      {focus && !showConnect && (
         <div
           onClick={() => setShowConnectModal(true)}
           className={styles.connect}
@@ -37,7 +37,10 @@ export default function Playable({ loadPlaylistFrom, block, i }) {
       )}
       {showConnect && (
         <div style={{ height: "100%" }}>
-          <ConnectModal setShowConnectModal={setShowConnectModal} block={block} />
+          <ConnectModal
+            setShowConnectModal={setShowConnectModal}
+            block={block}
+          />
         </div>
       )}
       <div className={styles.blockTitle}>{title}</div>
