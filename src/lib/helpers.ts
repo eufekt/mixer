@@ -10,7 +10,6 @@ export function buildChannelUrl(channel: CustomArenaChannel) {
 }
 
 export function buildUserUrl(channel: CustomArenaChannel) : string{
-  console.log(channel,"ouin")
   const userSlug = channel?.user?.slug;
   if (userSlug === undefined) return arenaBase;
 
