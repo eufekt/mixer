@@ -12,6 +12,7 @@ import Main from "../components/Main";
 import ThemeContext from "../contexts/ThemeContext";
 import useHasWindow from "../hooks/useHasWindow";
 import { Session } from "next-auth";
+import Head from "next/head";
 
 export default function App({
   Component,
@@ -41,6 +42,19 @@ export default function App({
   } as PlaylistContextInterface
 
   return (
+    <>  
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta property="og:title" content="Mixer ~"/>
+      <title>Mixer - Music Block Playlist</title>
+      <meta property="og:description" content="Enjoy a curated collection of music blocks on Mixer, powered by Are.na."/>
+      <meta name="description" content="Enjoy a curated collection of music blocks on Mixer, powered by Are.na."/>
+      {/* <meta property="og:image" content="https://example.com/mixer-thumbnail.jpg"/> */}
+      <meta property="og:url" content="https://www.arena-mixer.com/"/>
+      <link rel="canonical" href="https://www.arena-mixer.com/"/>
+      <meta property="og:type" content="music.playlist"/>
+      <meta property="og:site_name" content="Mixer"/>
+    </Head>
     <ThemeContext.Provider value={{ isDark, setIsDark }}>
       <div className={isDark ? "dark-mode" : ""}>
         <SessionProvider session={session}>
@@ -54,5 +68,6 @@ export default function App({
         </SessionProvider>
       </div>
     </ThemeContext.Provider>
+    </>
   );
 }

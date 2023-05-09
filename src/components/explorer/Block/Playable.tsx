@@ -8,6 +8,7 @@ import { ArenaBlock } from "arena-ts";
 export default function Playable({ loadPlaylistFrom, block, i }: { loadPlaylistFrom: any, block: ArenaBlock, i: number }) {
   const [focus, setFocus] = useState(false);
   const [showConnect, setShowConnectModal] = useState(false);
+  const priority = i<15 ? true : false;
 
   let imgsrc = block.image?.square.url;
   let title = parseTitle(block.title);
@@ -25,6 +26,8 @@ export default function Playable({ loadPlaylistFrom, block, i }: { loadPlaylistF
         width={styles.block_width}
         height={styles.block_width}
         alt={"image"}
+        priority={priority}
+        quality={50}
         onClick={() => loadPlaylistFrom(i)}
         src={imgsrc!!}
       ></Image>
