@@ -45,8 +45,8 @@ export default function App({
     <>  
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta property="og:title" content="Mixer ~"/>
-      <title>Mixer - Music Block Playlist</title>
+      <meta property="og:title" content="Mixer"/>
+      <title>Mixer</title>
       <meta property="og:description" content="Enjoy a curated collection of music blocks on Mixer, powered by Are.na."/>
       <meta name="description" content="Enjoy a curated collection of music blocks on Mixer, powered by Are.na."/>
       {/* <meta property="og:image" content="https://example.com/mixer-thumbnail.jpg"/> */}
