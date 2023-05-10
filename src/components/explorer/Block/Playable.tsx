@@ -2,13 +2,21 @@ import { parseTitle } from "@/src/lib/helpers";
 import styles from "@/src/styles/Playable.module.sass";
 import Image from "next/image";
 import { useState } from "react";
-import { ConnectModal } from "./ConnectModal";
+import { ConnectDialog, ConnectModal } from "./ConnectModal/ConnectModal";
 import { ArenaBlock } from "arena-ts";
 
-export default function Playable({ loadPlaylistFrom, block, i }: { loadPlaylistFrom: any, block: ArenaBlock, i: number }) {
+export default function Playable({
+  loadPlaylistFrom,
+  block,
+  i,
+}: {
+  loadPlaylistFrom: any;
+  block: ArenaBlock;
+  i: number;
+}) {
   const [focus, setFocus] = useState(false);
   const [showConnect, setShowConnectModal] = useState(false);
-  const priority = i<15 ? true : false;
+  const priority = i < 15 ? true : false;
 
   let imgsrc = block.image?.square.url;
   let title = parseTitle(block.title);
@@ -31,22 +39,12 @@ export default function Playable({ loadPlaylistFrom, block, i }: { loadPlaylistF
         onClick={() => loadPlaylistFrom(i)}
         src={imgsrc!!}
       ></Image>
-      {focus && !showConnect && (
-        <div
-          onClick={() => setShowConnectModal(true)}
-          className={styles.connect}
-        >
-          connect {"\u2192"}
-        </div>
-      )}
-      {showConnect && (
-        <div style={{ height: "100%" }}>
-          <ConnectModal
-            setShowConnectModal={setShowConnectModal}
-            block={block}
-          />
-        </div>
-      )}
+      <ConnectDialog
+        focus={focus}
+        setShowConnectModal={setShowConnectModal}
+        showConnectModal={showConnect}
+        block={block}
+      />
       <div className={styles.blockTitle}>{title}</div>
     </div>
   );

@@ -1,5 +1,23 @@
 @use 'variables'
 
+.connect
+    background-color: var(--color_base)
+    height: 40px
+    display: flex
+    align-items: center
+    justify-content: center
+    border: 2px solid var(--color_contrast)
+    color: var(--color_contrast)
+    border-radius: 5px
+    position: absolute
+    bottom: 10px
+    width: calc(variables.$block_width_browser - 20px)
+
+    &:hover
+        border: 3px solid var(--color_border)
+        color: var(--color_text)
+
+
 .connectModalWrapper
     position: absolute
     top: 0

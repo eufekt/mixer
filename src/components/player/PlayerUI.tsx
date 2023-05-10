@@ -2,7 +2,7 @@ import styles from "@/src/styles/PlayerUI.module.sass";
 import { Controls } from "./Controls";
 import Seek from "./Seek";
 import Status from "./Status";
-import { ConnectModal } from "../explorer/Block/ConnectModal";
+import { ConnectModal } from "../explorer/Block/ConnectModal/ConnectModal";
 import { useState } from "react";
 
 export function PlayerUI({
