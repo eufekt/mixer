@@ -17,6 +17,10 @@ export default function Channel({
     color = styles.color_green;
   }
 
+  if (status === "private") {
+    color = styles.color_red;
+  }
+
   const [focus, setFocus] = useState(false);
   const [showConnect, setShowConnectModal] = useState(false);
 
@@ -35,13 +39,13 @@ export default function Channel({
               {`${length} blocks • some time ago`}
             </div>
           </div>
-          <ConnectDialog 
+          <ConnectDialog
             focus={focus}
             setShowConnectModal={setShowConnectModal}
             showConnectModal={showConnect}
             // @ts-ignore TODO fix type mismatch between ArenaBlock and CustomArenaChannel both are "blocks"
             block={block}
-           />
+          />
         </div>
       </a>
     </Link>
