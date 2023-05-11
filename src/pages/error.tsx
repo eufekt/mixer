@@ -24,7 +24,7 @@ export default function ErrorPage({ is404 = false, is500 = false }) {
       <br />
       <p>{description}</p>
       <br />
-      <Link href="/">return to main page</Link>
+      <Link className={styles.button} href="/">return to main page</Link>
     </div>
   );
 }

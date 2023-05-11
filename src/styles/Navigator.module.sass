@@ -5,13 +5,30 @@
     font-size: variables.$font_size_bigger
     position: fixed
     top: (variables.$player_height + 50)
-    margin-left: 60px
+    padding-left: 60px
+    padding-right: 70px
+    width: 100%
     cursor: default
-    display: grid
-    grid-gap: 5px
-    grid-template-columns: repeat(5,minmax(auto,auto))
+    display: flex
+    justify-content: space-between
+
+    .linksToSource
+        display: grid
+        grid-gap: 5px
+        grid-template-columns: repeat(5,minmax(auto,auto))
+
+    .myChannels
 
     .link
         &:hover
             cursor: pointer
             color: var(--color_text)
+            .userName
+                color: inherit
+
+        .userName
+            color: var(--color_purple)
+            
+
+:export
+    color_green: var(--color_green)

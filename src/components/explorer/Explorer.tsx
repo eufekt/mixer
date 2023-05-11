@@ -1,21 +1,19 @@
 import { useRouter } from "next/router";
 import { Loading } from "../Loading";
 import { Navigator } from "./Navigator";
-import  BlocksFetcher  from "./BlocksFetcher";
+import BlocksFetcher from "./BlocksFetcher";
 import { seedChannel } from "../../config";
 import { useArena } from "../../hooks/useArena";
 import { useUserContext } from "../../contexts/UserContext";
 import styles from "@/src/styles/Explorer.module.sass";
+import ChannelsFetcher from "./ChannelsFetcher";
 
-export default function Explorer({ isRoot = false }) {
+function ExploreChannelBlocks({ isRoot = false }) {
   const user = useUserContext();
   const arena = useArena(user);
-
   const router = useRouter();
   const { channelId } = router.query;
-
-  const seed = channelId as string || seedChannel;
-
+  const seed = (channelId as string) || seedChannel;
   const { data: channel, isLoading, error } = arena.FetchChannel(seed);
 
   if (error) {
@@ -24,6 +22,34 @@ export default function Explorer({ isRoot = false }) {
       query: error.info,
     });
   }
+  return (
+    <>
+      <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
+      {channel && (
+        <>
+          <BlocksFetcher channel={channel} />
+          <Navigator channel={channel} isRoot={isRoot} />
+        </>
+      )}
+    </>
+  );
+}
+
+function ExploreUserChannels({ isRoot }) {
+  return (
+    <>
+      <ChannelsFetcher />
+      <Navigator isRoot={isRoot} />
+    </>
+  );
+}
+
+export default function Explorer({ isRoot = false, userPage = false }) {
+  const FetchComponnetType = userPage ? (
+    <ExploreUserChannels isRoot={isRoot} />
+  ) : (
+    <ExploreChannelBlocks isRoot={isRoot} />
+  );
 
   return (
     <>
@@ -42,15 +68,7 @@ export default function Explorer({ isRoot = false }) {
           {"feedback loop"}
         </a>
       </div>
-      <div className={styles.isDesktop}>
-        <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
-        {channel && (
-          <>
-            <BlocksFetcher channel={channel} />
-            <Navigator channel={channel} isRoot={isRoot} />
-          </>
-        )}
-      </div>
+      <div className={styles.isDesktop}>{FetchComponnetType}</div>
     </>
   );
 }

@@ -8,6 +8,9 @@ import { Session } from "next-auth";
 import { Title } from "./Title";
 import { ConnectionConfirmation } from "./ConnectionConfirmation";
 
+/**
+ * TODO This component is big, it should be split
+ */
 export function Channels({
   setShowConnectModal,
   block,
