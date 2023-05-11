@@ -8,6 +8,7 @@ import Block from "./Block/Block";
 
 import useIsInViewport from "@/src/hooks/useIsInViewport";
 import { Loading } from "../Loading";
+import { ArenaBlock, CustomArenaChannel } from "arena-ts";
 
 export default function BlocksExplorer({
   blocks,
@@ -16,6 +17,13 @@ export default function BlocksExplorer({
   size,
   setSize,
   isEmpty,
+}: {
+  blocks: (ArenaBlock | CustomArenaChannel)[];
+  isLoading: boolean;
+  hasMore: boolean;
+  size: number;
+  setSize: any;
+  isEmpty: boolean;
 }) {
   const elementRef = useRef(null);
   const isInViewport = useIsInViewport(elementRef);

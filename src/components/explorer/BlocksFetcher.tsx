@@ -25,7 +25,7 @@ export default function BlocksFetcher({
 
   const hasMore = loadedBlocks.length < channel.length;
   const isEmpty = data?.[0]?.contents.length === 0;
-  const filtered = parseUsableBlocks(loadedBlocks);
+  const filtered = parseUsableBlocks(loadedBlocks) as any;
 
   if (error) {
     router.push({

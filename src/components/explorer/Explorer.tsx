@@ -35,7 +35,7 @@ function ExploreChannelBlocks({ isRoot = false }) {
   );
 }
 
-function ExploreUserChannels({ isRoot }) {
+function ExploreUserChannels({ isRoot }: { isRoot: boolean }) {
   return (
     <>
       <ChannelsFetcher />
