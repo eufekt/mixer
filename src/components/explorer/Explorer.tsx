@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { Loading } from "../Loading";
 import { Navigator } from "./Navigator";
-import { BlocksExplorer } from "./BlocksExplorer";
+import  BlocksFetcher  from "./BlocksFetcher";
 import { seedChannel } from "../../config";
 import { useArena } from "../../hooks/useArena";
 import { useUserContext } from "../../contexts/UserContext";
@@ -46,7 +46,7 @@ export default function Explorer({ isRoot = false }) {
         <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
         {channel && (
           <>
-            <BlocksExplorer channel={channel} />
+            <BlocksFetcher channel={channel} />
             <Navigator channel={channel} isRoot={isRoot} />
           </>
         )}
