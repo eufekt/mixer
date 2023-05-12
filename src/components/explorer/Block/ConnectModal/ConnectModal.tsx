@@ -16,7 +16,7 @@ export function ConnectDialog({
   block: ArenaBlock;
 }) {
   function handleConnect(e: any) {
-    e.preventDefault()
+    e.preventDefault();
     setShowConnectModal(true);
   }
 
@@ -53,7 +53,10 @@ export function ConnectModal({
   const user = useUserContext();
 
   return (
-    <div className={styles.connectModalWrapper}>
+    <div
+      className={styles.connectModalWrapper}
+      onClick={(e) => e.preventDefault()}
+    >
       <div
         className={styles.close}
         onClick={(e) => {
@@ -71,7 +74,7 @@ export function ConnectModal({
         />
       )}
       {!user && (
-        <button
+        <div
           className={styles.signin}
           onClick={(e) => {
             e.preventDefault();
@@ -79,10 +82,8 @@ export function ConnectModal({
           }}
         >
           login to connect
-        </button>
+        </div>
       )}
     </div>
   );
 }
-
-
