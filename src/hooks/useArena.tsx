@@ -98,7 +98,7 @@ export const useArena = (user: Session["user"] | null) => {
       size,
       setSize,
       isValidating,
-    } = useSWRInfinite(getKey, fetcher, { revalidateOnFocus: false });
+    } = useSWRInfinite(getKey, fetcher, { revalidateOnFocus: true });
 
     const isLoading = reqLoading || isValidating;
 
