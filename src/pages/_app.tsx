@@ -18,18 +18,21 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps }
 }: { Component: any; pageProps: { session: Session, [key: string]: any }}) {
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(true);
   const hasWindow = useHasWindow();
 
-  useEffect(() => {
-    if (
-      hasWindow &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setIsDark(true);
-    }
-  }, [hasWindow]);
+  /**
+   * REMOVED Set the theme based on the user's system preferences
+   */
+  // useEffect(() => {
+  //   if (
+  //     hasWindow &&
+  //     window.matchMedia &&
+  //     window.matchMedia("(prefers-color-scheme: dark)").matches
+  //   ) {
+  //     setIsDark(true);
+  //   }
+  // }, [hasWindow]);
 
   const [playlist, playlistDispatch] = useReducer(
     playlistReducer,
