@@ -28,6 +28,7 @@ export default function Playable({
       className={styles.container}
     >
       <Image
+        unoptimized={true}
         className={styles.image}
         layout="fixed"
         objectFit="cover"

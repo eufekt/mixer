@@ -1,6 +1,6 @@
 import "@/src/styles/Global.sass";
-
-import { useEffect, useReducer, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { useReducer, useState } from "react";
 import PlaylistContext, { PlaylistContextInterface } from "../contexts/PlaylistContext";
 import { SessionProvider } from "next-auth/react";
 import {
@@ -50,14 +50,15 @@ export default function App({
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta property="og:title" content="Mixer"/>
       <title>Mixer</title>
-      <meta property="og:description" content="Enjoy a curated collection of music blocks on Mixer, powered by Are.na."/>
-      <meta name="description" content="Enjoy a curated collection of music blocks on Mixer, powered by Are.na."/>
+      <meta property="og:description" content="Blocks playback for are.na"/>
+      <meta name="description" content="Blocks playback for are.na"/>
       {/* <meta property="og:image" content="https://example.com/mixer-thumbnail.jpg"/> */}
       <meta property="og:url" content="https://www.arena-mixer.com/"/>
       <link rel="canonical" href="https://www.arena-mixer.com/"/>
       <meta property="og:type" content="music.playlist"/>
       <meta property="og:site_name" content="Mixer"/>
     </Head>
+    <Analytics />
     <ThemeContext.Provider value={{ isDark, setIsDark }}>
       <div className={isDark ? "dark-mode" : ""}>
         <SessionProvider session={session}>
