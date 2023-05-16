@@ -3,6 +3,7 @@ import Link from "next/link";
 import { buildChannelUrl, buildUserUrl } from "../../lib/helpers";
 import { CustomArenaChannel } from "arena-ts";
 import UserContext, { useUserContext } from "@/src/contexts/UserContext";
+import { links } from "@/src/config";
 
 export function Navigator({
   channel,
@@ -15,13 +16,24 @@ export function Navigator({
 
   return (
     <div className={styles.container}>
+      <Link href="/">
+        <a className={styles.link}>main</a>
+      </Link>
+      {logged_user && (
+        <Link href={`/user/${logged_user.id}`}>
+          <div className={styles.link}>
+            <span className={styles.userName}>{logged_user.name}</span>{" "}
+            {"channels"}
+          </div>
+        </Link>
+      )}
       <div className={styles.linksToSource}>
-        <Link href={"/"}>
-          <div className={styles.link}>Mixer</div>
-        </Link>{" "}
-        /
+        <a href={links.mixer_seed} target="_blank" rel="noopener noreferrer">
+          <div className={styles.link}>mixer</div>
+        </a>
         {!isRoot && channel && (
           <>
+            {"/"}
             <a
               className={styles.link}
               target="_blank"
@@ -41,15 +53,8 @@ export function Navigator({
             </a>
           </>
         )}
+        <div className={styles.arrow}>{"\u2197"}</div>
       </div>
-      {logged_user && (
-        <Link href={`/user/${logged_user.id}`}>
-          <div className={styles.link}>
-            <span className={styles.userName}>{logged_user.name}</span>{" "}
-            {"channels"}
-          </div>
-        </Link>
-      )}
     </div>
   );
 }

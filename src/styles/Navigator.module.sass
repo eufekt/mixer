@@ -15,7 +15,15 @@
     .linksToSource
         display: grid
         grid-gap: 5px
-        grid-template-columns: repeat(5,minmax(auto,auto))
+        grid-template-columns: repeat(6,minmax(auto,auto))
+        .arrow
+            visibility: hidden
+            display: inline-block
+        &:hover
+            .arrow
+                visibility: visible
+                color: var(--color_text)
+            
 
     .myChannels
 
