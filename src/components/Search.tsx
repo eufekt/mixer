@@ -6,8 +6,7 @@ import { Loading } from "./Loading";
 import { ArenaBlock } from "arena-ts";
 import { Title } from "./explorer/Block/ConnectModal/Title";
 
-export default function Search({ setSearch, setIsFocused }) {
-
+export default function Search({ setSearch, setIsFocused }: any) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     let change = e.target.value;
     if (change.length > 0) {
@@ -21,7 +20,7 @@ export default function Search({ setSearch, setIsFocused }) {
   }
 
   function handleCancel() {
-    setIsFocused(false);    
+    setIsFocused(false);
   }
 
   return (
