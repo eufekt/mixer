@@ -5,6 +5,7 @@ import Link from "next/link";
 export default function ErrorPage({ is404 = false, is500 = false }) {
   const router = useRouter();
   let { code, description, message } = router.query;
+  console.log(router.query);
 
   if (is404) {
     message = "Page not found";
@@ -24,7 +25,9 @@ export default function ErrorPage({ is404 = false, is500 = false }) {
       <br />
       <p>{description}</p>
       <br />
-      <Link className={styles.button} href="/">return to main page</Link>
+      <Link className={styles.button} href="/">
+        return to main page
+      </Link>
     </div>
   );
 }
