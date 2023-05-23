@@ -2,7 +2,6 @@ import styles from "@/src/styles/Navigator.module.sass";
 import Link from "next/link";
 import { buildChannelUrl, buildUserUrl } from "../../lib/helpers";
 import { ArenaChannelMod } from "arena-ts";
-import UserContext, { useUserContext } from "@/src/contexts/UserContext";
 import { links } from "@/src/config";
 import Search from "../Search";
 
@@ -11,18 +10,26 @@ export function Navigator({
   isRoot,
   setSearch,
   setIsFocused,
+  isFocused,
 }: {
   channel?: ArenaChannelMod;
   isRoot: boolean;
   setSearch: any;
   setIsFocused: any;
+  isFocused: boolean;
 }) {
   return (
     <div className={styles.container}>
-      <Link href="/">
-        <a className={styles.link}>main</a>
-      </Link>
-      <Search setSearch={setSearch} setIsFocused={setIsFocused} />
+      <div className={styles.left}> 
+        <Link href="/">
+          <a className={styles.linkpage}>main</a>
+        </Link>
+        <Search
+          setSearch={setSearch}
+          setIsFocused={setIsFocused}
+          isFocused={isFocused}
+        />
+      </div>
       <div className={styles.linksToSource}>
         <a href={links.mixer_seed} target="_blank" rel="noopener noreferrer">
           <div className={styles.link}>mixer</div>

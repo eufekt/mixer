@@ -19,7 +19,7 @@ function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
   const [search, setSearch] = useState("");
   const { data: channel, isLoading, error } = arena.FetchChannel(seed);
 
-//TODO handle error
+  //TODO handle error
   const {
     data: searchResults,
     isLoading: searchLoading,
@@ -45,6 +45,13 @@ function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
       <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
       {channel && (
         <>
+          <Navigator
+            setSearch={setSearch}
+            setIsFocused={setIsFocused}
+            isFocused={isFocused}
+            channel={channel}
+            isRoot={isRoot}
+          />
           {condition && (
             <SearchExplorer
               blocks={searchResults?.channels}
@@ -53,12 +60,6 @@ function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
             />
           )}
           {!condition && <BlocksFetcher channel={channel} />}
-          <Navigator
-            setSearch={setSearch}
-            setIsFocused={setIsFocused}
-            channel={channel}
-            isRoot={isRoot}
-          />
         </>
       )}
     </>
@@ -66,7 +67,7 @@ function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
 }
 export default function Explorer({ isRoot = false }) {
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.isMobile}>
         For the present moment, this application is only optimized for desktop
         experience. Some features may not work on mobile devices. Please use a
@@ -85,6 +86,6 @@ export default function Explorer({ isRoot = false }) {
       <div className={styles.isDesktop}>
         <ExploreChannelBlocksWithSearch isRoot={isRoot} />
       </div>
-    </>
+    </div>
   );
 }

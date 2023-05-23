@@ -2,18 +2,45 @@
 
 .container
     position: relative
+    font-size: variables.$font_size_bigger
+    display: flex
+    justify-content: center
+    align-items: center
+    .inputEl
+        width: 200px
+        padding: 0px 5px
+        font-size: variables.$font_size
+        background-color: var(--color_base)
+        border-radius: 5px
+        color: var(--color_text)
+        margin-right: 10px
+        border-color: var(--color_contrast)
+    .inputEl::placeholder
+        color: var(--color_contrast)
+        opacity: 0.4
+    .escButton
+        font-size: variables.$font_size
+        border: none
+        background-color: transparent
+        color: var(--color_contrast)
 
-    .channelList
-        height: 100%
-        width: 100%
-        padding: 10px 0 60px 10px
-        overflow-y: scroll
-
-        .channel
-            color: var(--color_text)
-            font-size: variables.$font_size
+        &:hover
             cursor: pointer
+            color: var(--color_text)
 
-            &:hover
-                background-color: var(--color_contrast)
-                color: var(--color_text)
+.button
+    background-color: transparent
+    border: none
+    cursor: pointer
+    font-size: inherit
+    padding: 0
+    text-decoration: underline
+    color: inherit
+    &:hover
+        color: var(--color_text)
+
+.tip
+    position: absolute
+    bottom: -15px
+    left: 0
+    font-size: variables.$font_size_smaller
