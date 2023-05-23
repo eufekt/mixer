@@ -1,32 +1,28 @@
 import styles from "@/src/styles/Navigator.module.sass";
 import Link from "next/link";
 import { buildChannelUrl, buildUserUrl } from "../../lib/helpers";
-import { CustomArenaChannel } from "arena-ts";
+import { ArenaChannelMod } from "arena-ts";
 import UserContext, { useUserContext } from "@/src/contexts/UserContext";
 import { links } from "@/src/config";
+import Search from "../Search";
 
 export function Navigator({
   channel,
   isRoot,
+  setSearch,
+  setIsFocused,
 }: {
-  channel?: CustomArenaChannel;
+  channel?: ArenaChannelMod;
   isRoot: boolean;
+  setSearch: any;
+  setIsFocused: any;
 }) {
-  const logged_user = useUserContext();
-
   return (
     <div className={styles.container}>
       <Link href="/">
         <a className={styles.link}>main</a>
       </Link>
-      {logged_user && (
-        <Link href={`/user/${logged_user.id}`}>
-          <div className={styles.link}>
-            <span className={styles.userName}>{logged_user.name}</span>{" "}
-            {"channels"}
-          </div>
-        </Link>
-      )}
+      <Search setSearch={setSearch} setIsFocused={setIsFocused} />
       <div className={styles.linksToSource}>
         <a href={links.mixer_seed} target="_blank" rel="noopener noreferrer">
           <div className={styles.link}>mixer</div>
@@ -40,7 +36,7 @@ export function Navigator({
               rel="noopener noreferrer"
               href={buildUserUrl(channel)}
             >
-              {channel.user.slug}
+              {channel.owner.username}
             </a>
             /
             <a

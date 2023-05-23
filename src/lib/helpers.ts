@@ -1,7 +1,7 @@
 import { arenaBase } from "../config";
-import {  ArenaBlock, ArenaChannel, CustomArenaChannel} from "arena-ts";
+import {  ArenaBlock, ArenaChannelMod } from "arena-ts";
 
-export function buildChannelUrl(channel: CustomArenaChannel) {
+export function buildChannelUrl(channel: ArenaChannelMod) {
   const userSlug = channel?.user?.slug;
   const channelSlug = channel?.slug;
   if (userSlug === undefined || channelSlug === undefined) return arenaBase;
@@ -9,7 +9,7 @@ export function buildChannelUrl(channel: CustomArenaChannel) {
   return `${arenaBase}/${userSlug}/${channelSlug}`;
 }
 
-export function buildUserUrl(channel: CustomArenaChannel) : string{
+export function buildUserUrl(channel: ArenaChannelMod) : string{
   const userSlug = channel?.user?.slug;
   if (userSlug === undefined) return arenaBase;
 
@@ -23,11 +23,11 @@ export function massageUrl(url: string|undefined) :string|undefined {
   } else return url;
 }
 
-export function parseUsableBlocks(data: (ArenaBlock|ArenaChannel)[]): (ArenaBlock|ArenaChannel)[] {
+export function parseUsableBlocks(data: (ArenaBlock|ArenaChannelMod)[]): (ArenaBlock|ArenaChannelMod)[] {
   
-  const usableBlocks :(ArenaBlock|ArenaChannel)[] = [];
+  const usableBlocks :(ArenaBlock|ArenaChannelMod)[] = [];
 
-  data?.forEach((block: ArenaBlock | ArenaChannel) => {
+  data?.forEach((block: ArenaBlock | ArenaChannelMod) => {
     if (block.class === "Channel") {
       usableBlocks.push(block);
     } else if (block.class === "Media") {

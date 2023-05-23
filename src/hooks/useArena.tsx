@@ -14,12 +14,14 @@ export const useArena = (user: Session["user"] | null) => {
     };
   }
 
-  const fetcher = async (path:string, options: any) => {
+  const fetcher = async (path: string, options: any) => {
     const url = `${apiBase}${path}`;
     const res = await fetch(url, { ...options, headers });
 
     if (!res.ok) {
-      const error = new Error("An error occurred while fetching the data.") as any;
+      const error = new Error(
+        "An error occurred while fetching the data."
+      ) as any;
       error.info = await res.json();
       error.status = res.status;
       throw error;
@@ -28,7 +30,7 @@ export const useArena = (user: Session["user"] | null) => {
     return res.json();
   };
 
-  function FetchChannel(id:string) {
+  function FetchChannel(id: string) {
     const path = `/channels/${id}`;
     const { data, error, isLoading } = useSWR(path, fetcher, {
       revalidateOnMount: true,
@@ -41,10 +43,10 @@ export const useArena = (user: Session["user"] | null) => {
     };
   }
 
-  function ConnectBlockToChannel(channelId: number |undefined) {
+  function ConnectBlockToChannel(channelId: number | undefined) {
     const url = `/channels/${channelId}/connections`;
 
-    function _fetcher(path:string, { arg }: { arg: any }) {
+    function _fetcher(path: string, { arg }: { arg: any }) {
       const body = JSON.stringify({
         connectable_type: arg.blockType,
         connectable_id: arg.blockId,
@@ -59,7 +61,7 @@ export const useArena = (user: Session["user"] | null) => {
     return { trigger, isMutating };
   }
 
-  function FetchUserChannels(id:number) {
+  function FetchUserChannels(id: number) {
     const per = 20;
 
     const getKey = (pageIndex: number, previousPageData: any) => {
@@ -81,7 +83,7 @@ export const useArena = (user: Session["user"] | null) => {
     return { data, error, isLoading, size, setSize };
   }
 
-  function FetchChannelContents(id:string) {
+  function FetchChannelContents(id: string) {
     const per = 30;
 
     const getKey = (pageIndex: number, previousPageData: any) => {
@@ -105,10 +107,20 @@ export const useArena = (user: Session["user"] | null) => {
     return { data, error, isLoading, size, setSize };
   }
 
+  function Search(str: string) {
+    const path = `/search/channels?q=${str}&sort=position&direction=desc&per=100&page=1`;
+    const { data, error, isLoading } = useSWR(path, fetcher);
+    return {
+      data,
+      isLoading,
+      error,
+    };
+  }
   return {
     FetchChannel,
     FetchChannelContents,
     FetchUserChannels,
     ConnectBlockToChannel,
+    Search,
   };
 };

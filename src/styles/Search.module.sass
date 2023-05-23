@@ -1,0 +1,19 @@
+@use "variables"
+
+.container
+    position: relative
+
+    .channelList
+        height: 100%
+        width: 100%
+        padding: 10px 0 60px 10px
+        overflow-y: scroll
+
+        .channel
+            color: var(--color_text)
+            font-size: variables.$font_size
+            cursor: pointer
+
+            &:hover
+                background-color: var(--color_contrast)
+                color: var(--color_text)

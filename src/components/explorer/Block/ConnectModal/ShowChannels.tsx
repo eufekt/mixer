@@ -3,7 +3,7 @@ import useIsInViewport from "@/src/hooks/useIsInViewport";
 import styles from "@/src/styles/ConnectModal.module.sass";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Loading } from "../../../Loading";
-import { ArenaBlock, CustomArenaChannel } from "arena-ts";
+import { ArenaBlock, ArenaChannelMod } from "arena-ts";
 import { Session } from "next-auth";
 import { Title } from "./Title";
 import { ConnectionConfirmation } from "./ConnectionConfirmation";
@@ -17,12 +17,12 @@ export function Channels({
   user,
 }: {
   setShowConnectModal: any;
-  block: ArenaBlock;
+  block: ArenaChannelMod;
   user: Session["user"];
 }) {
   const arena = useArena(user);
   const [selectedChannel, setSelectedChannel] =
-    useState<CustomArenaChannel | null>();
+    useState<ArenaChannelMod | null>();
   const [connectionConfirmation, setConnectionConfirmation] = useState<any>();
   const [connecting, setIsConnecting] = useState(false);
   const { data, isLoading, error, size, setSize } = arena.FetchUserChannels(
@@ -37,7 +37,7 @@ export function Channels({
   const elementRef = useRef(null);
   const isInViewport = useIsInViewport(elementRef);
 
-  function handleSelect(e: any, block: CustomArenaChannel) {
+  function handleSelect(e: any, block: ArenaChannelMod) {
     e.preventDefault();
     if (selectedChannel?.id === block.id) {
       setSelectedChannel(null);

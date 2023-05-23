@@ -6,51 +6,65 @@ import { seedChannel } from "../../config";
 import { useArena } from "../../hooks/useArena";
 import { useUserContext } from "../../contexts/UserContext";
 import styles from "@/src/styles/Explorer.module.sass";
-import ChannelsFetcher from "./ChannelsFetcher";
+import { useEffect, useState } from "react";
+import SearchExplorer from "./SearchExplorer";
 
-function ExploreChannelBlocks({ isRoot = false }) {
+function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
   const user = useUserContext();
   const arena = useArena(user);
   const router = useRouter();
   const { channelId } = router.query;
   const seed = (channelId as string) || seedChannel;
+
+  const [search, setSearch] = useState("");
   const { data: channel, isLoading, error } = arena.FetchChannel(seed);
 
+//TODO handle error
+  const {
+    data: searchResults,
+    isLoading: searchLoading,
+    error: searchError,
+  } = arena.Search(search);
+  const [isFocused, setIsFocused] = useState(false);
   if (error) {
     router.push({
       pathname: "/error",
       query: error.info,
     });
   }
+
+  useEffect(() => {
+    if (router.asPath !== router.route) {
+      setIsFocused(false);
+    }
+  }, [router.query]);
+
+  const condition = isFocused;
   return (
     <>
       <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
       {channel && (
         <>
-          <BlocksFetcher channel={channel} />
-          <Navigator channel={channel} isRoot={isRoot} />
+          {condition && (
+            <SearchExplorer
+              blocks={searchResults?.channels}
+              isLoading={searchLoading}
+              isEmpty={searchResults?.channels.length == 0}
+            />
+          )}
+          {!condition && <BlocksFetcher channel={channel} />}
+          <Navigator
+            setSearch={setSearch}
+            setIsFocused={setIsFocused}
+            channel={channel}
+            isRoot={isRoot}
+          />
         </>
       )}
     </>
   );
 }
-
-function ExploreUserChannels({ isRoot }: { isRoot: boolean }) {
-  return (
-    <>
-      <ChannelsFetcher />
-      <Navigator isRoot={isRoot} />
-    </>
-  );
-}
-
-export default function Explorer({ isRoot = false, userPage = false }) {
-  const FetchComponnetType = userPage ? (
-    <ExploreUserChannels isRoot={isRoot} />
-  ) : (
-    <ExploreChannelBlocks isRoot={isRoot} />
-  );
-
+export default function Explorer({ isRoot = false }) {
   return (
     <>
       <div className={styles.isMobile}>
@@ -68,7 +82,9 @@ export default function Explorer({ isRoot = false, userPage = false }) {
           {"feedback loop"}
         </a>
       </div>
-      <div className={styles.isDesktop}>{FetchComponnetType}</div>
+      <div className={styles.isDesktop}>
+        <ExploreChannelBlocksWithSearch isRoot={isRoot} />
+      </div>
     </>
   );
 }

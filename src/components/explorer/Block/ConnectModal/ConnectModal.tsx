@@ -1,7 +1,7 @@
 import { useUserContext } from "@/src/contexts/UserContext";
 import styles from "@/src/styles/ConnectModal.module.sass";
 import { signIn } from "next-auth/react";
-import { ArenaBlock } from "arena-ts";
+import { ArenaBlock, ArenaChannelMod } from "arena-ts";
 import { Channels } from "./ShowChannels";
 
 export function ConnectDialog({
@@ -13,7 +13,7 @@ export function ConnectDialog({
   focus: boolean;
   showConnectModal: boolean;
   setShowConnectModal: any;
-  block: ArenaBlock;
+  block: ArenaBlock | ArenaChannelMod;
 }) {
   function handleConnect(e: any) {
     e.preventDefault();
@@ -48,7 +48,7 @@ export function ConnectModal({
   block,
 }: {
   setShowConnectModal: any;
-  block: ArenaBlock;
+  block: ArenaBlock | ArenaChannelMod;
 }) {
   const user = useUserContext();
 
@@ -69,7 +69,7 @@ export function ConnectModal({
       {user && (
         <Channels
           user={user}
-          block={block}
+          block={block as ArenaChannelMod}
           setShowConnectModal={setShowConnectModal}
         />
       )}

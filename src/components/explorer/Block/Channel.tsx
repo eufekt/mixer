@@ -1,13 +1,13 @@
 import Link from "next/link";
 import styles from "@/src/styles/Channel.module.sass";
-import { ArenaBlock, CustomArenaChannel } from "arena-ts";
+import { ArenaBlock, ArenaChannel, ArenaChannelMod  } from "arena-ts";
 import { useState } from "react";
 import { ConnectDialog } from "./ConnectModal/ConnectModal";
 
 export default function Channel({
-  block,
+   block,
 }: {
-  block: CustomArenaChannel & { owner_slug: string };
+  block: ArenaChannelMod;
 }) {
   const { title, owner_slug, length, status, class: _class } = block;
 
@@ -43,7 +43,6 @@ export default function Channel({
             focus={focus}
             setShowConnectModal={setShowConnectModal}
             showConnectModal={showConnect}
-            // @ts-ignore TODO fix type mismatch between ArenaBlock and CustomArenaChannel both are "blocks"
             block={block}
           />
         </div>

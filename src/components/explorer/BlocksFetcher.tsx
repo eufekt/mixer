@@ -3,13 +3,13 @@ import { parseUsableBlocks } from "@/src/lib/helpers";
 import { useRouter } from "next/router";
 import { useArena } from "@/src/hooks/useArena";
 import { useUserContext } from "@/src/contexts/UserContext";
-import { CustomArenaChannel } from "arena-ts";
+import { ArenaChannelMod } from "arena-ts";
 import BlocksExplorer from "./BlocksExplorer";
 
 export default function BlocksFetcher({
   channel,
 }: {
-  channel: CustomArenaChannel;
+  channel: ArenaChannelMod;
 }) {
   const user = useUserContext();
   const arena = useArena(user);

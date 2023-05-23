@@ -8,7 +8,7 @@ import Block from "./Block/Block";
 
 import useIsInViewport from "@/src/hooks/useIsInViewport";
 import { Loading } from "../Loading";
-import { ArenaBlock, CustomArenaChannel } from "arena-ts";
+import { ArenaBlock, ArenaChannelMod } from "arena-ts";
 
 export default function BlocksExplorer({
   blocks,
@@ -18,7 +18,7 @@ export default function BlocksExplorer({
   setSize,
   isEmpty,
 }: {
-  blocks: (ArenaBlock | CustomArenaChannel)[];
+  blocks: (ArenaBlock | ArenaChannelMod)[];
   isLoading: boolean;
   hasMore: boolean;
   size: number;
@@ -48,7 +48,7 @@ export default function BlocksExplorer({
   return (
     <div className={styles.container}>
       <div className={styles.blocks_container}>
-        {blocks.map((block: any, i: number) => (
+        {blocks.map((block: ArenaChannelMod | ArenaBlock, i: number) => (
           <Block
             key={block.id}
             i={i}
