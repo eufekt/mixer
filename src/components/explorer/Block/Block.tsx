@@ -16,7 +16,7 @@ export default function Block({
 }) {
   const { base_class } = block;
   if (base_class === "Channel") {
-    return <Channel block={block} />;
+    return <Channel  block={block} />;
   } else if (base_class === "Block") {
     return <Playable block={block} loadPlaylistFrom={loadPlaylistFrom} i={i} />;
   } else return null;

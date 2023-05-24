@@ -28,7 +28,6 @@ export default function BlocksExplorer({
   const elementRef = useRef(null);
   const isInViewport = useIsInViewport(elementRef);
   const { playlistDispatch } = usePlaylistContext() as PlaylistContextInterface;
-
   const increasePageSize = useCallback(() => {
     setSize(size + 1);
   }, [setSize, size]);

@@ -1,5 +1,6 @@
 import { InformationModal } from "./InformationModal";
 import Player from "./player/Player";
+import History from "./channelHistory/History";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {children}
       <Player />
       <InformationModal />
+      <History />
     </main>
   );
 }
