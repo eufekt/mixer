@@ -1,39 +1,17 @@
 @use "variables"
 
-.container
-    display: flex
-    flex-direction: row
-    align-items: center
-    width: 100%
-
-/********** Range Input Styles **********/
-/*Range Reset*/
+.number
+    margin-left: 5px
+    font-size: variables.$font_size_smaller 
 
 .seekContainer
     color: var(--color_text)
     background-color: var(--color_base)
     display: flex
-    flex-direction: column
+    flex-direction: row
     padding: 5px
-    justify-content: center
     border-radius: 5px
-    border: 2px solid var(--color_contrast)
-    width: 100%
-    // height: variables.$player_height
-
-    .title
-        text-align: center
-        width: 100%
-        margin-bottom: 5px
-        font-size: variables.$font_size_smaller
-        white-space: nowrap
-        overflow: hidden
-
-    .durations
-        font-size: variables.$font_size_smaller
-        margin-top: 5px
-        display: flex
-        justify-content: space-between
+    width:200px 
 
 .seek
     -webkit-appearance: none
@@ -42,8 +20,6 @@
     cursor: pointer
     width: 100%
 
-// .a
-//     padding: 0 5px
 
 /* Removes default focus */
 .seek:focus

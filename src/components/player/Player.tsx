@@ -2,8 +2,11 @@ import ReactPlayer from "react-player";
 import { useEffect, useRef, useState } from "react";
 import { STATUS_ENUM } from "./Status";
 
-import { PlaylistContextInterface, usePlaylistContext } from "@/src/contexts/PlaylistContext";
-import  useHasWindow  from "@/src/hooks/useHasWindow";
+import {
+  PlaylistContextInterface,
+  usePlaylistContext,
+} from "@/src/contexts/PlaylistContext";
+import useHasWindow from "@/src/hooks/useHasWindow";
 import { PlayerUI } from "./PlayerUI";
 import { massageUrl } from "@/src/lib/helpers";
 
@@ -22,7 +25,7 @@ export default function Player() {
   const [ready, setReady] = useState(false);
   const [played, setPlayed] = useState(0);
   const [duration, setDuration] = useState(0);
-
+  const [volume, setVolume] = useState(80);
   useEffect(() => {
     if (ready) {
       setPlaying(true);
@@ -103,6 +106,8 @@ export default function Player() {
         handleSeekMouseUp={handleSeekMouseUp}
         currentBlock={currentBlock}
         url={url}
+        volume={volume}
+        setVolume={setVolume}
       />
       {hasWindow && url && (
         <ReactPlayer
@@ -110,7 +115,7 @@ export default function Player() {
           url={url}
           playing={playing}
           loop={false}
-          volume={1}
+          volume={volume / 100}
           muted={false}
           width={"0px"}
           height={"0px"}

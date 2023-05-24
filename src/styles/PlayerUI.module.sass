@@ -11,9 +11,18 @@
     padding: 0 60px
     display: flex,
     align-items: center,
+    // flex-wrap: wrap
 
     > *
         margin: 0 10px
+
+    .left
+        display: flex
+        // flex-direction: row
+    
+    .right
+        display: flex
+        align-items: center
 
 @media screen and (max-width: 1110px)
     .player
@@ -30,8 +39,8 @@
 .controls
     display: flex,
     align-items: center,
-.a
-    padding: 0 60px 0 0
+.link
+    padding-right:20px 
 
 .connectModalWrapper
     height: variables.$block_width_browser
