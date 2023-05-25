@@ -4,6 +4,7 @@ import { buildChannelUrl, buildUserUrl } from "../../lib/helpers";
 import { ArenaChannelMod } from "arena-ts";
 import { links } from "@/src/config";
 import Search from "../Search";
+import History from "../channelHistory/History";
 
 export function Navigator({
   channel,
@@ -20,7 +21,8 @@ export function Navigator({
 }) {
   return (
     <div className={styles.container}>
-      <div className={styles.left}> 
+      <div className={styles.left}>
+        {/* <History/> */}
         <Link href="/">
           <a className={styles.linkpage}>main</a>
         </Link>
@@ -31,12 +33,8 @@ export function Navigator({
         />
       </div>
       <div className={styles.linksToSource}>
-        <a href={links.mixer_seed} target="_blank" rel="noopener noreferrer">
-          <div className={styles.link}>mixer</div>
-        </a>
         {!isRoot && channel && (
           <>
-            {"/"}
             <a
               className={styles.link}
               target="_blank"

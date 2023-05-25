@@ -42,9 +42,8 @@ export function parseUsableBlocks(data: (ArenaBlock|ArenaChannelMod)[]): (ArenaB
   return usableBlocks;
 }
 
-export function parseTitle(title: string|null): string {
+export function parseTitle(title: string|null, maxLength=35): string {
   if(title === null) return ""
-  const maxLength = 35;
   let newTitle = title.replace(/&amp;/g, "&");
 
   if (newTitle.length > maxLength) {

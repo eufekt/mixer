@@ -4,3 +4,43 @@
     bottom: 0
     left: 0
     color: variables.$color_text
+    margin: 10px
+    width: 120px
+.channel
+    @extend .center_hoz_vert
+    cursor: pointer
+    background-color: var(--color_base)
+    margin: 0 0 5px 0
+    height: 40px
+    // width:100% 
+    border: 2px solid var(--color_contrast)
+    border-radius: 5px
+.arrows
+    display: flex
+    width: 100%
+    justify-content: space-evenly
+    padding: 0 10px
+    margin: 10px 0px
+.arrow
+    width: 0
+    height: 0
+    border-top: 8px solid transparent
+    border-bottom: 8px solid transparent
+    border-radius: 2px
+    cursor: pointer
+    &:hover
+        border-top: 8px solid var(--color_border)
+        border-bottom: 8px solid var(--color_border)
+
+.arrowLeft
+    @extend .arrow
+    border-right: 20px solid var(--color_contrast)
+
+.arrowRight
+    @extend .arrow
+    border-left: 20px solid var(--color_contrast)
+:export
+    color_border: var(--color_border)
+    color_text: var(--color_text)
+    color_green: var(--color_green)
+    color_red: var(--color_red)

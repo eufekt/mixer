@@ -5,7 +5,7 @@
     position: fixed
     top: (variables.$player_height + 20)
     padding-left: 60px
-    padding-right: 70px
+    padding-right: 60px
     width: 100%
     cursor: default
     display: flex
@@ -16,14 +16,17 @@
     .linksToSource
         display: grid
         grid-gap: 5px
-        grid-template-columns: repeat(6,minmax(auto,auto))
-        font-size: variables.$font_size_bigger
+        grid-template-columns: repeat(4,minmax(auto,auto))
+        font-size: variables.$font_size
         background-color: var(--color_base)
         border-radius: 5px
-        padding: 2px 5px
+        align-items: center
+        padding: 0px 5px
         .arrow
             visibility: hidden
             display: inline-block
+            font-size: variables.$font_size_smaller
+
         &:hover
             .arrow
                 visibility: visible
@@ -33,6 +36,7 @@
         display: flex
         justify-content: center
         align-items: center
+        position: relative
 
     .linkpage
         font-size: variables.$font_size_bigger
@@ -44,7 +48,7 @@
             .userName
                 color: inherit
     .link
-        font-size: variables.$font_size_bigger
+        font-size: variables.$font_size
         &:hover
             cursor: pointer
             color: var(--color_text)

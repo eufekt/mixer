@@ -1,6 +1,7 @@
 import Duration from "./Duration";
 import styles from "@/src/styles/Seek.module.sass";
 import { Preview } from "./Preview";
+import { parseTitle } from "@/src/lib/helpers";
 
 export default function Seek({
   played,
@@ -8,8 +9,7 @@ export default function Seek({
   block,
   handleSeekChange,
   handleSeekMouseUp,
-}:
-{
+}: {
   played: number;
   duration: number;
   block: any;
@@ -24,8 +24,8 @@ export default function Seek({
         <>
           <Preview image={previewImage} />
           <div className={styles.seekContainer}>
-            <div className={styles.title}>{title}</div>
-            
+            <div className={styles.title}>{parseTitle(title, 65)}</div>
+
             <input
               type={"range"}
               className={styles.seek}

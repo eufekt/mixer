@@ -78,7 +78,7 @@ export function PlayerUI({
               onClick={() => setShowConnectModal(true)}
               className={styles.connect}
             >
-              connect {"\u2192"}
+              connect 
             </div>
 
             {showConnectModal && (

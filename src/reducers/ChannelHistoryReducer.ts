@@ -4,7 +4,12 @@ import { ChannelHistoryInterface } from "../contexts/ChannelHistoryContext";
  * list: array of playable are.na blocks
  */
 export const channelHistoryReducerInitialState = {
-    list: [],
+    list: [{
+        "id": 1991453,
+        "url": "/",
+        "title": "mixer",
+        "status": "public"
+    }],
   };
 
 interface ChannelHistoryState {
@@ -13,10 +18,18 @@ interface ChannelHistoryState {
   
   export function channelHistoryReducer(state: ChannelHistoryState, action:any) {
     switch (action.type) {
-      case "pushToHistory":
+        case "pushToHistory":
+        const isPresentInHistory = state.list.some((channel:ChannelHistoryInterface) => channel.id === action.channel.id); 
+        let newList; 
+        if(!isPresentInHistory){
+        newList = [action.channel, ...state.list] 
+        } else {
+            newList = [...state.list]
+        }
         return {
           ...state,
-          list: [action.channel,...state.list] };
+          list: newList
+        };
       default:
         return { ...state };
     }

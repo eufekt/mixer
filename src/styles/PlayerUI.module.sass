@@ -4,7 +4,7 @@
     position: fixed,
     height: variables.$player_height,
     top: 0px
-
+    z-index: 5
     margin-left: 0 60px
     color: var(--color_text)
     width: 100%
@@ -19,7 +19,7 @@
     .left
         display: flex
         // flex-direction: row
-    
+
     .right
         display: flex
         align-items: center
@@ -28,7 +28,6 @@
     .player
 
 .connect
-    width: 64px
     cursor: pointer
     color: var(--color_contrast)
 
@@ -40,7 +39,7 @@
     display: flex,
     align-items: center,
 .link
-    padding-right:20px 
+    padding-right: 20px
 
 .connectModalWrapper
     height: variables.$block_width_browser
