@@ -7,20 +7,34 @@ import { parseTitle } from "@/src/lib/helpers";
 import styles from "@/src/styles/History.module.sass";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function History() {
   const { channelHistory, channelHistoryDispatch } =
     useChannelHistoryContext() as ChannelHistoryContextInterface;
   const router = useRouter();
+  const [isHidden, setIsHidden] = useState(false);
+  function handleCleanHistory() {
+    channelHistoryDispatch({ type: "CLEAN_HISTORY" });
+  }
   return (
     <div className={styles.container}>
-      <div className={styles.arrows}>
-        <div onClick={() => router.back()} className={styles.arrowLeft}></div>
-      </div>
-      <div>
-        {channelHistory.list.map((channel, i) => (
-          <Channel channel={channel} key={channel.id + i} />
-        ))}
+      {!isHidden && (
+        <div className={styles.channels}>
+          {channelHistory.list.map((channel, i) => (
+            <Channel channel={channel} key={channel.id + i} />
+          ))}
+        </div>
+      )}
+      <div className={styles.buttons}>
+        <button onClick={() => setIsHidden(!isHidden)} className={styles.show}>
+          {isHidden ? "show history" : "hide"}
+        </button>
+        {!isHidden && channelHistory.list.length > 1 && (
+          <button onClick={handleCleanHistory} className={styles.clear}>
+            clear
+          </button>
+        )}
       </div>
     </div>
   );
@@ -41,7 +55,7 @@ function Channel({ channel }: { channel: ChannelHistoryInterface }) {
   return (
     <Link href={channel.url}>
       <div style={{ color, borderColor: color }} className={styles.channel}>
-        {parseTitle(channel.title, 15)}
+        {parseTitle(channel.title, 13)}
       </div>
     </Link>
   );

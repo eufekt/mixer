@@ -1,44 +1,54 @@
 @use "variables"
 .container
     position: fixed
-    bottom: 0
+    bottom: 30px
     left: 0
     color: variables.$color_text
-    margin: 10px
+    margin: 0 0 0 10px
     width: 120px
+    max-height: 50%
+    height: auto
+    overflow-y: scroll
+
+.channels
+    left: 0
+    bottom: 0px
+    height: 100%
+    width: 100%
+
 .channel
     @extend .center_hoz_vert
     cursor: pointer
     background-color: var(--color_base)
     margin: 0 0 5px 0
     height: 40px
-    // width:100% 
+    width: 100%
     border: 2px solid var(--color_contrast)
     border-radius: 5px
-.arrows
+.buttons
+    position: fixed
+    width: 120px
+    color: var(--color_text)
     display: flex
-    width: 100%
-    justify-content: space-evenly
-    padding: 0 10px
-    margin: 10px 0px
-.arrow
-    width: 0
-    height: 0
-    border-top: 8px solid transparent
-    border-bottom: 8px solid transparent
-    border-radius: 2px
+    flex-direction: row
+    justify-content: space-between
+    left: 10px
+    bottom: 10px
+.strippedButton
+    background-color: transparent
+    border: none
     cursor: pointer
+    font-size: inherit
+    padding: 0
+    text-decoration: underline
+    color: inherit
     &:hover
-        border-top: 8px solid var(--color_border)
-        border-bottom: 8px solid var(--color_border)
+        color: var(--color_text)
+.show
+    @extend .strippedButton
+.clear
+    @extend .strippedButton
 
-.arrowLeft
-    @extend .arrow
-    border-right: 20px solid var(--color_contrast)
-
-.arrowRight
-    @extend .arrow
-    border-left: 20px solid var(--color_contrast)
 :export
     color_border: var(--color_border)
     color_text: var(--color_text)

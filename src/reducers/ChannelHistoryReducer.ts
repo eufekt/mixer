@@ -9,7 +9,7 @@ export const channelHistoryReducerInitialState = {
         "url": "/",
         "title": "mixer",
         "status": "public"
-    }],
+    }]
   };
 
 interface ChannelHistoryState {
@@ -19,17 +19,23 @@ interface ChannelHistoryState {
   export function channelHistoryReducer(state: ChannelHistoryState, action:any) {
     switch (action.type) {
         case "pushToHistory":
-        const isPresentInHistory = state.list.some((channel:ChannelHistoryInterface) => channel.id === action.channel.id); 
-        let newList; 
-        if(!isPresentInHistory){
-        newList = [action.channel, ...state.list] 
-        } else {
+          const isPresentInHistory = state.list.some((channel:ChannelHistoryInterface) => channel.id === action.channel.id); 
+          let newList; 
+          if(!isPresentInHistory){
+            newList = [action.channel, ...state.list] 
+          } else {
             newList = [...state.list]
-        }
-        return {
-          ...state,
-          list: newList
-        };
+          }
+          return {
+           ...state,
+           list: newList
+          };
+        case "CLEAN_HISTORY":
+          return {
+            ...state,
+            list: channelHistoryReducerInitialState.list
+          }
+
       default:
         return { ...state };
     }

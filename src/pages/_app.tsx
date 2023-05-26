@@ -53,7 +53,7 @@ export default function App({
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Mixer" />
+        <meta property="og:title" content="mixer" />
         <title>Mixer</title>
         <meta property="og:description" content="Blocks playback for are.na" />
         <meta name="description" content="Blocks playback for are.na" />
@@ -61,7 +61,7 @@ export default function App({
         <meta property="og:url" content="https://www.arena-mixer.com/" />
         <link rel="canonical" href="https://www.arena-mixer.com/" />
         <meta property="og:type" content="music.playlist" />
-        <meta property="og:site_name" content="Mixer" />
+        <meta property="og:site_name" content="mixer" />
       </Head>
       <Analytics />
       <ThemeContext.Provider value={{ isDark, setIsDark }}>
