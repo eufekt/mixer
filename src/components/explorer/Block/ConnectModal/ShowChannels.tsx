@@ -39,6 +39,7 @@ export function Channels({
 
   function handleSelect(e: any, block: ArenaChannelMod) {
     e.preventDefault();
+    e.stopPropagation();
     if (selectedChannel?.id === block.id) {
       setSelectedChannel(null);
     } else setSelectedChannel(block);
@@ -52,6 +53,7 @@ export function Channels({
 
   async function handleConfirm(e: any) {
     e.preventDefault();
+    e.stopPropagation();
     try {
       setIsConnecting(true);
       await trigger({

@@ -15,7 +15,7 @@ export function InformationModal() {
   const { data, status } = useSession();
 
   const version = pack.version || "x.x.x";
-  
+
   let letter = "i";
   let color = styles.color_contrast;
   if (status == "loading") letter = "~";
@@ -56,6 +56,10 @@ export function InformationModal() {
                 Currently supports playback of SoundCloud and YouTube Links.
               </li>
               <li>
+                The channels you explore will appear in the history at the
+                bottom left corner.
+              </li>
+              <li>
                 Sign in to are.na with the link above to connect blocks to your
                 channels.
               </li>
@@ -74,6 +78,10 @@ export function InformationModal() {
                   mixer channel {"\u2197"}
                 </a>{" "}
                 to make it visible on the main page of this website.
+              </li>
+              <li>
+                Browse  all are.na channels with the search bar. Login for
+                results related to your profile.
               </li>
             </ul>
             <br />

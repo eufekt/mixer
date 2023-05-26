@@ -17,6 +17,7 @@ export function ConnectDialog({
 }) {
   function handleConnect(e: any) {
     e.preventDefault();
+    e.stopPropagation();
     setShowConnectModal(true);
   }
 
@@ -61,6 +62,7 @@ export function ConnectModal({
         className={styles.close}
         onClick={(e) => {
           e.preventDefault();
+          e.stopPropagation();
           setShowConnectModal(false);
         }}
       >
@@ -78,6 +80,7 @@ export function ConnectModal({
           className={styles.signin}
           onClick={(e) => {
             e.preventDefault();
+            e.stopPropagation();
             signIn("arena");
           }}
         >
