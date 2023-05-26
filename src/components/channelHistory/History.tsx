@@ -19,6 +19,16 @@ export default function History() {
   }
   return (
     <div className={styles.container}>
+      <div className={styles.buttons}>
+        <div onClick={() => setIsHidden(!isHidden)} className={styles.show}>
+          {isHidden ? "show history" : "hide"}
+        </div>
+        {!isHidden && channelHistory.list.length > 1 && (
+          <div onClick={handleCleanHistory} className={styles.clear}>
+            clear
+          </div>
+        )}
+      </div>
       {!isHidden && (
         <div className={styles.channels}>
           {channelHistory.list.map((channel, i) => (
