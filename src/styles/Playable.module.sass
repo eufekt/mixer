@@ -23,6 +23,17 @@
         position: absolute
         bottom: -25px
 
+.playButtonContainer
+    @extend .center_hoz_vert
+    position: absolute
+    border-radius: 50%
+.playButton
+    position: absolute
+    color: var(--color_purple)
+    font-size: variables.$font_size_bigger
+    pointer-events: none
+    &:hover
+        color: var(--color_text)
 :export
     color_border: var(--color_contrast)
     block_width: (variables.$block_width_browser - 4px)

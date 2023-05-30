@@ -40,6 +40,11 @@ export default function Playable({
         onClick={() => loadPlaylistFrom(i)}
         src={imgsrc!!}
       ></Image>
+      {focus && (
+        <div className={styles.playButtonContainer}>
+          <div className={styles.playButton}>{"\u25B6"}</div>
+        </div>
+      )}
       <ConnectDialog
         focus={focus}
         setShowConnectModal={setShowConnectModal}
