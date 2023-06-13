@@ -2,7 +2,6 @@ import { Loading } from "./Loading";
 import { useSession } from "next-auth/react";
 import UserContext from "../contexts/UserContext";
 
-
 export default function Main({ children }: { children: React.ReactNode }) {
   const { data, status } = useSession();
 
