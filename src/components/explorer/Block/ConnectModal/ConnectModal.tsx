@@ -52,21 +52,20 @@ export function ConnectModal({
   block: ArenaBlock | ArenaChannelMod;
 }) {
   const user = useUserContext();
+  const CloseIcon = <>&#x2715;</>;
 
   return (
     <div
       className={styles.connectModalWrapper}
-      onClick={(e) => e.preventDefault()}
-    >
+      onClick={(e) => e.preventDefault()}>
       <div
         className={styles.close}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
           setShowConnectModal(false);
-        }}
-      >
-        <>&#x2715;</>
+        }}>
+        {CloseIcon}
       </div>
       {user && (
         <Channels
@@ -82,8 +81,7 @@ export function ConnectModal({
             e.preventDefault();
             e.stopPropagation();
             signIn("arena");
-          }}
-        >
+          }}>
           login to connect
         </div>
       )}
