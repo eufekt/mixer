@@ -5,39 +5,41 @@ import { ArenaBlock, ArenaChannelMod } from "arena-ts";
 import { Channels } from "./ShowChannels";
 
 export function ConnectDialog({
-  focus,
-  showConnectModal,
-  setShowConnectModal,
-  block,
+    focus,
+    showConnectModal,
+    setShowConnectModal,
+    block,
 }: {
-  focus: boolean;
-  showConnectModal: boolean;
-  setShowConnectModal: any;
-  block: ArenaBlock | ArenaChannelMod;
+    focus: boolean;
+    showConnectModal: boolean;
+    setShowConnectModal: any;
+    block: ArenaBlock | ArenaChannelMod;
 }) {
-  function handleConnect(e: any) {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowConnectModal(true);
-  }
+    function handleConnect(e: any) {
+        e.preventDefault();
+        e.stopPropagation();
+        setShowConnectModal(true);
+    }
 
-  return (
-    <>
-      {focus && !showConnectModal && (
-        <div onClick={(e) => handleConnect(e)} className={styles.connect}>
-          connect {"\u2192"}
-        </div>
-      )}
-      {showConnectModal && (
-        <div style={{ height: "100%" }}>
-          <ConnectModal
-            setShowConnectModal={setShowConnectModal}
-            block={block}
-          />
-        </div>
-      )}
-    </>
-  );
+    return (
+        <>
+            {focus && !showConnectModal && (
+                <div
+                    onClick={(e) => handleConnect(e)}
+                    className={styles.connect}>
+                    connect {"\u2192"}
+                </div>
+            )}
+            {showConnectModal && (
+                <div style={{ height: "100%" }}>
+                    <ConnectModal
+                        setShowConnectModal={setShowConnectModal}
+                        block={block}
+                    />
+                </div>
+            )}
+        </>
+    );
 }
 
 /**
@@ -45,46 +47,55 @@ export function ConnectDialog({
  * > add abilty to create channel on the spot
  *  */
 export function ConnectModal({
-  setShowConnectModal,
-  block,
+    setShowConnectModal,
+    block,
 }: {
-  setShowConnectModal: any;
-  block: ArenaBlock | ArenaChannelMod;
+    setShowConnectModal: any;
+    block: ArenaBlock | ArenaChannelMod;
 }) {
-  const user = useUserContext();
-  const CloseIcon = <>&#x2715;</>;
+    const user = useUserContext();
 
-  return (
-    <div
-      className={styles.connectModalWrapper}
-      onClick={(e) => e.preventDefault()}>
-      <div
-        className={styles.close}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setShowConnectModal(false);
-        }}>
-        {CloseIcon}
-      </div>
-      {user && (
-        <Channels
-          user={user}
-          block={block as ArenaChannelMod}
-          setShowConnectModal={setShowConnectModal}
-        />
-      )}
-      {!user && (
+    return (
         <div
-          className={styles.signin}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            signIn("arena");
-          }}>
-          login to connect
+            className={styles.connectModalWrapper}
+            onClick={(e) => e.preventDefault()}>
+            <CloseButton setShowConnectModal={setShowConnectModal} />
+            {user && (
+                <Channels
+                    user={user}
+                    block={block as ArenaChannelMod}
+                    setShowConnectModal={setShowConnectModal}
+                />
+            )}
+            {!user && <LoginToConnect signIn={signIn} />}
         </div>
-      )}
-    </div>
-  );
+    );
 }
+const LoginToConnect = ({ signIn }: any) => {
+    return (
+        <div
+            className={styles.signin}
+            onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                signIn("arena");
+            }}>
+            login to connect
+        </div>
+    );
+};
+
+const CloseButton = ({ setShowConnectModal }: any) => {
+    const closeIcon = <>&#x2715;</>;
+    return (
+        <div
+            className={styles.close}
+            onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setShowConnectModal(false);
+            }}>
+            {closeIcon}
+        </div>
+    );
+};
