@@ -1,5 +1,5 @@
 import Explorer from "../components/explorer/Explorer";
 
 export default function Home() {
-  return <Explorer isRoot />;
+  return <Explorer data-testid="app" isRoot />;
 }

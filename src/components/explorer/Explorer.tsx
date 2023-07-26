@@ -10,82 +10,93 @@ import { useEffect, useState } from "react";
 import SearchExplorer from "./SearchExplorer";
 
 function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
-  const user = useUserContext();
-  const arena = useArena(user);
-  const router = useRouter();
-  const { channelId } = router.query;
-  const seed = (channelId as string) || seedChannel;
+    const user = useUserContext();
+    const arena = useArena(user);
+    const router = useRouter();
+    const { channelId } = router.query;
+    const seed = (channelId as string) || seedChannel;
 
-  const [search, setSearch] = useState("");
-  const { data: channel, isLoading, error } = arena.FetchChannel(seed);
+    const [search, setSearch] = useState("");
+    const { data: channel, isLoading, error } = arena.FetchChannel(seed);
 
-  //TODO handle error
-  const {
-    data: searchResults,
-    isLoading: searchLoading,
-    error: searchError,
-  } = arena.Search(search);
-  const [isFocused, setIsFocused] = useState(false);
-  if (error) {
-    router.push({
-      pathname: "/error",
-      query: error.info,
-    });
-  }
+    //TODO handle error
+    const {
+        data: searchResults,
+        isLoading: searchLoading,
+        error: searchError,
+    } = arena.Search(search);
 
-  useEffect(() => {
-    if (router.asPath !== router.route) {
-      setIsFocused(false);
+    const [isFocused, setIsFocused] = useState(false);
+
+    if (error) {
+        router.push({
+            pathname: "/error",
+            query: error.info,
+        });
     }
-  }, [router.query]);
 
-  const condition = isFocused;
-  return (
-    <>
-      <Loading isLoading={isLoading} what={"channel"} type={"fullScreen"} />
-      {channel && (
+    useEffect(() => {
+        if (router.asPath !== router.route) {
+            setIsFocused(false);
+        }
+    }, [router.query]);
+
+    const condition = isFocused;
+    return (
         <>
-          <Navigator
-            setSearch={setSearch}
-            setIsFocused={setIsFocused}
-            isFocused={isFocused}
-            channel={channel}
-            isRoot={isRoot}
-          />
-          {condition && (
-            <SearchExplorer
-              blocks={searchResults?.channels}
-              isLoading={searchLoading}
-              isEmpty={searchResults?.channels.length == 0}
+            <Loading
+                isLoading={isLoading}
+                what={"channel"}
+                type={"fullScreen"}
             />
-          )}
-          {!condition && <BlocksFetcher channel={channel} />}
+            {channel && (
+                <>
+                    <Navigator
+                        setSearch={setSearch}
+                        setIsFocused={setIsFocused}
+                        isFocused={isFocused}
+                        channel={channel}
+                        isRoot={isRoot}
+                    />
+                    {condition && (
+                        <SearchExplorer
+                            blocks={searchResults?.channels}
+                            isLoading={searchLoading}
+                            isEmpty={searchResults?.channels.length == 0}
+                        />
+                    )}
+                    {!condition && <BlocksFetcher channel={channel} />}
+                </>
+            )}
         </>
-      )}
-    </>
-  );
+    );
 }
+function InterceptMobile({ children }: { children: React.ReactNode }) {
+    return (
+        <div className={styles.container}>
+            <div className={styles.isMobile}>
+                For the present moment, this application is only optimized for
+                desktop experience. Some features may not work on mobile
+                devices. Please use a desktop.
+                <br />
+                <br />
+                <a
+                    className={styles.link}
+                    href={"https://www.are.na/la-src/feedback-loop-evw-91mkkyu"}
+                    target={"_blank"}
+                    rel="noreferrer">
+                    {"feedback loop"}
+                </a>
+            </div>
+            <div className={styles.isDesktop}>{children}</div>
+        </div>
+    );
+}
+
 export default function Explorer({ isRoot = false }) {
-  return (
-    <div className={styles.container}>
-      <div className={styles.isMobile}>
-        For the present moment, this application is only optimized for desktop
-        experience. Some features may not work on mobile devices. Please use a
-        desktop.
-        <br />
-        <br />
-        <a
-          className={styles.link}
-          href={"https://www.are.na/la-src/feedback-loop-evw-91mkkyu"}
-          target={"_blank"}
-          rel="noreferrer"
-        >
-          {"feedback loop"}
-        </a>
-      </div>
-      <div className={styles.isDesktop}>
-        <ExploreChannelBlocksWithSearch isRoot={isRoot} />
-      </div>
-    </div>
-  );
+    return (
+        <InterceptMobile>
+            <ExploreChannelBlocksWithSearch isRoot={isRoot} />
+        </InterceptMobile>
+    );
 }
