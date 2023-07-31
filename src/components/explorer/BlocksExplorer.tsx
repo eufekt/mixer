@@ -9,6 +9,7 @@ import Block from "./Block/Block";
 import useIsInViewport from "@/src/hooks/useIsInViewport";
 import { Loading } from "../Loading";
 import { ArenaBlock, ArenaChannelMod } from "arena-ts";
+import { playlistActions } from "@/src/reducers/PlaylistReducer";
 
 export default function BlocksExplorer({
   blocks,
@@ -40,8 +41,8 @@ export default function BlocksExplorer({
 
   const setPLaylistFromSelection = (index: number) => {
     const rotatedList = [...blocks.slice(index), ...blocks.slice(0, index)];
-    let onlyMedia = rotatedList.filter((block) => block.class === "Media");
-    playlistDispatch({ type: "setPlaylist", list: onlyMedia });
+    const onlyMedia = rotatedList.filter((block) => block.class === "Media");
+    playlistDispatch({ type: playlistActions.setList, list: onlyMedia });
   };
 
   return (

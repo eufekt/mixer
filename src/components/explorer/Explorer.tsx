@@ -8,6 +8,7 @@ import { useUserContext } from "../../contexts/UserContext";
 import styles from "@/src/styles/Explorer.module.sass";
 import { useEffect, useState } from "react";
 import SearchExplorer from "./SearchExplorer";
+import TrackHistory from "../TrackHistory";
 
 function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
     const user = useUserContext();
@@ -49,6 +50,9 @@ function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
                 what={"channel"}
                 type={"fullScreen"}
             />
+            {
+            // <TrackHistory />
+            }
             {channel && (
                 <>
                     <Navigator
