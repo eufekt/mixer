@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js"
-  ],
+, "src/components/explorer/BlocksExplorer.jsx"  ],
   "exclude": [
     "node_modules"
   ]

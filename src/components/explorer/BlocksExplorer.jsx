@@ -18,17 +18,10 @@ export default function BlocksExplorer({
   size,
   setSize,
   isEmpty,
-}: {
-  blocks: (ArenaBlock | ArenaChannelMod)[];
-  isLoading: boolean;
-  hasMore: boolean;
-  size: number;
-  setSize: any;
-  isEmpty: boolean;
 }) {
   const elementRef = useRef(null);
   const isInViewport = useIsInViewport(elementRef);
-  const { playlistDispatch } = usePlaylistContext() as PlaylistContextInterface;
+  const { playlistDispatch } = usePlaylistContext()
   const increasePageSize = useCallback(() => {
     setSize(size + 1);
   }, [setSize, size]);
@@ -39,7 +32,7 @@ export default function BlocksExplorer({
     }
   }, [increasePageSize, isInViewport, isLoading, hasMore]);
 
-  const setPLaylistFromSelection = (index: number) => {
+  const setPLaylistFromSelection = (index) => {
     const rotatedList = [...blocks.slice(index), ...blocks.slice(0, index)];
     const onlyMedia = rotatedList.filter((block) => block.class === "Media");
     playlistDispatch({ type: playlistActions.setList, list: onlyMedia });
@@ -48,7 +41,7 @@ export default function BlocksExplorer({
   return (
     <div className={styles.container}>
       <div className={styles.blocks_container}>
-        {blocks.map((block: ArenaChannelMod | ArenaBlock, i: number) => (
+        {blocks.map((block, i) => (
           <Block
             key={block.id}
             i={i}

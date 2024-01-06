@@ -34,6 +34,7 @@ export function parseUsableBlocks(data: (ArenaBlock|ArenaChannelMod)[]): (ArenaB
       if (
         block?.source?.provider?.name === "YouTube" ||
         block?.source?.provider?.name === "SoundCloud"
+        || block?.source?.provider?.name === "BandCamp"
       ) {
         usableBlocks.push(block);
       }
