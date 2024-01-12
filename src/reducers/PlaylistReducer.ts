@@ -21,7 +21,7 @@ export function playlistReducer(state: Object, action: any) {
         case playlistActions.next:
             return next(state);
         case playlistActions.prev:
-            return prev(state, action);
+            return prev(state);
         default:
             return { ...state };
     }
@@ -35,14 +35,14 @@ function setList(state: any, action: any) {
 }
 
 function next(state: any) {
-    const history = [...state.history, state.track]
+    const history = [...state.history, state.track];
     const nextCursor = getNextCursorPosition(state.cursor, state.list.length);
     const nextTrack = state.list[nextCursor];
     return { ...state, cursor: nextCursor, track: nextTrack, history };
 }
 
 function prev(state: any) {
-    const history = [...state.history, state.track]
+    const history = [...state.history, state.track];
     const prevCursor = getPrevCursorPosition(state.cursor, state.list.length);
     const prevTrack = state.list[prevCursor];
     return { ...state, cursor: prevCursor, track: prevTrack, history };
