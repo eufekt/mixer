@@ -13,7 +13,6 @@ export default function Player() {
     const hasWindow = useHasWindow();
     const player = useRef(null);
     const { playlist, playlistDispatch } = usePlaylistContext();
-
     const { track } = playlist;
     const [ url, loading] = useUrl(track?.source);
     const [playing, setPlaying] = useState(false);
@@ -30,11 +29,11 @@ export default function Player() {
         }
     }, [ready, track]);
 
-    function handleSeekChange(e: any) {
+    function handleSeekChange(e) {
         setPlayed(parseFloat(e.target.value));
     }
 
-    function handleSeekMouseUp(e: any) {
+    function handleSeekMouseUp(e) {
         // @ts-ignore
         player.current.seekTo(parseFloat(e.target.value));
     }
@@ -43,7 +42,7 @@ export default function Player() {
         setPlaying(!playing);
     }
 
-    function handleProgress(e: any) {
+    function handleProgress(e) {
         /**
          * TODO: causes rerenders
          */
@@ -64,7 +63,7 @@ export default function Player() {
         playlistDispatch({ type: playlistActions.prev });
     }
 
-    function handleError(e: any) {
+    function handleError(e) {
         console.log("Error in Player", e);
         handleNext();
     }

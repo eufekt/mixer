@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js"
-, "src/components/explorer/BlocksExplorer.jsx", "src/components/explorer/BlocksFetcher.jsx", "src/lib/helpers.js", "src/components/explorer/Block/Playable.jsx"  ],
+, "src/components/explorer/BlocksExplorer.jsx", "src/components/explorer/BlocksFetcher.jsx", "src/lib/helpers.js", "src/components/explorer/Block/Playable.jsx", "src/components/player/Player.jsx"  ],
   "exclude": [
     "node_modules"
   ]
