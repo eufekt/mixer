@@ -23,6 +23,18 @@
         position: absolute
         bottom: -25px
 
+    .blockLink
+        color: var(--color_contrast)
+        position: absolute
+        top: 5px
+        right: 5px
+        padding: 0px 5px
+        z-index: 1
+        background-color: black
+
+        &:hover
+            color: var(--color_text)
+
 .playButtonContainer
     @extend .center_hoz_vert
     position: absolute
@@ -37,3 +49,9 @@
 :export
     color_border: var(--color_contrast)
     block_width: (variables.$block_width_browser - 4px)
+
+.textForm
+    overflow: scroll
+    height: 100%
+    width: 100%
+    padding: 10px

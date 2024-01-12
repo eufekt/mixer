@@ -1,12 +1,11 @@
 import bandcamp from "bandcamp-scraper";
 
 export default async function handler(request, response) {
-    const url = request.body.url;
-
+    const { track } = request.body;
     try {
-        const trackInfo = await extractTrack(url);
+        const trackInfo = await extractTrack(track);
         response.status(200).json({
-            trackInfo: trackInfo,
+            trackInfo: trackInfo.raw.trackinfo[0].file["mp3-128"],
         });
     } catch (error) {
         response.status(400).json({

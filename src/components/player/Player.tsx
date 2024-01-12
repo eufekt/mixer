@@ -1,14 +1,13 @@
 import ReactPlayer from "react-player";
 import { useEffect, useRef, useState } from "react";
 
-import {
-    usePlaylistContext,
-} from "@/src/contexts/PlaylistContext";
+import { usePlaylistContext } from "@/src/contexts/PlaylistContext";
 import useHasWindow from "@/src/hooks/useHasWindow";
 import { PlayerUI } from "./PlayerUI";
 import { massageUrl } from "@/src/lib/helpers";
 import { getStatus } from "./utils";
 import { playlistActions } from "@/src/reducers/PlaylistReducer";
+import useUrl from "@/src/hooks/useUrl";
 
 export default function Player() {
     const hasWindow = useHasWindow();
@@ -16,8 +15,7 @@ export default function Player() {
     const { playlist, playlistDispatch } = usePlaylistContext();
 
     const { track } = playlist;
-    const url = massageUrl(track?.source.url);
-
+    const [ url, loading] = useUrl(track?.source);
     const [playing, setPlaying] = useState(false);
     const [ready, setReady] = useState(false);
     const [played, setPlayed] = useState(0);
@@ -63,11 +61,11 @@ export default function Player() {
 
     function handlePrev() {
         setReady(false);
-        playlistDispatch({ type: playlistActions.prev});
+        playlistDispatch({ type: playlistActions.prev });
     }
 
     function handleError(e: any) {
-        console.log("Error in PLayer", e);
+        console.log("Error in Player", e);
         handleNext();
     }
 

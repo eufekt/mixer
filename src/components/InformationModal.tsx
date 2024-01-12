@@ -53,7 +53,7 @@ export function InformationModal() {
             <ul>
               <li>
                 Select a block to play it, following blocks will autoplay.
-                Currently supports playback of SoundCloud and YouTube Links.
+                Currently supports playback of SoundCloud, YouTube Links and BandCamp tracks.
               </li>
               <li>
                 The channels you explore will appear in the history at the
@@ -93,9 +93,6 @@ export function InformationModal() {
             </a>
             <a href={links.arena_user} target={"_blank"} rel="noreferrer">
               {"are.na @la-src"} {"\u2197"}
-            </a>
-            <a href={links.github} target={"_blank"} rel="noreferrer">
-              {"github"} {"\u2197"}
             </a>
             <small className={styles.version}>v {version}</small>
             <br />

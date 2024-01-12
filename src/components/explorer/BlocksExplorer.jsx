@@ -1,14 +1,12 @@
 import styles from "@/src/styles/BlocksExplorer.module.sass";
 import { useRef, useCallback, useEffect } from "react";
 import {
-  PlaylistContextInterface,
   usePlaylistContext,
 } from "../../contexts/PlaylistContext";
 import Block from "./Block/Block";
 
 import useIsInViewport from "@/src/hooks/useIsInViewport";
 import { Loading } from "../Loading";
-import { ArenaBlock, ArenaChannelMod } from "arena-ts";
 import { playlistActions } from "@/src/reducers/PlaylistReducer";
 
 export default function BlocksExplorer({
