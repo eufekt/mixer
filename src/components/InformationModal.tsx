@@ -50,49 +50,8 @@ export function InformationModal() {
           >
             <Auth data={data} status={status} />
             <br />
-            <ul>
-              <li>
-                Select a block to play it, following blocks will autoplay.
-                Currently supports playback of SoundCloud, YouTube Links and BandCamp tracks.
-              </li>
-              <li>
-                The channels you explore will appear in the history at the
-                bottom left corner.
-              </li>
-              <li>
-                Sign in to are.na with the link above to connect blocks to your
-                channels.
-              </li>
-              <li>
-                Your browser might automatically mute the tab. If you do not
-                hear anything, check the tab icon.
-              </li>
-              <li>
-                Add your curated channels to the{" "}
-                <a
-                  href={links.mixer_seed}
-                  target={"_blank"}
-                  style={{ display: "inline-block" }}
-                  rel="noreferrer"
-                >
-                  mixer channel {"\u2197"}
-                </a>{" "}
-                to make it visible on the main page of this website.
-              </li>
-              <li>
-                Browse  all are.na channels with the search bar. Login for
-                results related to your profile.
-              </li>
-            </ul>
-            <br />
             <a href={links.mixer_seed} target={"_blank"} rel="noreferrer">
               {"mixer channel"} {"\u2197"}
-            </a>
-            <a href={links.feedback_loop} target={"_blank"} rel="noreferrer">
-              {"feedback loop"} {"\u2197"}
-            </a>
-            <a href={links.arena_user} target={"_blank"} rel="noreferrer">
-              {"are.na @la-src"} {"\u2197"}
             </a>
             <small className={styles.version}>v {version}</small>
             <br />
