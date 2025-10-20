@@ -79,24 +79,9 @@ export function InformationModal() {
                 </a>{" "}
                 to make it visible on the main page of this website.
               </li>
-              <li>
-                Browse  all are.na channels with the search bar. Login for
-                results related to your profile.
-              </li>
             </ul>
             <br />
-            <a href={links.mixer_seed} target={"_blank"} rel="noreferrer">
-              {"mixer channel"} {"\u2197"}
-            </a>
-            <a href={links.feedback_loop} target={"_blank"} rel="noreferrer">
-              {"feedback loop"} {"\u2197"}
-            </a>
-            <a href={links.arena_user} target={"_blank"} rel="noreferrer">
-              {"are.na @la-src"} {"\u2197"}
-            </a>
-            <a href={links.github} target={"_blank"} rel="noreferrer">
-              {"github"} {"\u2197"}
-            </a>
+
             <small className={styles.version}>v {version}</small>
             <br />
 
