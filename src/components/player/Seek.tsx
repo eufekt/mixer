@@ -1,3 +1,5 @@
+"use client";
+
 import Duration from "./Duration";
 import styles from "@/src/styles/Seek.module.sass";
 import { Preview } from "./Preview";

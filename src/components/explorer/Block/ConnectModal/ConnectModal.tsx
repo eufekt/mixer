@@ -1,8 +1,7 @@
-import { useUserContext } from "@/src/contexts/UserContext";
+"use client";
+
 import styles from "@/src/styles/ConnectModal.module.sass";
-import { signIn } from "next-auth/react";
 import { ArenaBlock, ArenaChannelMod } from "arena-ts";
-import { Channels } from "./ShowChannels";
 
 export function ConnectDialog({
   focus,
@@ -15,35 +14,10 @@ export function ConnectDialog({
   setShowConnectModal: any;
   block: ArenaBlock | ArenaChannelMod;
 }) {
-  function handleConnect(e: any) {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowConnectModal(true);
-  }
-
-  return (
-    <>
-      {focus && !showConnectModal && (
-        <div onClick={(e) => handleConnect(e)} className={styles.connect}>
-          connect {"\u2192"}
-        </div>
-      )}
-      {showConnectModal && (
-        <div style={{ height: "100%" }}>
-          <ConnectModal
-            setShowConnectModal={setShowConnectModal}
-            block={block}
-          />
-        </div>
-      )}
-    </>
-  );
+  // Connect feature disabled - authentication removed
+  return null;
 }
 
-/**
- * TODO what if a user has no channels ?
- * > add abilty to create channel on the spot
- *  */
 export function ConnectModal({
   setShowConnectModal,
   block,
@@ -51,42 +25,6 @@ export function ConnectModal({
   setShowConnectModal: any;
   block: ArenaBlock | ArenaChannelMod;
 }) {
-  const user = useUserContext();
-
-  return (
-    <div
-      className={styles.connectModalWrapper}
-      onClick={(e) => e.preventDefault()}
-    >
-      <div
-        className={styles.close}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setShowConnectModal(false);
-        }}
-      >
-        <>&#x2715;</>
-      </div>
-      {user && (
-        <Channels
-          user={user}
-          block={block as ArenaChannelMod}
-          setShowConnectModal={setShowConnectModal}
-        />
-      )}
-      {!user && (
-        <div
-          className={styles.signin}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            signIn("arena");
-          }}
-        >
-          login to connect
-        </div>
-      )}
-    </div>
-  );
+  // Connect feature disabled - authentication removed
+  return null;
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { parseTitle } from "@/src/lib/helpers";
 import styles from "@/src/styles/Playable.module.sass";
 import Image from "next/image";
@@ -30,16 +32,14 @@ export default function Playable({
       <Image
         unoptimized={true}
         className={styles.image}
-        layout="fixed"
-        objectFit="cover"
-        width={styles.block_width}
-        height={styles.block_width}
+        width={280}
+        height={280}
         alt={"image"}
         priority={priority}
         quality={50}
         onClick={() => loadPlaylistFrom(i)}
         src={imgsrc!!}
-      ></Image>
+      />
       {focus && (
         <div className={styles.playButtonContainer}>
           <div className={styles.playButton}>{"\u25B6"}</div>

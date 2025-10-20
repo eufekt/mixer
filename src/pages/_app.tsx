@@ -4,7 +4,6 @@ import { useReducer, useState } from "react";
 import PlaylistContext, {
   PlaylistContextInterface,
 } from "../contexts/PlaylistContext";
-import { SessionProvider } from "next-auth/react";
 import {
   playlistReducerInitialState,
   playlistReducer,
@@ -12,7 +11,6 @@ import {
 import Layout from "../components/Layout";
 import Main from "../components/Main";
 import ThemeContext from "../contexts/ThemeContext";
-import { Session } from "next-auth";
 import Head from "next/head";
 import {
   channelHistoryReducer,
@@ -24,10 +22,10 @@ import ChannelHistoryContext, {
 
 export default function App({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps,
 }: {
   Component: any;
-  pageProps: { session: Session; [key: string]: any };
+  pageProps: { [key: string]: any };
 }) {
   const [isDark, setIsDark] = useState<boolean>(true);
   const [playlist, playlistDispatch] = useReducer(
@@ -66,17 +64,15 @@ export default function App({
       <Analytics />
       <ThemeContext.Provider value={{ isDark, setIsDark }}>
         <div className={isDark ? "dark-mode" : ""}>
-          <SessionProvider session={session}>
-            <PlaylistContext.Provider value={playlistProviderState}>
-              <ChannelHistoryContext.Provider value={historyProviderState}>
-                <Main>
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </Main>
-              </ChannelHistoryContext.Provider>
-            </PlaylistContext.Provider>
-          </SessionProvider>
+          <PlaylistContext.Provider value={playlistProviderState}>
+            <ChannelHistoryContext.Provider value={historyProviderState}>
+              <Main>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </Main>
+            </ChannelHistoryContext.Provider>
+          </PlaylistContext.Provider>
         </div>
       </ThemeContext.Provider>
     </>

@@ -2,9 +2,8 @@ import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
 import useSWRMutation from "swr/mutation";
 import { apiBase } from "../config";
-import { Session } from "next-auth";
 
-export const useArena = (user: Session["user"] | null) => {
+export const useArena = (user: any | null) => {
   let headers = {};
 
   if (user != null) {

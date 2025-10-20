@@ -1,3 +1,5 @@
+"use client";
+
 import { ChangeEvent } from "react";
 import styles from "@/src/styles/Volume.module.sass";
 export default function Volume({

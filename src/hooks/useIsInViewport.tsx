@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-function useIsInViewport(ref: React.RefObject<HTMLElement>) {
+function useIsInViewport(ref: React.RefObject<HTMLElement | null>) {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) =>
-      setIsIntersecting(entry.isIntersecting)
-    ,{threshold: 1});
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsIntersecting(entry.isIntersecting),
+      { threshold: 1 }
+    );
 
     if (ref.current) {
       observer.observe(ref.current);

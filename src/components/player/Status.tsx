@@ -1,6 +1,8 @@
+"use client";
+
 import styles from "@/src/styles/Status.module.sass";
 
-export default function Status({ status }: { status: string}) {
+export default function Status({ status }: { status: string }) {
   let color, text;
   if (status == STATUS_ENUM.idle) {
     color = styles.color_contrast;

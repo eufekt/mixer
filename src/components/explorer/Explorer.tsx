@@ -1,20 +1,21 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useParams, useRouter } from "next/navigation";
 import { Loading } from "../Loading";
 import { Navigator } from "./Navigator";
 import BlocksFetcher from "./BlocksFetcher";
 import { seedChannel } from "../../config";
 import { useArena } from "../../hooks/useArena";
-import { useUserContext } from "../../contexts/UserContext";
 import styles from "@/src/styles/Explorer.module.sass";
 import { useEffect, useState } from "react";
 import SearchExplorer from "./SearchExplorer";
 
 function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
-  const user = useUserContext();
-  const arena = useArena(user);
+  const arena = useArena(null);
   const router = useRouter();
-  const { channelId } = router.query;
-  const seed = (channelId as string) || seedChannel;
+  const params = useParams();
+  const channelId = params?.channelId as string | undefined;
+  const seed = channelId || seedChannel;
 
   const [search, setSearch] = useState("");
   const { data: channel, isLoading, error } = arena.FetchChannel(seed);
@@ -27,17 +28,12 @@ function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
   } = arena.Search(search);
   const [isFocused, setIsFocused] = useState(false);
   if (error) {
-    router.push({
-      pathname: "/error",
-      query: error.info,
-    });
+    router.push("/error");
   }
 
   useEffect(() => {
-    if (router.asPath !== router.route) {
-      setIsFocused(false);
-    }
-  }, [router.query]);
+    setIsFocused(false);
+  }, [channelId]);
 
   const condition = isFocused;
   return (

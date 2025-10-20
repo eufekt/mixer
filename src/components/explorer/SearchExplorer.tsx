@@ -1,8 +1,18 @@
+"use client";
+
 import styles from "@/src/styles/BlocksExplorer.module.sass";
 import Block from "./Block/Block";
 import { Loading } from "../Loading";
 import { ArenaChannelMod } from "arena-ts";
-export default function SearchExplorer({ blocks, isLoading, isEmpty }: { blocks: ArenaChannelMod[]; isLoading: boolean; isEmpty: boolean; }) {
+export default function SearchExplorer({
+  blocks,
+  isLoading,
+  isEmpty,
+}: {
+  blocks: ArenaChannelMod[];
+  isLoading: boolean;
+  isEmpty: boolean;
+}) {
   return (
     <div className={styles.container}>
       <div className={styles.blocks_container}>

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ChannelHistoryContextInterface,
   ChannelHistoryInterface,
@@ -6,13 +8,11 @@ import {
 import { parseTitle } from "@/src/lib/helpers";
 import styles from "@/src/styles/History.module.sass";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function History() {
   const { channelHistory, channelHistoryDispatch } =
     useChannelHistoryContext() as ChannelHistoryContextInterface;
-  const router = useRouter();
   const [isHidden, setIsHidden] = useState(false);
   function handleCleanHistory() {
     channelHistoryDispatch({ type: "CLEAN_HISTORY" });

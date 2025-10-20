@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/src/styles/Navigator.module.sass";
 import { buildChannelUrl, buildUserUrl } from "../../lib/helpers";
 import { ArenaChannelMod } from "arena-ts";

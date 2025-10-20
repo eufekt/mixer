@@ -1,8 +1,9 @@
+"use client";
+
 import { useMemo } from "react";
 import { parseUsableBlocks } from "@/src/lib/helpers";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useArena } from "@/src/hooks/useArena";
-import { useUserContext } from "@/src/contexts/UserContext";
 import { ArenaChannelMod } from "arena-ts";
 import BlocksExplorer from "./BlocksExplorer";
 
@@ -11,8 +12,7 @@ export default function BlocksFetcher({
 }: {
   channel: ArenaChannelMod;
 }) {
-  const user = useUserContext();
-  const arena = useArena(user);
+  const arena = useArena(null);
   const router = useRouter();
 
   const { data, error, isLoading, size, setSize } = arena.FetchChannelContents(
@@ -28,10 +28,7 @@ export default function BlocksFetcher({
   const filtered = parseUsableBlocks(loadedBlocks) as any;
 
   if (error) {
-    router.push({
-      pathname: "/error",
-      query: error.info,
-    });
+    router.push("/error");
   }
 
   return (

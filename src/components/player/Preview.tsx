@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/src/styles/Preview.module.sass";
 import Image from "next/image";
 

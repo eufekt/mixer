@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/src/styles/PlayerUI.module.sass";
 import { Controls } from "./Controls";
 import Seek from "./Seek";
@@ -78,7 +80,7 @@ export function PlayerUI({
               onClick={() => setShowConnectModal(true)}
               className={styles.connect}
             >
-              connect 
+              connect
             </div>
 
             {showConnectModal && (

@@ -1,7 +1,7 @@
+"use client";
+
 import styles from "@/src/styles/InformationModal.module.sass";
 import { useState } from "react";
-import Auth from "./Auth";
-import { useSession } from "next-auth/react";
 import {
   ThemeContextInterface,
   useThemeContext,
@@ -12,13 +12,11 @@ import pack from "@/package.json";
 export function InformationModal() {
   const [showModal, setShowModal] = useState(false);
   const { isDark, setIsDark } = useThemeContext() as ThemeContextInterface;
-  const { data, status } = useSession();
 
   const version = pack.version || "x.x.x";
 
   let letter = "i";
   let color = styles.color_contrast;
-  if (status == "loading") letter = "~";
 
   function handleLightChange() {
     setIsDark(!isDark);
@@ -48,8 +46,6 @@ export function InformationModal() {
               e.stopPropagation();
             }}
           >
-            <Auth data={data} status={status} />
-            <br />
             <ul>
               <li>
                 Select a block to play it, following blocks will autoplay.
@@ -58,10 +54,6 @@ export function InformationModal() {
               <li>
                 The channels you explore will appear in the history at the
                 bottom left corner.
-              </li>
-              <li>
-                Sign in to are.na with the link above to connect blocks to your
-                channels.
               </li>
               <li>
                 Your browser might automatically mute the tab. If you do not

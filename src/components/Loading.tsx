@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/src/styles/Loading.module.sass";
 import { Grid } from "react-loader-spinner";
 
@@ -27,7 +29,7 @@ export function Loading({
         color={styles.color_contrast}
         ariaLabel="grid-loading"
         radius="12"
-        wrapperStyle={{ marginLeft:  hideText? '0px' : '10px' }}
+        wrapperStyle={{ marginLeft: hideText ? "0px" : "10px" }}
         visible={true}
       />
     </div>

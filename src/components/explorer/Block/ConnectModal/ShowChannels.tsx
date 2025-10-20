@@ -1,15 +1,17 @@
+"use client";
+
 import { useArena } from "@/src/hooks/useArena";
 import useIsInViewport from "@/src/hooks/useIsInViewport";
 import styles from "@/src/styles/ConnectModal.module.sass";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Loading } from "../../../Loading";
 import { ArenaBlock, ArenaChannelMod } from "arena-ts";
-import { Session } from "next-auth";
 import { Title } from "./Title";
 import { ConnectionConfirmation } from "./ConnectionConfirmation";
 
 /**
  * TODO This component is big, it should be split
+ * NOTE: This component is disabled - authentication has been removed
  */
 export function Channels({
   setShowConnectModal,
@@ -18,9 +20,9 @@ export function Channels({
 }: {
   setShowConnectModal: any;
   block: ArenaChannelMod;
-  user: Session["user"];
+  user: any;
 }) {
-  const arena = useArena(user);
+  const arena = useArena(null);
   const [selectedChannel, setSelectedChannel] =
     useState<ArenaChannelMod | null>();
   const [connectionConfirmation, setConnectionConfirmation] = useState<any>();
@@ -34,7 +36,7 @@ export function Channels({
   }, [data]);
   const totalUsersChannels = data ? data[0].length : 0;
   const hasMore = channels.length < totalUsersChannels;
-  const elementRef = useRef(null);
+  const elementRef = useRef<HTMLDivElement>(null);
   const isInViewport = useIsInViewport(elementRef);
 
   function handleSelect(e: any, block: ArenaChannelMod) {

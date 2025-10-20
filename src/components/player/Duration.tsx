@@ -1,4 +1,6 @@
-export default function Duration({ seconds }: { seconds: number}) {
+"use client";
+
+export default function Duration({ seconds }: { seconds: number }) {
   return <time dateTime={`P${Math.round(seconds)}S`}>{format(seconds)}</time>;
 }
 

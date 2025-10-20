@@ -1,10 +1,22 @@
+"use client";
+
 import styles from "@/src/styles/Controls.module.sass";
 
-export function Controls({ handlePrev, handlePlayPause, handleNext, playing }: { handlePrev: any, handlePlayPause: any, handleNext: any, playing: boolean }) {
+export function Controls({
+  handlePrev,
+  handlePlayPause,
+  handleNext,
+  playing,
+}: {
+  handlePrev: any;
+  handlePlayPause: any;
+  handleNext: any;
+  playing: boolean;
+}) {
   return (
     <div className={styles.buttons}>
-      <div  onClick={() => handlePrev()} className={styles.playerButton}>
-        <NextButton  />
+      <div onClick={() => handlePrev()} className={styles.playerButton}>
+        <NextButton />
       </div>
       <div onClick={() => handlePlayPause()} className={styles.playerButton}>
         {playing ? <PauseButton /> : <PlayButton />}
@@ -49,7 +61,7 @@ function PauseButton() {
   );
 }
 
-function NextButton({ reverse=false }) {
+function NextButton({ reverse = false }) {
   return (
     <svg
       style={{ transform: reverse ? "rotateY(180deg)" : "none" }}

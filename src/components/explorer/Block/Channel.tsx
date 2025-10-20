@@ -1,8 +1,10 @@
+"use client";
+
 import styles from "@/src/styles/Channel.module.sass";
 import { ArenaChannelMod } from "arena-ts";
 import { useState } from "react";
 import { ConnectDialog } from "./ConnectModal/ConnectModal";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {
   ChannelHistoryContextInterface,
   ChannelHistoryInterface,

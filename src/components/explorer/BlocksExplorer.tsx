@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/src/styles/BlocksExplorer.module.sass";
 import { useRef, useCallback, useEffect } from "react";
 import {

@@ -1,3 +1,5 @@
+"use client";
+
 import ReactPlayer from "react-player";
 import { useEffect, useRef, useState } from "react";
 import { STATUS_ENUM } from "./Status";

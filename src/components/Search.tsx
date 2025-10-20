@@ -1,12 +1,10 @@
-import Auth from "./Auth";
+"use client";
+
 import styles from "@/src/styles/Search.module.sass";
 import { useEffect, useRef } from "react";
-import { useUserContext } from "../contexts/UserContext";
-import { signIn } from "next-auth/react";
 
 export default function Search({ setSearch, setIsFocused, isFocused }: any) {
   const keyboardRef = useRef<HTMLInputElement>(null);
-  const user = useUserContext();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     let change = e.target.value;
@@ -42,6 +40,7 @@ export default function Search({ setSearch, setIsFocused, isFocused }: any) {
     return () => {
       removeEventListener("keydown", handleKeyPress);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -64,15 +63,6 @@ export default function Search({ setSearch, setIsFocused, isFocused }: any) {
       >
         esc
       </button>
-
-      {!user && isFocused && (
-        <div className={styles.tip}>
-          <button className={styles.button} onClick={() => signIn("arena")}>
-            sign in
-          </button>{" "}
-          with are.na for results related to your profile
-        </div>
-      )}
     </div>
   );
 }
