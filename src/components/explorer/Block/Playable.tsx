@@ -1,6 +1,6 @@
 "use client";
 
-import { parseTitle } from "@/src/lib/helpers";
+import { parseTitle, isBlockPlayable } from "@/src/lib/helpers";
 import styles from "@/src/styles/Playable.module.sass";
 import Image from "next/image";
 import { useState } from "react";
@@ -40,7 +40,7 @@ export default function Playable({
         onClick={() => loadPlaylistFrom(i)}
         src={imgsrc!!}
       />
-      {focus && (
+      {focus && isBlockPlayable(block) && (
         <div className={styles.playButtonContainer}>
           <div className={styles.playButton}>{"\u25B6"}</div>
         </div>

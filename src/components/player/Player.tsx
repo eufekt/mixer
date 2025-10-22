@@ -10,7 +10,7 @@ import {
 } from "@/src/contexts/PlaylistContext";
 import useHasWindow from "@/src/hooks/useHasWindow";
 import { PlayerUI } from "./PlayerUI";
-import { massageUrl } from "@/src/lib/helpers";
+import useUrl from "@/src/hooks/useUrl";
 
 export default function Player() {
   const hasWindow = useHasWindow();
@@ -21,7 +21,7 @@ export default function Player() {
 
   const [currentTrack, setCurrentTrack] = useState(0);
   const currentBlock = playlist.list[currentTrack] || null;
-  const url = massageUrl(currentBlock?.source?.url);
+  const [url, loading] = useUrl(currentBlock?.source);
 
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);

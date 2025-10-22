@@ -1,5 +1,5 @@
 import { arenaBase } from "../config";
-import {  ArenaBlock, ArenaChannelMod } from "arena-ts";
+import { ArenaBlock, ArenaChannelMod } from "arena-ts";
 
 export function buildChannelUrl(channel: ArenaChannelMod) {
   const userSlug = channel?.user?.slug;
@@ -9,23 +9,24 @@ export function buildChannelUrl(channel: ArenaChannelMod) {
   return `${arenaBase}/${userSlug}/${channelSlug}`;
 }
 
-export function buildUserUrl(channel: ArenaChannelMod) : string{
+export function buildUserUrl(channel: ArenaChannelMod): string {
   const userSlug = channel?.user?.slug;
   if (userSlug === undefined) return arenaBase;
 
   return `${arenaBase}/${userSlug}`;
 }
 
-export function massageUrl(url: string|undefined) :string|undefined {
+export function massageUrl(url: string | undefined): string | undefined {
   if (url == undefined) return undefined;
   if (url.includes("youtube")) {
     return url.split("&")[0];
   } else return url;
 }
 
-export function parseUsableBlocks(data: (ArenaBlock|ArenaChannelMod)[]): (ArenaBlock|ArenaChannelMod)[] {
-  
-  const usableBlocks :(ArenaBlock|ArenaChannelMod)[] = [];
+export function parseUsableBlocks(
+  data: (ArenaBlock | ArenaChannelMod)[]
+): (ArenaBlock | ArenaChannelMod)[] {
+  const usableBlocks: (ArenaBlock | ArenaChannelMod)[] = [];
 
   data?.forEach((block: ArenaBlock | ArenaChannelMod) => {
     if (block.class === "Channel") {
@@ -33,7 +34,8 @@ export function parseUsableBlocks(data: (ArenaBlock|ArenaChannelMod)[]): (ArenaB
     } else if (block.class === "Media") {
       if (
         block?.source?.provider?.name === "YouTube" ||
-        block?.source?.provider?.name === "SoundCloud"
+        block?.source?.provider?.name === "SoundCloud" ||
+        block?.source?.provider?.name === "BandCamp"
       ) {
         usableBlocks.push(block);
       }
@@ -42,8 +44,8 @@ export function parseUsableBlocks(data: (ArenaBlock|ArenaChannelMod)[]): (ArenaB
   return usableBlocks;
 }
 
-export function parseTitle(title: string|null, maxLength=35): string {
-  if(title === null) return ""
+export function parseTitle(title: string | null, maxLength = 35): string {
+  if (title === null) return "";
   let newTitle = title.replace(/&amp;/g, "&");
 
   if (newTitle.length > maxLength) {
@@ -51,3 +53,16 @@ export function parseTitle(title: string|null, maxLength=35): string {
   }
   return newTitle;
 }
+
+export const isBlockPlayable = (block: ArenaBlock): boolean => {
+  if (block.class === "Media") {
+    if (
+      block.source?.provider?.name === "YouTube" ||
+      block.source?.provider?.name === "SoundCloud" ||
+      block.source?.provider?.name === "BandCamp"
+    ) {
+      return true;
+    }
+  }
+  return false;
+};
