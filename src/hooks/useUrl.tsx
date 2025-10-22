@@ -36,21 +36,21 @@ const useUrl = (
       });
   };
 
-    const parseUrls = (source: ArenaSource | undefined) => {
-        if (!source || !source.provider) {
-            setUrl(undefined);
-            return;
-        }
-        switch (source.provider.name) {
-            case "BandCamp":
-                return getBandcampUrl(source.url);
-            case "YouTube":
-                return setUrl(massageYoutubeUrl(source.url));
-            case "SoundCloud":
-            default:
-                return setUrl(source.url);
-        }
-    };
+  const parseUrls = (source: ArenaSource | undefined) => {
+    if (!source || !source.provider) {
+      setUrl(undefined);
+      return;
+    }
+    switch (source.provider.name) {
+      case "BandCamp":
+        return getBandcampUrl(source.url);
+      case "YouTube":
+        return setUrl(massageYoutubeUrl(source.url));
+      case "SoundCloud":
+      default:
+        return setUrl(source.url);
+    }
+  };
 
   useEffect(() => {
     parseUrls(source);
