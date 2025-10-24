@@ -31,6 +31,7 @@ export default function BlocksFetcher({
     router.push("/error");
   }
 
+  // hello
   return (
     <BlocksExplorer
       blocks={filtered}
