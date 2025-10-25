@@ -26,12 +26,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{ backgroundColor: "rgb(155, 79, 202)", height: "100%" }}
+    >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://www.arena-mixer.com/" />
       </head>
-      <body>
+      <body
+        style={{
+          backgroundColor: "rgb(155, 79, 202)",
+          margin: 0,
+          padding: 0,
+          height: "100%",
+          minHeight: "100vh",
+        }}
+      >
         <Providers>
           <Main>
             <Layout>{children}</Layout>
