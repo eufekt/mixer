@@ -14,3 +14,8 @@
     justify-content: center
     grid-template-columns: repeat(auto-fill, minmax(280px,280px))
     grid-gap: 15px
+    
+    @media screen and (max-width: 768px)
+        grid-template-columns: repeat(2, 1fr)
+        margin: 0 10px
+        grid-gap: 10px
