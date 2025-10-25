@@ -11,7 +11,7 @@ export function Preview({ image }: { image: string }) {
       alt={"preview"}
       layout="fixed"
       objectFit="cover"
-      style={{ borderRadius: "50%" }}
+      style={{ borderRadius: "50%", marginLeft: "30px" }}
       width={40}
       height={40}
     ></Image>

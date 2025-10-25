@@ -7,6 +7,16 @@
     justify-content: center
     align-items: center
     margin-left: 10px
+    
+    @media screen and (max-width: 768px)
+        position: fixed
+        bottom: 20px
+        right: 20px
+        margin-left: 0
+        z-index: 10
+        width: 75vw
+        max-width: 300px
+        
     .inputEl
         width: 200px
         padding: 0px 5px
@@ -16,9 +26,15 @@
         color: var(--color_text)
         margin-right: 10px
         border-color: var(--color_contrast)
+        
+        @media screen and (max-width: 768px)
+            width: 100%
+            margin-right: 5px
+            
     .inputEl::placeholder
         color: var(--color_contrast)
         opacity: 0.4
+        
     .escButton
         font-size: variables.$font_size
         border: none

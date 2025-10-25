@@ -20,13 +20,13 @@ export function Navigator({
 }) {
   return (
     <div className={styles.container}>
-      <div className={styles.left}>
+      {/* <div className={styles.left}>
         <Search
           setSearch={setSearch}
           setIsFocused={setIsFocused}
           isFocused={isFocused}
         />
-      </div>
+      </div> */}
       <div className={styles.linksToSource}>
         {!isRoot && channel && (
           <>

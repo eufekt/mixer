@@ -64,21 +64,6 @@ function ExploreChannelBlocksWithSearch({ isRoot }: { isRoot: boolean }) {
 export default function Explorer({ isRoot = false }) {
   return (
     <div className={styles.container}>
-      <div className={styles.isMobile}>
-        For the present moment, this application is only optimized for desktop
-        experience. Some features may not work on mobile devices. Please use a
-        desktop.
-        <br />
-        <br />
-        <a
-          className={styles.link}
-          href={"https://www.are.na/la-src/feedback-loop-evw-91mkkyu"}
-          target={"_blank"}
-          rel="noreferrer"
-        >
-          {"feedback loop"}
-        </a>
-      </div>
       <div className={styles.isDesktop}>
         <ExploreChannelBlocksWithSearch isRoot={isRoot} />
       </div>

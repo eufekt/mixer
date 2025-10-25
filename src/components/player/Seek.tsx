@@ -24,10 +24,8 @@ export default function Seek({
     <div className={styles.container}>
       {block && (
         <>
-          <Preview image={previewImage} />
           <div className={styles.seekContainer}>
             <div className={styles.title}>{parseTitle(title, 65)}</div>
-
             <input
               type={"range"}
               className={styles.seek}
@@ -44,6 +42,7 @@ export default function Seek({
               <Duration seconds={duration * (1 - played)} />
             </div>
           </div>
+          <Preview image={previewImage} />
         </>
       )}
     </div>
