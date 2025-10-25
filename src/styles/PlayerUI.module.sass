@@ -11,6 +11,8 @@
     padding: 0 60px
     display: flex,
     align-items: center,
+    backdrop-filter: blur(8px) hue-rotate(5deg)
+    background-color: rgba(0, 0, 0, 0.6)
     // flex-wrap: wrap
 
     > *
@@ -24,8 +26,26 @@
         display: flex
         align-items: center
 
-@media screen and (max-width: 1110px)
+@media screen and (max-width: 768px)
     .player
+        flex-direction: column
+        height: auto
+        padding: 10px 15px
+        gap: 8px
+        align-items: flex-start
+
+        > *
+            margin: 0
+
+        .left
+            flex-direction: row
+            gap: 10px
+            align-items: center
+
+        .right
+            flex-direction: row
+            justify-content: flex-start
+            gap: 15px
 
 .connect
     cursor: pointer

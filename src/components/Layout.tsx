@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <main>
       {children}
       <Player />
-      <InformationModal />
+      {/* <InformationModal /> */}
       <History />
     </main>
   );

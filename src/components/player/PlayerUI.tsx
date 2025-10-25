@@ -74,25 +74,6 @@ export function PlayerUI({
             🔗
           </a>
         )}
-        {currentBlock && (
-          <div style={{ position: "relative" }}>
-            <div
-              onClick={() => setShowConnectModal(true)}
-              className={styles.connect}
-            >
-              connect
-            </div>
-
-            {showConnectModal && (
-              <div className={styles.connectModalWrapper}>
-                <ConnectModal
-                  setShowConnectModal={setShowConnectModal}
-                  block={currentBlock}
-                />
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
